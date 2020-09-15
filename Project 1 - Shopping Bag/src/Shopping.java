@@ -1,4 +1,4 @@
-public class Shopping {
+public class Shopping { // test 2
     public ShoppingBag shopping_bag = new ShoppingBag();
     private int size = 0;
     public void run(){
