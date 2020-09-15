@@ -1,3 +1,5 @@
+//This project is made by Hanqing Zhao & Richard Xu
+
 public class GroceryItem {
     public String name;
 

@@ -1,3 +1,5 @@
+//This project is made by Hanqing Zhao & Richard Xu
+
 public class Shopping { // test 2
     public ShoppingBag shopping_bag = new ShoppingBag();
     private int size = 0;

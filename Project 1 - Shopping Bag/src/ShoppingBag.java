@@ -1,3 +1,5 @@
+//This project is made by Hanqing Zhao & Richard Xu
+
 import java.util.Arrays;
 
 public class ShoppingBag {
