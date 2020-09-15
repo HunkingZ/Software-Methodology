@@ -1,8 +1,32 @@
 //This project is made by Hanqing Zhao & Richard Xu
+import java.io.*;
+import java.util.*;
 
 public class Shopping { // test 2
+    public void run() {
+        String st;
+        char c;
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        do {
+            st = br.readLine();
+            c = st.charAt(0);
+            //case of input, R == remove, P == print, A == add, C == checkingout
+            if (c == 'R') {
+
+            } else if (c == 'P') {
+
+            } else if (c == 'A') {
+
+            } else if (c == 'C') {
+
+            } else {
+                System.out.println("Invalid command!");
+            }
+        } while (c != 'Q')
+    }
     public ShoppingBag shopping_bag = new ShoppingBag();
     private int size = 0;
+    /*
     public void run(){
         GroceryItem item1 = new GroceryItem("beef", 10.0, true);
         GroceryItem item2 = new GroceryItem("lamp", 20.0, false);
@@ -18,6 +42,9 @@ public class Shopping { // test 2
         checking_out();
         display();
     }
+
+
+     */
 
     private void add(GroceryItem item) {
         shopping_bag.add(item);
