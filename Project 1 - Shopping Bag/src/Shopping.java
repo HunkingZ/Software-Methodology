@@ -11,13 +11,26 @@ public class Shopping { // test 2
 
         while (st != "Q") {
             c = st.charAt(0);
-            //case of input, R == remove, P == print, A == add, C == checkingout
+            //case of input, R == remove, P == print, A == add, C == checkingOut, Q == quit.
             if (c == 'R') {
-
+                Scanner linescanner = new Scanner(st);
+                linescanner.next();
+                String name = linescanner.next();
+                double price = linescanner.nextDouble();
+                boolean taxable = linescanner.nextBoolean();
+                GroceryItem item = new GroceryItem(name, price, taxable);
+                remove(item);
             } else if (c == 'P') {
                 display();
             } else if (c == 'A') {
-
+                Scanner linescanner = new Scanner(st);
+                linescanner.next();
+                String name = linescanner.next();
+                System.out.println(name);
+                double price = linescanner.nextDouble();
+                boolean taxable = linescanner.nextBoolean();
+                GroceryItem item = new GroceryItem(name, price, taxable);
+                add(item);
             } else if (c == 'C') {
                 checking_out();
             } else if (c == 'Q') {
@@ -28,6 +41,7 @@ public class Shopping { // test 2
             st = scan.nextLine();
         }
         System.out.println("Thanks for shopping with us!");
+
     }
 
     public ShoppingBag shopping_bag = new ShoppingBag();
