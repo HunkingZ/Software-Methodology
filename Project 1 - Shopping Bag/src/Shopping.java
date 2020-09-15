@@ -1,29 +1,35 @@
 //This project is made by Hanqing Zhao & Richard Xu
-import java.io.*;
+import javax.sound.midi.SysexMessage;
 import java.util.*;
 
 public class Shopping { // test 2
     public void run() {
-        String st;
+        String st = null;
         char c;
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        do {
-            st = br.readLine();
+        Scanner scan = new Scanner(System.in);
+        st = scan.nextLine();
+
+        while (st != "Q") {
             c = st.charAt(0);
             //case of input, R == remove, P == print, A == add, C == checkingout
             if (c == 'R') {
 
             } else if (c == 'P') {
-
+                display();
             } else if (c == 'A') {
 
             } else if (c == 'C') {
-
+                checking_out();
+            } else if (c == 'Q') {
+                break;
             } else {
                 System.out.println("Invalid command!");
             }
-        } while (c != 'Q')
+            st = scan.nextLine();
+        }
+        System.out.println("Thanks for shopping with us!");
     }
+
     public ShoppingBag shopping_bag = new ShoppingBag();
     private int size = 0;
     /*
