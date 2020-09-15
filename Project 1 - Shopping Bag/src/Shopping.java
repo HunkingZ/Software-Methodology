@@ -8,9 +8,9 @@ public class Shopping { // test 2
         char c;
         Scanner scan = new Scanner(System.in);
         st = scan.nextLine();
-
-        while (st != "Q") {
+        while (st != null) {
             c = st.charAt(0);
+            System.out.println(c);
             //case of input, R == remove, P == print, A == add, C == checkingOut, Q == quit.
             if (c == 'R') {
                 Scanner linescanner = new Scanner(st);
@@ -26,7 +26,6 @@ public class Shopping { // test 2
                 Scanner linescanner = new Scanner(st);
                 linescanner.next();
                 String name = linescanner.next();
-                System.out.println(name);
                 double price = linescanner.nextDouble();
                 boolean taxable = linescanner.nextBoolean();
                 GroceryItem item = new GroceryItem(name, price, taxable);
