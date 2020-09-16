@@ -1,6 +1,6 @@
 //This project is made by Hanqing Zhao & Richard Xu
 
-import java.util.Arrays;
+import java.util.*;
 
 public class ShoppingBag {
     private GroceryItem[] bag; // List of items
@@ -93,8 +93,7 @@ public class ShoppingBag {
      * @return Calculated total
      */
     public double salesPrice() {
-        int total_sales = 0;
-
+        double total_sales = 0;
         for (int i = 0; i < size; i++) {
             total_sales += bag[i].price;
         }

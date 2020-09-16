@@ -1,6 +1,51 @@
+//This project is made by Hanqing Zhao & Richard Xu
+import javax.sound.midi.SysexMessage;
+import java.util.*;
+
 public class Shopping { // test 2
+    public void run() {
+        String st = null;
+        char c;
+        Scanner scan = new Scanner(System.in);
+        st = scan.nextLine();
+        while (st != null) {
+            c = st.charAt(0);
+            System.out.println(c);
+            //case of input, R == remove, P == print, A == add, C == checkingOut, Q == quit.
+            if (c == 'R') {
+                Scanner linescanner = new Scanner(st);
+                linescanner.next();
+                String name = linescanner.next();
+                double price = linescanner.nextDouble();
+                boolean taxable = linescanner.nextBoolean();
+                GroceryItem item = new GroceryItem(name, price, taxable);
+                remove(item);
+            } else if (c == 'P') {
+                display();
+            } else if (c == 'A') {
+                Scanner linescanner = new Scanner(st);
+                linescanner.next();
+                String name = linescanner.next();
+                double price = linescanner.nextDouble();
+                boolean taxable = linescanner.nextBoolean();
+                GroceryItem item = new GroceryItem(name, price, taxable);
+                add(item);
+            } else if (c == 'C') {
+                checking_out();
+            } else if (c == 'Q') {
+                break;
+            } else {
+                System.out.println("Invalid command!");
+            }
+            st = scan.nextLine();
+        }
+        System.out.println("Thanks for shopping with us!");
+
+    }
+
     public ShoppingBag shopping_bag = new ShoppingBag();
     private int size = 0;
+    /*
     public void run(){
         GroceryItem item1 = new GroceryItem("beef", 10.0, true);
         GroceryItem item2 = new GroceryItem("lamp", 20.0, false);
@@ -16,6 +61,9 @@ public class Shopping { // test 2
         checking_out();
         display();
     }
+
+
+     */
 
     private void add(GroceryItem item) {
         shopping_bag.add(item);
