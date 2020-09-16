@@ -1,4 +1,8 @@
-//This project is made by Hanqing Zhao & Richard Xu
+/**
+ * ShoppingBag.java file
+ *
+ * @author Hanqing Zhao, Richard Xu
+ */
 
 import java.util.*;
 
