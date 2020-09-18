@@ -1,11 +1,10 @@
+import java.util.*;
+
 /**
- * ShoppingBag.java file
+ * ShoppingBag Class
  *
  * @author Hanqing Zhao, Richard Xu
  */
-
-import java.util.*;
-
 public class ShoppingBag {
     private GroceryItem[] bag; // List of items
     private int size = 0; // Current number of items in the bag
@@ -22,11 +21,12 @@ public class ShoppingBag {
      * Find the index of a certain item in the Shopping Bag
      *
      * @param item The item you want to find
+     * @return Index of the target item
      */
     private int find(GroceryItem item) {
-        for (int i = 0; i < size; i++) {
-            if (bag[i].equals(item)) {
-                return i;
+        for (int indexOfItem = 0; indexOfItem < size; indexOfItem++) {
+            if (bag[indexOfItem].equals(item)) {
+                return indexOfItem;
             }
         }
         return -1;
@@ -37,13 +37,13 @@ public class ShoppingBag {
      */
     public void print() {
         for (int i = 0; i < size; i++) {
-            GroceryItem itm = bag[i];
-            System.out.println("•" + itm.toString());
+            GroceryItem item = bag[i];
+            System.out.println("•" + item);
         }
     }
 
     /**
-     * Doubles capacity of the Shopping Bag
+     * Increases the maximum capacity of the Shopping Bag by 5
      */
     private void grow() {
         capacity += 5;
@@ -75,18 +75,21 @@ public class ShoppingBag {
     /**
      * Removes a specific item from the Shopping Bag
      *
-     * @param item The item to be removed
+     * @param itemToRemove The item to be removed
      */
-    public void remove(GroceryItem item) {
-        if (find(item) != -1) {
-            int left = find(item);
-            int right = left + 1;
-            while (right < size) {
-                bag[left] = bag[right];
-                left++;
-                right++;
+    public void remove(GroceryItem itemToRemove) {
+        if (find(itemToRemove) != -1) {
+            int indexOfItem = find(itemToRemove);
+            int lastItemInBag = indexOfItem + 1;
+
+            // Replace target item with the last item in the bag
+            while (lastItemInBag < size) {
+                bag[indexOfItem] = bag[lastItemInBag];
+                indexOfItem++;
+                lastItemInBag++;
             }
-            bag[right] = null;
+
+            bag[lastItemInBag] = null;
             size--;
         }
     }

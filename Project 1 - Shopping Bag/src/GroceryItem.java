@@ -2,9 +2,7 @@
 
 public class GroceryItem {
     public String name;
-
     public double price;
-
     public boolean taxable;
 
     public GroceryItem(String name, double price, boolean taxable) {
@@ -14,10 +12,11 @@ public class GroceryItem {
     }
     //public boolean equals(Object obj) {}
 
+    @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append(name + " :");
-        sb.append(" $" + String.valueOf(price) + " :");
+        sb.append(name + ":");
+        sb.append(" $" + price + " :");
         if (taxable) {
             sb.append(" is taxable");
         } else {
