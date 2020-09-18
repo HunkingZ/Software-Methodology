@@ -1,13 +1,22 @@
-//This project is made by Hanqing Zhao & Richard Xu
 import javax.sound.midi.SysexMessage;
 import java.util.*;
 
-public class Shopping { // test 2
+/**
+ * Shopping Class
+ *
+ * @author Hanqing Zhao, Richard Xu
+ */
+public class Shopping {
+    /**
+     * Interface for handling I/O
+     */
     public void run() {
-        String st = null;
-        char c;
-        Scanner scan = new Scanner(System.in);
+        String st;   // String to store user input information
+        char c; //
+        Scanner scan = new Scanner(System.in); // Scanner to read user input
+
         st = scan.nextLine();
+
         while (st != null) {
             c = st.charAt(0);
             System.out.println(c);
