@@ -38,7 +38,7 @@ public class ShoppingBag {
     public void print() {
         for (int i = 0; i < size; i++) {
             GroceryItem item = bag[i];
-            System.out.println("•" + item);
+            System.out.println("• " + item);
         }
     }
 
