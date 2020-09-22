@@ -1,4 +1,5 @@
-import java.util.*;
+import java.util.IllegalFormatException;
+import java.util.Scanner;
 
 /**
  * Shopping Class
@@ -112,12 +113,13 @@ public class Shopping {
      * @return Whether the input is able to be parsed correctly
      */
     private boolean confirmTaxable(String taxableInput) {
-        // taxableInput must be either TRUE or FALSE
-        if (taxableInput == null || !isAlphabetic(taxableInput) && (!taxableInput.toUpperCase().equals("TRUE") && !taxableInput.toUpperCase().equals("FALSE"))) {
-            System.out.println("Invalid command!");
-            return false;
+        // taxableInput must exactly be either "TRUE" or "FALSE"
+        if (taxableInput != null && (isAlphabetic(taxableInput) && (taxableInput.toUpperCase().equals("TRUE") || taxableInput.toUpperCase().equals("FALSE")))) {
+            return true;
         }
-        return true;
+
+        System.out.println("Invalid command!");
+        return false;
     }
 
     /**

@@ -1,5 +1,8 @@
-//This project is made by Hanqing Zhao & Richard Xu
-
+/**
+ * ShoppingBag Class
+ *
+ * @author Hanqing Zhao, Richard Xu
+ */
 public class GroceryItem {
     public String name;
     public double price;
