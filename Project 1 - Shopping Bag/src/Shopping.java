@@ -12,6 +12,8 @@ public class Shopping {
      * Interface for handling I/O
      */
     public void run() {
+        System.out.println("Let's start shopping!");
+
         Scanner scan = new Scanner(System.in); // Scanner to read user input
         String input = scan.nextLine();   // String to store user input information
 
@@ -20,6 +22,7 @@ public class Shopping {
         while (input != null) {
             Scanner arguments = new Scanner(input); // Scanner to help parse the current user input
             String command = "\0"; // In case of no command, sends to default switch case
+
             if (arguments.hasNext()) { command = arguments.next(); }
 
             switch (command) {
@@ -52,8 +55,8 @@ public class Shopping {
 
             input = scan.nextLine();
         }
-        System.out.println("Thanks for shopping with us!");
 
+        System.out.println("Thanks for shopping with us!");
     }
 
     // Methods used for I/O parsing
@@ -158,11 +161,21 @@ public class Shopping {
 
     public static final int MIN_BAG_SIZE = 0;
 
+    /**
+     * Adds an item to the bag
+     *
+     * @param item The item to add
+     */
     private void add(GroceryItem item) {
         bag.add(item);
         System.out.println(item.name + " added to the bag.");
     }
 
+    /**
+     * Removes an item from the bag
+     *
+     * @param item The item to remove
+     */
     private void remove(GroceryItem item) {
         if (bag.getSize() == MIN_BAG_SIZE) {
             System.out.println("Unable to remove, this item is not in the bag.");
@@ -172,6 +185,9 @@ public class Shopping {
         }
     }
 
+    /**
+     * Lists all the items in the bag along with their prices and whether it is taxable
+     */
     private void display() {
         if (bag.getSize() == MIN_BAG_SIZE) {
             System.out.println("The bag is empty!");
@@ -182,6 +198,9 @@ public class Shopping {
         }
     }
 
+    /**
+     * Calculates total raw price, total of all taxable items, and accumulated total costs in the bag and empties the bag
+     */
     private void checking_out() {
         if (bag.getSize() == MIN_BAG_SIZE) {
             System.out.println("Unable to check out, the bag is empty!");
@@ -189,9 +208,13 @@ public class Shopping {
             System.out.println("**Checking out " + bag.getSize() + " items.");
             bag.print();
 
-            System.out.println("*Sales total : $" + bag.salesPrice());
-            System.out.println("*Sales tax : $" + bag.salesTax());
-            System.out.println("*Total amount paid : $" + (bag.salesPrice() + bag.salesTax()));
+            String formatted_sales_price = String.format("%.2f", bag.salesPrice());
+            String formatted_sales_tax = String.format("%.2f", bag.salesTax());
+            String formatted_sales_total = String.format("%.2f", (bag.salesPrice() + bag.salesTax()));
+
+            System.out.println("*Sales total : $" + formatted_sales_price);
+            System.out.println("*Sales tax : $" + formatted_sales_tax);
+            System.out.println("*Total amount paid : $" + formatted_sales_total);
 
             bag = new ShoppingBag();
         }
