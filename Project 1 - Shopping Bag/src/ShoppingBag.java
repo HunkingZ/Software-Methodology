@@ -6,6 +6,7 @@ import java.util.Arrays;
  * @author Hanqing Zhao, Richard Xu
  */
 public class ShoppingBag {
+
     private GroceryItem[] bag; // List of items
     private int size = 0; // Current number of items in the bag
     private int capacity = 5; // Maximum available number of items in the bag
@@ -56,11 +57,11 @@ public class ShoppingBag {
      * @param item The item you want to add
      */
     public void add(GroceryItem item) {
+        bag[size] = item;
+        size++;
         if (size >= capacity) {
             grow();
         }
-        bag[size] = item;
-        size++;
     }
 
     /**
@@ -78,8 +79,11 @@ public class ShoppingBag {
      * @param itemToRemove The item to be removed
      */
     public void remove(GroceryItem itemToRemove) {
-        if (find(itemToRemove) != -1) {
-            int indexOfItem = find(itemToRemove);
+        if (itemToRemove == null) {
+            return;
+        }
+        int indexOfItem = find(itemToRemove);
+        if (indexOfItem != -1) {
             int lastItemInBag = indexOfItem + 1;
 
             // Replace target item with the last item in the bag
@@ -89,7 +93,7 @@ public class ShoppingBag {
                 lastItemInBag++;
             }
 
-            bag[lastItemInBag] = null;
+            bag[--lastItemInBag] = null;
             size--;
         }
     }
@@ -125,5 +129,75 @@ public class ShoppingBag {
         }
 
         return total_tax;
+    }
+
+    public static void main(String[] args) {
+
+        ShoppingBag testBag = new ShoppingBag();
+
+        //test add
+        System.out.println("---------Test add() method start-----------");
+        System.out.println("Bag size : " +testBag.bag.length);
+        System.out.println("Items in the bag : ");
+        for (GroceryItem item : testBag.bag) {
+            if (item != null) {
+                System.out.println(item);
+            }
+        }
+
+        GroceryItem addItem1 = new GroceryItem("beef", 2.0, true);
+        GroceryItem addItem2 = new GroceryItem("lamp", 21.0, true);
+        GroceryItem addItem3 = new GroceryItem("bead", 303.3, false);
+        GroceryItem addItem4 = new GroceryItem("chicken", 44444444, true);
+        GroceryItem addItem5 = new GroceryItem("bed", 0.1, false);
+        testBag.add(addItem1);
+        testBag.add(addItem2);
+        testBag.add(addItem3);
+        testBag.add(addItem4);
+        testBag.add(addItem5);
+
+        for (GroceryItem item : testBag.bag) {
+            if (item != null) {
+                System.out.println(item);
+            }
+        }
+        System.out.println("Bag size : " + testBag.bag.length);
+        System.out.println("----------Test add() method end------------");
+
+        //test remove
+        System.out.println("--------Test remove() method start---------");
+        System.out.println("Bag size : " + testBag.bag.length);
+        System.out.println("Items in the bag : ");
+        GroceryItem removeItem1 = new GroceryItem("beef", 2.0, true);
+        GroceryItem removeItem2 = new GroceryItem("lamp", 21.0, true);
+        GroceryItem removeItem3 = new GroceryItem("duck", 10.0, true);
+        GroceryItem removeItem4 = new GroceryItem("chicken", 21.0, true);
+        testBag.remove(removeItem1);
+        testBag.remove(removeItem2);
+        testBag.remove(removeItem3);
+        testBag.remove(removeItem4);
+        testBag.remove(null);
+
+        for (GroceryItem item : testBag.bag) {
+            if (item != null) {
+                System.out.println(item);
+            }
+        }
+        System.out.println("Bag size : " + testBag.bag.length);
+        System.out.println("---------Test remove() method end----------");
+
+        //test grow
+        System.out.println("---------Test grow() method start----------");
+        System.out.println("Bag size : " + testBag.bag.length);
+        for (int i = 0; i < 5; i++) {
+            testBag.grow();
+        }
+        System.out.println("Bag size after grow : " + testBag.bag.length);
+        System.out.println("----------Test grow() method end-----------");
+
+        //test salesTax
+        System.out.println("-------Test salesTax() method start--------");
+        System.out.println("Total tax needed to pay : " + testBag.salesTax());
+        System.out.println("--------Test salesTax() method end---------");
     }
 }
