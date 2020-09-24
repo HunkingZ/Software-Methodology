@@ -132,12 +132,11 @@ public class ShoppingBag {
     }
 
     public static void main(String[] args) {
-
         ShoppingBag testBag = new ShoppingBag();
 
-        //test add
+        // add() test
         System.out.println("---------Test add() method start-----------");
-        System.out.println("Bag size : " +testBag.bag.length);
+        System.out.println("Bag size: " +testBag.bag.length);
         System.out.println("Items in the bag : ");
         for (GroceryItem item : testBag.bag) {
             if (item != null) {
@@ -158,16 +157,17 @@ public class ShoppingBag {
 
         for (GroceryItem item : testBag.bag) {
             if (item != null) {
-                System.out.println(item);
+                System.out.println(">> " + item);
             }
         }
-        System.out.println("Bag size : " + testBag.bag.length);
-        System.out.println("----------Test add() method end------------");
 
-        //test remove
+        System.out.println("Bag size: " + testBag.bag.length);
+        System.out.println("----------Test add() method end------------\n");
+
+        // remove() test
         System.out.println("--------Test remove() method start---------");
-        System.out.println("Bag size : " + testBag.bag.length);
-        System.out.println("Items in the bag : ");
+        System.out.println("Bag size: " + testBag.bag.length);
+        System.out.println("Items in the bag: ");
         GroceryItem removeItem1 = new GroceryItem("beef", 2.0, true);
         GroceryItem removeItem2 = new GroceryItem("lamp", 21.0, true);
         GroceryItem removeItem3 = new GroceryItem("duck", 10.0, true);
@@ -180,24 +180,24 @@ public class ShoppingBag {
 
         for (GroceryItem item : testBag.bag) {
             if (item != null) {
-                System.out.println(item);
+                System.out.println(">> " + item);
             }
         }
-        System.out.println("Bag size : " + testBag.bag.length);
-        System.out.println("---------Test remove() method end----------");
+        System.out.println("Bag size: " + testBag.bag.length);
+        System.out.println("---------Test remove() method end----------\n");
 
-        //test grow
+        // grow() test
         System.out.println("---------Test grow() method start----------");
-        System.out.println("Bag size : " + testBag.bag.length);
+        System.out.println("Bag size: " + testBag.bag.length);
         for (int i = 0; i < 5; i++) {
             testBag.grow();
         }
-        System.out.println("Bag size after grow : " + testBag.bag.length);
-        System.out.println("----------Test grow() method end-----------");
+        System.out.println("Bag size after grow: " + testBag.bag.length);
+        System.out.println("----------Test grow() method end-----------\n");
 
-        //test salesTax
+        // salesTax() test
         System.out.println("-------Test salesTax() method start--------");
-        System.out.println("Total tax needed to pay : " + testBag.salesTax());
+        System.out.printf("Total tax needed to pay: %.2f\n", testBag.salesTax());
         System.out.println("--------Test salesTax() method end---------");
     }
 }
