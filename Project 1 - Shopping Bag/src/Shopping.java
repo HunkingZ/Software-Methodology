@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 /**
  * Shopping Class
+ * This is the I/O handling interface
  *
  * @author Hanqing Zhao, Richard Xu
  */
@@ -160,8 +161,7 @@ public class Shopping {
     // - - - - -
 
     // Methods for performing identified commands
-
-    public static final int MIN_BAG_SIZE = 0;
+    final int MIN_BAG_SIZE = 0;
 
     /**
      * Adds an item to the bag
@@ -179,10 +179,9 @@ public class Shopping {
      * @param item The item to remove
      */
     private void remove(GroceryItem item) {
-        if (bag.getSize() == MIN_BAG_SIZE) {
+        if (bag.getSize() == MIN_BAG_SIZE || !bag.remove(item)) {
             System.out.println("Unable to remove, this item is not in the bag.");
         } else {
-            bag.remove(item);
             System.out.println(item.getName() + " $" + item.getPrice() + " removed.");
         }
     }

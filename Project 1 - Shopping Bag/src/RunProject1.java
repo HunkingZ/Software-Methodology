@@ -1,5 +1,6 @@
 /**
- * ShoppingBag Class
+ * RunProject1 Class
+ * This is the driver used to run the project
  *
  * @author Hanqing Zhao, Richard Xu
  */

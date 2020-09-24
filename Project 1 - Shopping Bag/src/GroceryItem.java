@@ -1,5 +1,6 @@
 /**
- * ShoppingBag Class
+ * GroceryItem Class
+ * This declares the item that the ShoppingBag class will hold
  *
  * @author Hanqing Zhao, Richard Xu
  */
@@ -7,6 +8,23 @@ public class GroceryItem {
     private String name;
     private double price;
     private boolean taxable;
+
+    /**
+     * Compares two items to see if they match exactly
+     *
+     * @param obj The second item to compare
+     * @return Whether the items match
+     */
+    @Override
+    public boolean equals(Object obj) {
+        // Edge cases that the obj is null or is not a instance of GroceryItem
+        if (obj == null || !(obj instanceof GroceryItem)) {
+            return false;
+        }
+        return name.equals(((GroceryItem)obj).name)
+                && price == (((GroceryItem)obj).price)
+                && taxable == (((GroceryItem)obj).taxable);
+    }
 
     /**
      * Constructor to create an item
@@ -41,18 +59,6 @@ public class GroceryItem {
             sb.append(" tax free");
         }
         return sb.toString();
-    }
-
-    /**
-     * Compares two items to see if they match exactly
-     *
-     * @param otherItem The second item to compare
-     * @return Whether the items match
-     */
-    public boolean equals(GroceryItem otherItem) {
-        return name.equals(otherItem.name)
-                && price == otherItem.price
-                && taxable == otherItem.taxable;
     }
 
     /**
