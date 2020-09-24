@@ -1,0 +1,208 @@
+Index: ../../.idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ../../.idea/vcs.xml	(date 1600225028653)
++++ ../../.idea/vcs.xml	(date 1600225028653)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: Shopping.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>public class Shopping { // test 2\r\n    public ShoppingBag shopping_bag = new ShoppingBag();\r\n    private int size = 0;\r\n    public void run(){\r\n        GroceryItem item1 = new GroceryItem(\"beef\", 10.0, true);\r\n        GroceryItem item2 = new GroceryItem(\"lamp\", 20.0, false);\r\n        GroceryItem item3 = new GroceryItem(\"duck\", 25.0, true);\r\n        GroceryItem item4 = new GroceryItem(\"apple\", 2.0, true);\r\n        remove(item1);\r\n        add(item1);\r\n        add(item2);\r\n        add(item3);\r\n        add(item4);\r\n        display();\r\n        remove(item1);\r\n        checking_out();\r\n        display();\r\n    }\r\n\r\n    private void add(GroceryItem item) {\r\n        shopping_bag.add(item);\r\n        size++;\r\n        System.out.println(item.name + \" added to the bag.\");\r\n    }\r\n\r\n    private void remove(GroceryItem item) {\r\n            shopping_bag.remove(item);\r\n            if (shopping_bag.getSize() != size) {\r\n                size--;\r\n                System.out.println(item.name + \" $\" + item.price + \" removed.\");\r\n            } else {\r\n                System.out.println(\"Unable to remove, this item is not in the bag.\");\r\n            }\r\n\r\n    }\r\n\r\n    private void display() {\r\n        if (size == 0) {\r\n            System.out.println(\"The bag is empty!\");\r\n        } else {\r\n            System.out.println(\"**You have \" + size + \" item(s) in the bag.\");\r\n\r\n            shopping_bag.print();\r\n\r\n            System.out.println(\"**End of list\");\r\n        }\r\n    }\r\n    private void checking_out() {\r\n        System.out.println(\"**Checking out \" + shopping_bag.getSize() + \" items.\");\r\n\r\n        shopping_bag.print();\r\n        System.out.println(\"*Sales total : $\" + shopping_bag.salesPrice());\r\n        System.out.println(\"*Sales tax : $\" + shopping_bag.salesTax());\r\n        System.out.println(\"*Total amount paid : $\" + (shopping_bag.salesPrice() + shopping_bag.salesTax()));\r\n\r\n        shopping_bag = new ShoppingBag();\r\n        size = 0;\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Shopping.java	(revision ee810a109de185281c174cc3d0fd39122eff64f2)
++++ Shopping.java	(date 1600225028655)
+@@ -1,6 +1,51 @@
++//This project is made by Hanqing Zhao & Richard Xu
++import javax.sound.midi.SysexMessage;
++import java.util.*;
++
+ public class Shopping { // test 2
++    public void run() {
++        String st = null;
++        char c;
++        Scanner scan = new Scanner(System.in);
++        st = scan.nextLine();
++        while (st != null) {
++            c = st.charAt(0);
++            System.out.println(c);
++            //case of input, R == remove, P == print, A == add, C == checkingOut, Q == quit.
++            if (c == 'R') {
++                Scanner linescanner = new Scanner(st);
++                linescanner.next();
++                String name = linescanner.next();
++                double price = linescanner.nextDouble();
++                boolean taxable = linescanner.nextBoolean();
++                GroceryItem item = new GroceryItem(name, price, taxable);
++                remove(item);
++            } else if (c == 'P') {
++                display();
++            } else if (c == 'A') {
++                Scanner linescanner = new Scanner(st);
++                linescanner.next();
++                String name = linescanner.next();
++                double price = linescanner.nextDouble();
++                boolean taxable = linescanner.nextBoolean();
++                GroceryItem item = new GroceryItem(name, price, taxable);
++                add(item);
++            } else if (c == 'C') {
++                checking_out();
++            } else if (c == 'Q') {
++                break;
++            } else {
++                System.out.println("Invalid command!");
++            }
++            st = scan.nextLine();
++        }
++        System.out.println("Thanks for shopping with us!");
++
++    }
++
+     public ShoppingBag shopping_bag = new ShoppingBag();
+     private int size = 0;
++    /*
+     public void run(){
+         GroceryItem item1 = new GroceryItem("beef", 10.0, true);
+         GroceryItem item2 = new GroceryItem("lamp", 20.0, false);
+@@ -17,6 +62,9 @@
+         display();
+     }
+ 
++
++     */
++
+     private void add(GroceryItem item) {
+         shopping_bag.add(item);
+         size++;
+Index: ShoppingBag.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//This project is made by Hanqing Zhao & Richard Xu\r\n\r\nimport java.util.Arrays;\r\n\r\npublic class ShoppingBag {\r\n    private GroceryItem[] bag; // List of items\r\n    private int size = 0; // Current number of items in the bag\r\n    private int capacity = 5; // Maximum available number of items in the bag\r\n\r\n    /**\r\n     * Constructor for declaring a Shopping Bag\r\n     */\r\n    public ShoppingBag() {\r\n        bag = new GroceryItem[capacity];\r\n    }\r\n\r\n    /**\r\n     * Find the index of a certain item in the Shopping Bag\r\n     *\r\n     * @param item The item you want to find\r\n     */\r\n    private int find(GroceryItem item) {\r\n        for (int i = 0; i < size; i++) {\r\n            if (bag[i].equals(item)) {\r\n                return i;\r\n            }\r\n        }\r\n        return -1;\r\n    }\r\n\r\n    /**\r\n     * Prints every current item in the Shopping Bag\r\n     */\r\n    public void print() {\r\n        for (int i = 0; i < size; i++) {\r\n            GroceryItem itm = bag[i];\r\n            System.out.println(\"•\" + itm.toString());\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Doubles capacity of the Shopping Bag\r\n     */\r\n    private void grow() {\r\n        capacity += 5;\r\n        bag = Arrays.copyOf(bag, capacity);\r\n    }\r\n\r\n    /**\r\n     * Adds an item into the Shopping Bag\r\n     *\r\n     * @param item The item you want to add\r\n     */\r\n    public void add(GroceryItem item) {\r\n        if (size >= capacity) {\r\n            grow();\r\n        }\r\n        bag[size] = item;\r\n        size++;\r\n    }\r\n\r\n    /**\r\n     * Returns the number of items in the Shopping Bag\r\n     *\r\n     * @return Size of the Shopping Bag\r\n     */\r\n    public int getSize() {\r\n        return size;\r\n    }\r\n\r\n    /**\r\n     * Removes a specific item from the Shopping Bag\r\n     *\r\n     * @param item The item to be removed\r\n     */\r\n    public void remove(GroceryItem item) {\r\n        if (find(item) != -1) {\r\n            int left = find(item);\r\n            int right = left + 1;\r\n            while (right < size) {\r\n                bag[left] = bag[right];\r\n                left++;\r\n                right++;\r\n            }\r\n            bag[right] = null;\r\n            size--;\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Calculates the total price of all the items in the Shopping Bag\r\n     *\r\n     * @return Calculated total\r\n     */\r\n    public double salesPrice() {\r\n        int total_sales = 0;\r\n\r\n        for (int i = 0; i < size; i++) {\r\n            total_sales += bag[i].price;\r\n        }\r\n\r\n        return total_sales;\r\n    }\r\n\r\n    /**\r\n     * Calculates the total tax of all taxable items in the purchase\r\n     *\r\n     * @return Calculated total tax\r\n     */\r\n    public double salesTax() {\r\n        double tax_rate = 0.06625;\r\n        double total_tax = 0;\r\n\r\n        for (int i = 0; i < size; i++) {\r\n            if (bag[i].taxable) {\r\n                total_tax += bag[i].price * tax_rate;\r\n            }\r\n        }\r\n\r\n        return total_tax;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ShoppingBag.java	(revision ee810a109de185281c174cc3d0fd39122eff64f2)
++++ ShoppingBag.java	(date 1600225193378)
+@@ -1,6 +1,6 @@
+ //This project is made by Hanqing Zhao & Richard Xu
+ 
+-import java.util.Arrays;
++import java.util.*;
+ 
+ public class ShoppingBag {
+     private GroceryItem[] bag; // List of items
+@@ -93,8 +93,7 @@
+      * @return Calculated total
+      */
+     public double salesPrice() {
+-        int total_sales = 0;
+-
++        double total_sales = 0;
+         for (int i = 0; i < size; i++) {
+             total_sales += bag[i].price;
+         }
+Index: RunProject1.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>public class RunProject1 {\r\n    public static void main(String[] args) {\r\n        new Shopping().run();\r\n    }\r\n\r\n    // test\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- RunProject1.java	(revision ee810a109de185281c174cc3d0fd39122eff64f2)
++++ RunProject1.java	(date 1600225028654)
+@@ -1,7 +1,8 @@
++//This project is made by Hanqing Zhao & Richard Xu
++
+ public class RunProject1 {
+     public static void main(String[] args) {
+         new Shopping().run();
+     }
+-
+     // test
+ }
+Index: ../../.idea/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ../../.idea/.gitignore	(date 1600225028652)
++++ ../../.idea/.gitignore	(date 1600225028652)
+@@ -0,0 +1,3 @@
++# Default ignored files
++/shelf/
++/workspace.xml
+Index: ../../.idea/213-Software-Methodology.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ../../.idea/213-Software-Methodology.iml	(date 1600225028653)
++++ ../../.idea/213-Software-Methodology.iml	(date 1600225028653)
+@@ -0,0 +1,9 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$" />
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: ../../.idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ../../.idea/misc.xml	(date 1600225028653)
++++ ../../.idea/misc.xml	(date 1600225028653)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_14" project-jdk-name="14" project-jdk-type="JavaSDK">
++    <output url="file://$PROJECT_DIR$/out" />
++  </component>
++</project>
+\ No newline at end of file
+Index: GroceryItem.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>public class GroceryItem {\r\n    public String name;\r\n\r\n    public double price;\r\n\r\n    public boolean taxable;\r\n\r\n    public GroceryItem(String name, double price, boolean taxable) {\r\n        this.name = name;\r\n        this.price = price;\r\n        this.taxable = taxable;\r\n    }\r\n    //public boolean equals(Object obj) {}\r\n\r\n    public String toString(){\r\n        StringBuilder sb = new StringBuilder();\r\n        sb.append(name + \" :\");\r\n        sb.append(\" $\" + String.valueOf(price) + \" :\");\r\n        if (taxable) {\r\n            sb.append(\" is taxable\");\r\n        } else {\r\n            sb.append(\" tax free\");\r\n        }\r\n        return sb.toString();\r\n    }\r\n\r\n    public boolean equals(GroceryItem compare2) {\r\n        if (!name.equals(compare2.name) || price != compare2.price || taxable != compare2.taxable) {\r\n            return false;\r\n        }\r\n        return true;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- GroceryItem.java	(revision ee810a109de185281c174cc3d0fd39122eff64f2)
++++ GroceryItem.java	(date 1600225028654)
+@@ -1,3 +1,5 @@
++//This project is made by Hanqing Zhao & Richard Xu
++
+ public class GroceryItem {
+     public String name;
+ 
+Index: ../../.idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ../../.idea/modules.xml	(date 1600225028653)
++++ ../../.idea/modules.xml	(date 1600225028653)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/.idea/213-Software-Methodology.iml" filepath="$PROJECT_DIR$/.idea/213-Software-Methodology.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
