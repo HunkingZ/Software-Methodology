@@ -48,6 +48,8 @@ public class ShoppingBag {
      * @param item The item you want to add
      */
     public void add(GroceryItem item) {
+        if (item == null) return;
+
         bag[size] = item;
         size++;
         if (size >= capacity) {
@@ -148,6 +150,7 @@ public class ShoppingBag {
         testBag.add(addItem1);
         testBag.add(addItem2);
         testBag.add(addItem3);
+        testBag.add(null);
         testBag.add(addItem4);
         testBag.add(addItem5);
 
@@ -185,6 +188,8 @@ public class ShoppingBag {
         // grow() test
         System.out.println("---------Test grow() method start----------");
         System.out.println("Bag capacity: " + testBag.bag.length);
+        GroceryItem addItem6 = new GroceryItem("turkey", 99.15, false);
+        testBag.add(addItem6);
         for (int i = 0; i < 5; i++) {
             testBag.grow();
         }
