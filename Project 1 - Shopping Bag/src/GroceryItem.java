@@ -4,9 +4,9 @@
  * @author Hanqing Zhao, Richard Xu
  */
 public class GroceryItem {
-    public String name;
-    public double price;
-    public boolean taxable;
+    private String name;
+    private double price;
+    private boolean taxable;
 
     /**
      * Constructor to create an item
@@ -53,5 +53,32 @@ public class GroceryItem {
         return name.equals(otherItem.name)
                 && price == otherItem.price
                 && taxable == otherItem.taxable;
+    }
+
+    /**
+     * Name of the item
+     *
+     * @return Item name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Price of the item
+     *
+     * @return Item price
+     */
+    public double getPrice() {
+        return price;
+    }
+
+    /**
+     * Whether item is taxable
+     *
+     * @return Item taxable
+     */
+    public boolean getTaxable() {
+        return taxable;
     }
 }

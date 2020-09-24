@@ -84,7 +84,7 @@ public class ShoppingBag {
         }
         int indexOfItem = find(itemToRemove);
         if (indexOfItem != -1) {
-            int lastItemInBag = indexOfItem + 1;
+            int lastItemInBag = ++indexOfItem;
 
             // Replace target item with the last item in the bag
             while (lastItemInBag < size) {
@@ -107,7 +107,7 @@ public class ShoppingBag {
         double total_sales = 0;
 
         for (int i = 0; i < size; i++) {
-            total_sales += bag[i].price;
+            total_sales += bag[i].getPrice();
         }
 
         return total_sales;
@@ -123,8 +123,8 @@ public class ShoppingBag {
         double total_tax = 0;
 
         for (int i = 0; i < size; i++) {
-            if (bag[i].taxable) {
-                total_tax += bag[i].price * tax_rate;
+            if (bag[i].getTaxable()) {
+                total_tax += bag[i].getPrice() * tax_rate;
             }
         }
 
@@ -137,7 +137,7 @@ public class ShoppingBag {
         // add() test
         System.out.println("---------Test add() method start-----------");
         System.out.println("Bag size: " +testBag.bag.length);
-        System.out.println("Items in the bag : ");
+        System.out.println("Items in the bag: ");
         for (GroceryItem item : testBag.bag) {
             if (item != null) {
                 System.out.println(item);

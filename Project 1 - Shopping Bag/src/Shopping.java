@@ -170,7 +170,7 @@ public class Shopping {
      */
     private void add(GroceryItem item) {
         bag.add(item);
-        System.out.println(item.name + " added to the bag.");
+        System.out.println(item.getName() + " added to the bag.");
     }
 
     /**
@@ -183,7 +183,7 @@ public class Shopping {
             System.out.println("Unable to remove, this item is not in the bag.");
         } else {
             bag.remove(item);
-            System.out.println(item.name + " $" + item.price + " removed.");
+            System.out.println(item.getName() + " $" + item.getPrice() + " removed.");
         }
     }
 
