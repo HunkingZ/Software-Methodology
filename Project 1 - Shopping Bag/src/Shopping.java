@@ -160,8 +160,7 @@ public class Shopping {
     // - - - - -
 
     // Methods for performing identified commands
-
-    public static final int MIN_BAG_SIZE = 0;
+    final int MIN_BAG_SIZE = 0;
 
     /**
      * Adds an item to the bag
