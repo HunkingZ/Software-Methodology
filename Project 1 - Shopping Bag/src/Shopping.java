@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 /**
  * Shopping Class
+ * This is the I/O handling interface
  *
  * @author Hanqing Zhao, Richard Xu
  */

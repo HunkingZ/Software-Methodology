@@ -2,6 +2,7 @@ import java.util.Arrays;
 
 /**
  * ShoppingBag Class
+ * This declares the bag class that holds the items
  *
  * @author Hanqing Zhao, Richard Xu
  */

@@ -1,5 +1,6 @@
 /**
- * ShoppingBag Class
+ * GroceryItem Class
+ * This declares the item that the ShoppingBag class will hold
  *
  * @author Hanqing Zhao, Richard Xu
  */
