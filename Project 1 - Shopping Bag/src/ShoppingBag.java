@@ -182,18 +182,20 @@ public class ShoppingBag {
                 System.out.println(">> " + item);
             }
         }
-        System.out.println("Bag capacity: " + testBag.bag.length);
+        System.out.println("Bag capacity: " + testBag.capacity);
         System.out.println("---------Test remove() method end----------\n");
 
         // grow() test
         System.out.println("---------Test grow() method start----------");
-        System.out.println("Bag capacity: " + testBag.bag.length);
+        System.out.println("Bag capacity: " + testBag.capacity);
         GroceryItem addItem6 = new GroceryItem("turkey", 99.15, false);
         testBag.add(addItem6);
+        System.out.println("Bag size after adding over capacity: " + testBag.size);
+        System.out.println("Bag capacity after adding over capacity: " + testBag.capacity);
         for (int i = 0; i < 5; i++) {
             testBag.grow();
         }
-        System.out.println("Bag capacity after grow: " + testBag.bag.length);
+        System.out.println("Bag capacity after grow: " + testBag.capacity);
         System.out.println("----------Test grow() method end-----------\n");
 
         // salesTax() test
