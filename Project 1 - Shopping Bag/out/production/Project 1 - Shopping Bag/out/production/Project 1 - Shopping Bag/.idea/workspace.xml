@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="4" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:JDoc" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b38a496b-15b1-4825-a6d2-b403591848be" name="Default Changelist" comment="Fixed add/remove boolean argument + Small edits">
+      <change beforePath="$PROJECT_DIR$/Shopping.java" beforeDir="false" afterPath="$PROJECT_DIR$/Shopping.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/../.." value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1hYuUAhp1vpj1g4IFHIhNu5YiFM" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RunManager">
+    <configuration name="RunProject1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="RunProject1" />
+      <module name="Project 1 - Shopping Bag" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.RunProject1" />
+        <item itemvalue="Application.RunProject1" />
+        <item itemvalue="Application.RunProject1" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b38a496b-15b1-4825-a6d2-b403591848be" name="Default Changelist" comment="" />
+      <created>1600200360090</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600200360090</updated>
+    </task>
+    <task id="LOCAL-00001" summary="testing 3">
+      <created>1600203093460</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1600203093460</updated>
+    </task>
+    <task id="LOCAL-00002" summary="JavaDoc Update">
+      <created>1600224830053</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1600224830053</updated>
+    </task>
+    <task id="LOCAL-00003" summary="JavaDoc Update">
+      <created>1600224894489</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1600224894489</updated>
+    </task>
+    <task id="LOCAL-00004" summary="JavaDoc Update">
+      <created>1600226536257</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1600226536257</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Shopping.java Overhaul + JDoc">
+      <created>1600485973751</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1600485973751</updated>
+    </task>
+    <task id="LOCAL-00006" summary="GroceryItem.java JDoc + equals method simplification,&#10;Shopping.java JDoc + minor updates">
+      <created>1600739359765</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1600739359765</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Remove //test from RunProject1.java">
+      <created>1600739781311</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1600739781311</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Fixed add/remove boolean argument + Small edits">
+      <created>1600807156453</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1600807156453</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="JDoc" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="testing 3" />
+    <MESSAGE value="JavaDoc Update" />
+    <MESSAGE value="Minor updates" />
+    <MESSAGE value="Shopping.java Overhaul + JDoc" />
+    <MESSAGE value="Shopping.java JDoc + some extra stuff" />
+    <MESSAGE value="GroceryItem.java JDoc + equals method simplification" />
+    <MESSAGE value="GroceryItem.java JDoc + equals method simplification,&#10;Shopping.java JDoc + minor updates" />
+    <MESSAGE value="Remove //test from RunProject1.java" />
+    <MESSAGE value="Fixed add/remove boolean argument + Small edits" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed add/remove boolean argument + Small edits" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="445" y="195" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600204626613">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state x="445" y="195" key="#com.intellij.execution.impl.EditConfigurationsDialog/1982.5.1858.1080/62.0.1858.1080@62.0.1858.1080" timestamp="1600204626613" />
+    <state x="796" y="243" key="#com.intellij.ide.util.MemberChooser" timestamp="1600374653320">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state x="796" y="243" key="#com.intellij.ide.util.MemberChooser/1982.5.1858.1080/62.0.1858.1080@62.0.1858.1080" timestamp="1600374653320" />
+    <state x="749" y="264" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1600201859680">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state x="749" y="264" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/1982.5.1858.1080/62.0.1858.1080@62.0.1858.1080" timestamp="1600201859680" />
+    <state x="771" y="295" key="FileChooserDialogImpl" timestamp="1600204950666">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state x="771" y="295" key="FileChooserDialogImpl/1982.5.1858.1080/62.0.1858.1080@62.0.1858.1080" timestamp="1600204950666" />
+    <state width="1815" height="184" key="GridCell.Tab.0.bottom" timestamp="1600807431269">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state width="1815" height="184" key="GridCell.Tab.0.bottom/1982.5.1858.1080/62.0.1858.1080@62.0.1858.1080" timestamp="1600807431269" />
+    <state width="1815" height="184" key="GridCell.Tab.0.center" timestamp="1600807431269">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state width="1815" height="184" key="GridCell.Tab.0.center/1982.5.1858.1080/62.0.1858.1080@62.0.1858.1080" timestamp="1600807431269" />
+    <state width="1815" height="184" key="GridCell.Tab.0.left" timestamp="1600807431269">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state width="1815" height="184" key="GridCell.Tab.0.left/1982.5.1858.1080/62.0.1858.1080@62.0.1858.1080" timestamp="1600807431269" />
+    <state width="1815" height="184" key="GridCell.Tab.0.right" timestamp="1600807431269">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state width="1815" height="184" key="GridCell.Tab.0.right/1982.5.1858.1080/62.0.1858.1080@62.0.1858.1080" timestamp="1600807431269" />
+    <state width="1815" height="356" key="GridCell.Tab.1.bottom" timestamp="1600740113779">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state width="1815" height="356" key="GridCell.Tab.1.bottom/1982.5.1858.1080/62.0.1858.1080@62.0.1858.1080" timestamp="1600740113779" />
+    <state width="1815" height="356" key="GridCell.Tab.1.center" timestamp="1600740113779">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state width="1815" height="356" key="GridCell.Tab.1.center/1982.5.1858.1080/62.0.1858.1080@62.0.1858.1080" timestamp="1600740113779" />
+    <state width="1815" height="356" key="GridCell.Tab.1.left" timestamp="1600740113779">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state width="1815" height="356" key="GridCell.Tab.1.left/1982.5.1858.1080/62.0.1858.1080@62.0.1858.1080" timestamp="1600740113779" />
+    <state width="1815" height="356" key="GridCell.Tab.1.right" timestamp="1600740113779">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state width="1815" height="356" key="GridCell.Tab.1.right/1982.5.1858.1080/62.0.1858.1080@62.0.1858.1080" timestamp="1600740113779" />
+    <state x="273" y="68" key="MergeDialog" timestamp="1600807206179">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state x="273" y="68" key="MergeDialog/1982.5.1858.1080/62.0.1858.1080@62.0.1858.1080" timestamp="1600807206179" />
+    <state x="347" y="222" key="MultipleFileMergeDialog" timestamp="1600807208046">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state x="347" y="222" key="MultipleFileMergeDialog/1982.5.1858.1080/62.0.1858.1080@62.0.1858.1080" timestamp="1600807208046" />
+    <state x="492" y="185" key="SettingsEditor" timestamp="1600203503277">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state x="492" y="185" key="SettingsEditor/1982.5.1858.1080/62.0.1858.1080@62.0.1858.1080" timestamp="1600203503277" />
+    <state x="583" y="273" key="Vcs.Push.Dialog.v2" timestamp="1600807159978">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state x="583" y="273" key="Vcs.Push.Dialog.v2/1982.5.1858.1080/62.0.1858.1080@62.0.1858.1080" timestamp="1600807159978" />
+    <state x="808" y="454" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1600803724079">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state x="808" y="454" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1982.5.1858.1080/62.0.1858.1080@62.0.1858.1080" timestamp="1600803724079" />
+    <state x="526" y="194" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1600480322370">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state x="526" y="194" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/1982.5.1858.1080/62.0.1858.1080@62.0.1858.1080" timestamp="1600480322370" />
+    <state x="626" y="171" key="git4idea.branch.GitSmartOperationDialog" timestamp="1600203546618">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state x="626" y="171" key="git4idea.branch.GitSmartOperationDialog/1982.5.1858.1080/62.0.1858.1080@62.0.1858.1080" timestamp="1600203546618" />
+    <state x="647" y="250" key="run.anything.popup" timestamp="1600806252849">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state x="647" y="250" key="run.anything.popup/1982.5.1858.1080/62.0.1858.1080@62.0.1858.1080" timestamp="1600806252849" />
+    <state x="783" y="398" key="scopes" timestamp="1600201800937">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state x="783" y="398" key="scopes/1982.5.1858.1080/62.0.1858.1080@62.0.1858.1080" timestamp="1600201800937" />
+    <state x="654" y="235" key="search.everywhere.popup" timestamp="1600476384464">
+      <screen x="62" y="0" width="1858" height="1080" />
+    </state>
+    <state x="654" y="235" key="search.everywhere.popup/1982.5.1858.1080/62.0.1858.1080@62.0.1858.1080" timestamp="1600476384464" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.util.NoSuchElementException" package="java.util" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
