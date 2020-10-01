@@ -13,22 +13,28 @@ public abstract class Account {
     }
 
     public String toString() {
-
+        StringBuilder sb = new StringBuilder();
+        sb.append(holder);
+        sb.append(balance);
+        //sb.append()
+        return sb.toString();
     }
 
-    public abstract double monthlyInterest() {
+    public abstract double monthlyInterest();
 
+    public abstract double monthlyFee();
+
+    public boolean equals(Account account) {
+        return this.holder.equals(account.holder) && this.getClass() == account.getClass();
     }
-
-    public abstract double monthlyFee() {
-
-    }
-
     public Date getDate () {
         return dateopen;
     }
 
-    public Profile getName() {
-        return holder;
+    public String getlName() {
+        return holder.getlName();
+    }
+    public String getfName() {
+        return holder.getfName();
     }
 }

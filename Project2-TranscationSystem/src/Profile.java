@@ -8,7 +8,11 @@ public class Profile {
         this.fname = fname;
         this.lname = lname;
     }
-    public String getName() {
-        StringTokenizer
+    public String getfName() {
+        return fname;
+    }
+
+    public String getlName() {
+        return lname;
     }
 }
