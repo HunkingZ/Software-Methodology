@@ -2,6 +2,10 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 import java.text.DecimalFormat;
 
+/** UI for I/O handling
+ *
+ * @author Hanqing Zhao, Richard Xu
+ */
 public class TransactionManager {
     public void run() {
         Scanner scan = new Scanner(System.in); // Scanner to read user input

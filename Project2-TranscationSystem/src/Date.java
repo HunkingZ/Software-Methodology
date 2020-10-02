@@ -32,6 +32,7 @@ public class Date {
     }
 
     //in the format mm/dd/yyyy
+    @Override
     public String toString() {
         return (month + "/" + day + "/" + year);
     }

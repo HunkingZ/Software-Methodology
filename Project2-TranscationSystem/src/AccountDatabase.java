@@ -50,11 +50,11 @@ public class AccountDatabase {
     }
 
     public boolean deposit(Account account, double amount) {
-
+        return false;
     }
 
-    public int withdrawal(Account account, double amoun) {
-
+    public int withdrawal(Account account, double amount) {
+        return -1;
     }
 
     private void sortByDateopen() {
