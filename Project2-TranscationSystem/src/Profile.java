@@ -9,7 +9,6 @@ public class Profile {
         this.lname = lname;
     }
     public String getfName() { return fname; }
-
     public String getlName() {
         return lname;
     }

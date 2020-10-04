@@ -1,4 +1,4 @@
-public class DateVariables {
+public class Month {
     public static final int JAN = 1;
     public static final int FEB = 2;
     public static final int MAR = 3;

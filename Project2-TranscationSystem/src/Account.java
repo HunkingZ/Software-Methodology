@@ -37,4 +37,10 @@ public abstract class Account {
     public String getfName() {
         return holder.getfName();
     }
+    public boolean updateBalance(double balance) {
+        if (this.balance + balance < 0) { return false; }
+
+        this.balance += balance;
+        return true;
+    }
 }

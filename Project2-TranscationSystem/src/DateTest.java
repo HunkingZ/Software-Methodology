@@ -6,6 +6,8 @@ class DateTest {
 
     @Test
     void isValid() {
-        fail("Not yet implemented");
+        Date d = new Date(2020, 12, 25);
+
+        System.out.println("The date (" + d + ") is valid.\n\t==> " + d.isValid());
     }
 }
