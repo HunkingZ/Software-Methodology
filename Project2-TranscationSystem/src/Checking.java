@@ -1,9 +1,11 @@
 public class Checking extends Account {
     private boolean directDeposit;
 
+    private static final double INTEREST_RATE = 0.0005;
+
     @Override
     public double monthlyInterest() {
-        return 0.0005;
+        return INTEREST_RATE;
     }
 
     @Override

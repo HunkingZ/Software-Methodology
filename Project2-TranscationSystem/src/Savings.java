@@ -2,12 +2,15 @@ public class Savings extends Account{
     private boolean isLoyal;
     double balance;
 
+    private static final double INTEREST_RATE = 0.0025;
+    private static final double PROMO_RATE = 0.0035;
+
     @Override
     public double monthlyInterest() {
         if (isLoyal) {
-            return 0.0035;
+            return PROMO_RATE;
         } else {
-            return 0.0025;
+            return INTEREST_RATE;
         }
     }
 

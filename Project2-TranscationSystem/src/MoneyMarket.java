@@ -3,12 +3,14 @@ public class MoneyMarket extends Account{
     int withdrawals_per_statement;
     double balance;
 
+    private static final double INTEREST_RATE = 0.0065;
+
     /**
      * @return Monthly interest
      */
     @Override
     public double monthlyInterest() {
-        return 0.0065;
+        return INTEREST_RATE;
     }
 
     /**

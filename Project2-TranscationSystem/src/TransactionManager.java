@@ -8,18 +8,18 @@ import java.text.DecimalFormat;
  */
 public class TransactionManager {
     public void run() {
-        Scanner scan = new Scanner(System.in); // Scanner to read user input
+        Scanner scan = new Scanner(System.in); //scanner to read user input
         String input = scan.nextLine();
 
         IO:
         while (input != null) {
-            Scanner arguments = new Scanner(input); // Scanner to help parse the current user input
-            String command = "\0"; // In case of no command, sends to default switch case
+            Scanner arguments = new Scanner(input); //scanner to help parse the current user input
+            String command = "\0"; //in case of no command, sends to default switch case
 
             if (arguments.hasNext()) { command = arguments.next(); }
 
             switch (command) {
-                case "OC": { // open a checking account
+                case "OC": { //open a checking account
 
                 }
                 case "OS": { //open a savings account
@@ -59,13 +59,13 @@ public class TransactionManager {
 
                 }
                 case "PD": { //calculate the monthly interests and fees, and print the account statements,
-                            // sorted by the dates opened in ascending order
+                                // sorted by the dates opened in ascending order
 
                 }
                 case "PN": { //same with PD, but sorted by the last names in ascending order
 
                 }
-                case "Q": { // Transaction complete
+                case "Q": { //transaction complete
                     System.out.println("Transaction processing completed");
                     break;
                 }
