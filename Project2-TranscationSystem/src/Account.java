@@ -12,12 +12,17 @@ public abstract class Account {
         balance += amount;
     }
 
+    @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(holder);
-        sb.append(balance);
-        //sb.append()
-        return sb.toString();
+        String fullName = holder.getfName() + " " + holder.getlName();
+
+        String accountInfo = "*" + getType()
+                            + "*" + fullName
+                            + "* " + balance
+                            + "*" + getDate()
+                            + "*";
+
+        return accountInfo;
     }
 
     public abstract double monthlyInterest();
@@ -27,6 +32,11 @@ public abstract class Account {
     public boolean equals(Account account) {
         return this.holder.equals(account.holder) && this.getClass() == account.getClass();
     }
+
+    /**
+     * @return String that indicates the account type
+     */
+    public abstract String getType();
 
     public Date getDate () {
         return dateopen;

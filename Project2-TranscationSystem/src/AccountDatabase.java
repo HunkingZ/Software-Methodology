@@ -193,19 +193,23 @@ public class AccountDatabase {
      */
     public void printByDateOpen() {
         sortByDateopen();
+        printAccounts();
     }
 
     /**
      * Prints accounts by the last name of each account in ascending order
      */
     public void printByLastName() {
-
+        sortByLastName();
+        printAccounts();
     }
 
     /**
      * Prints accounts
      */
     public void printAccounts() {
-
+        for (int i = 0; i < size; i++) {
+            System.out.println(accounts[i]);
+        }
     }
 }

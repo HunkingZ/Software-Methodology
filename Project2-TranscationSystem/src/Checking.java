@@ -16,4 +16,12 @@ public class Checking extends Account {
             return 25;
         }
     }
+
+    /**
+     * @return String that indicates the account type
+     */
+    @Override
+    public String getType() {
+        return "Checking";
+    }
 }

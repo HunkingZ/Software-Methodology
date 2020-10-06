@@ -21,4 +21,12 @@ public class Savings extends Account{
         }
         return 5;
     }
+
+    /**
+     * @return String that indicates the account type
+     */
+    @Override
+    public String getType() {
+        return "Savings";
+    }
 }

@@ -23,4 +23,12 @@ public class MoneyMarket extends Account{
         }
         return 12;
     }
+
+    /**
+     * @return String that indicates the account type
+     */
+    @Override
+    public String getType() {
+        return "Money Market";
+    }
 }
