@@ -27,16 +27,17 @@ public abstract class Account {
     public boolean equals(Account account) {
         return this.holder.equals(account.holder) && this.getClass() == account.getClass();
     }
+
     public Date getDate () {
         return dateopen;
     }
-
     public String getlName() {
         return holder.getlName();
     }
     public String getfName() {
         return holder.getfName();
     }
+
     public boolean updateBalance(double balance) {
         if (this.balance + balance < 0) { return false; }
 

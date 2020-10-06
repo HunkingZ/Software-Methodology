@@ -38,7 +38,10 @@ public class AccountDatabase {
      */
     private void grow() {
         capacity += 5;
-        accounts = Arrays.copyOf(accounts, capacity);
+
+        Account[] biggerDatabase = new Account[capacity];
+        System.arraycopy(accounts, 0, biggerDatabase, 0, size);
+        accounts = biggerDatabase;
     }
 
     /**
@@ -103,16 +106,42 @@ public class AccountDatabase {
         return 0;
     }
 
+    /**
+     * Sort accounts based on date opened in ascending order
+     */
     private void sortByDateopen() {
+        Account[] sortedAccounts = new Account[capacity];
+
+        //bubble sort
+        for (int i = 0; i < (size - 1); i++) {
+            for (int j = 0; j < (size - 1 - i); j++) {
+                Date lAccountDate = accounts[j].getDate();
+                Date rAccountDate = accounts[j+1].getDate();
+
+                //if left account was opened later than right account, swap them
+                if (lAccountDate.compareTo(rAccountDate) > 0) {
+                    Account lAccount = accounts[j];
+                    Account rAccount = accounts[j+1];
+
+                    accounts[j] = rAccount;
+                    accounts[j+1] = lAccount;
+                }
+            }
+        }
+
+        /*
         Arrays.sort(accounts, new Comparator<Account>() {
             @Override
             public int compare(Account o1, Account o2) {
                 return o1.getDate().compareTo(o2.getDate());
             }
         });
+        */
     }
 
-    //sort in ascending order
+    /**
+     * Sort accounts based on last name in ascending order
+     */
     private void sortByLastName() {
         Arrays.sort(accounts, new Comparator<Account>() {
             @Override
@@ -159,15 +188,23 @@ public class AccountDatabase {
         }
     }
 
-    //sort in ascending order
+    /**
+     * Print accounts by the date that it was opened in ascending order
+     */
     public void printByDateOpen() {
-
+        sortByDateopen();
     }
 
+    /**
+     * Prints accounts by the last name of each account in ascending order
+     */
     public void printByLastName() {
 
     }
 
+    /**
+     * Prints accounts
+     */
     public void printAccounts() {
 
     }

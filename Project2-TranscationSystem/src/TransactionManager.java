@@ -11,7 +11,7 @@ public class TransactionManager {
         Scanner scan = new Scanner(System.in); //scanner to read user input
         String input = scan.nextLine();
 
-        IO:
+        Stream:
         while (input != null) {
             Scanner arguments = new Scanner(input); //scanner to help parse the current user input
             String command = "\0"; //in case of no command, sends to default switch case
@@ -67,7 +67,7 @@ public class TransactionManager {
                 }
                 case "Q": { //transaction complete
                     System.out.println("Transaction processing completed");
-                    break;
+                    break Stream;
                 }
                 default: {
                     System.out.println("Invalid command!");
