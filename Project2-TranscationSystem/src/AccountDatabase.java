@@ -110,8 +110,6 @@ public class AccountDatabase {
      * Sort accounts based on date opened in ascending order
      */
     private void sortByDateopen() {
-        Account[] sortedAccounts = new Account[capacity];
-
         //bubble sort
         for (int i = 0; i < (size - 1); i++) {
             for (int j = 0; j < (size - 1 - i); j++) {
@@ -128,6 +126,7 @@ public class AccountDatabase {
                 }
             }
         }
+
 
         /*
         Arrays.sort(accounts, new Comparator<Account>() {
