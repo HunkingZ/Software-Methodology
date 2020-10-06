@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AccountDatabaseTest {
+    Account[] accs = new Account[10];
 
     @Test
     void sortByDateOpen() {
@@ -20,5 +21,6 @@ class AccountDatabaseTest {
 
     @Test
     void printAccounts() {
+        printAccounts();
     }
 }

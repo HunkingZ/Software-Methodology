@@ -1,9 +1,13 @@
 public class Savings extends Account{
     private boolean isLoyal;
-    double balance;
 
     private static final double INTEREST_RATE = 0.0025;
     private static final double PROMO_RATE = 0.0035;
+
+    public Savings(Profile holder, double balance, Date dateopen, boolean isLoyal) {
+        super(holder, balance, dateopen);
+        this.isLoyal = isLoyal;
+    }
 
     @Override
     public double monthlyInterest() {
@@ -16,10 +20,13 @@ public class Savings extends Account{
 
     @Override
     public double monthlyFee() {
-        if (balance >= 300) {
-            return 0;
-        }
-        return 5;
+        final int MONTHLY_FEE = 5;
+        final int WAIVE_THRESHOLD = 300;
+
+        double balance = super.getBalance();
+
+        if (balance >= WAIVE_THRESHOLD) { return 0; }
+        return MONTHLY_FEE;
     }
 
     /**

@@ -1,9 +1,12 @@
 public class MoneyMarket extends Account{
     private int withdrawals;
-    int withdrawals_per_statement;
-    double balance;
 
     private static final double INTEREST_RATE = 0.0065;
+
+    public MoneyMarket(Profile holder, double balance, Date dateopen, int withdrawals) {
+        super(holder, balance, dateopen);
+        this.withdrawals = withdrawals;
+    }
 
     /**
      * @return Monthly interest
@@ -18,10 +21,14 @@ public class MoneyMarket extends Account{
      */
     @Override
     public double monthlyFee() {
-        if (balance >= 2500 && withdrawals_per_statement <= 6) {
-            return 0;
-        }
-        return 12;
+        final int MONTHLY_FEE = 12;
+        final int WAIVE_THRESHOLD = 2500;
+        final int WITHDRAWAL_THRESHOLD = 6;
+
+        double balance = super.getBalance();
+
+        if (balance >= WAIVE_THRESHOLD && withdrawals <= WITHDRAWAL_THRESHOLD) { return 0; }
+        return MONTHLY_FEE;
     }
 
     /**

@@ -3,6 +3,11 @@ public class Checking extends Account {
 
     private static final double INTEREST_RATE = 0.0005;
 
+    public Checking(Profile holder, double balance, Date dateopen, boolean directDeposit) {
+        super(holder, balance, dateopen);
+        this.directDeposit = directDeposit;
+    }
+
     @Override
     public double monthlyInterest() {
         return INTEREST_RATE;
@@ -10,11 +15,13 @@ public class Checking extends Account {
 
     @Override
     public double monthlyFee() {
-        if (directDeposit) {
-            return 0;
-        } else {
-            return 25;
-        }
+        final int MONTHLY_FEE = 25;
+        final int WAIVE_THRESHOLD = 1500;
+
+        double balance = super.getBalance();
+
+        if (directDeposit || balance >= WAIVE_THRESHOLD) { return 0; }
+        return MONTHLY_FEE;
     }
 
     /**
