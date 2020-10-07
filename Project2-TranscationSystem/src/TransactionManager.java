@@ -22,6 +22,7 @@ public class TransactionManager {
             switch (command) {
                 case "OC": { //open a checking account
 
+                    //isparseDate == null, break;
                 }
                 case "OS": { //open a savings account
 
@@ -83,11 +84,58 @@ public class TransactionManager {
         return new Profile(forename, surname);
     }
 
-    private double parseBalance(String balance) {
-        double pBalance;
-
+    public static double parseBalance(String balance) {
         try {
-            Double.parseDouble(balance);
-        } catch ()
+            return Double.parseDouble(balance);
+        } catch (NumberFormatException e) {
+            return -1;
+        }
     }
+
+    private boolean isDateFormat(String date) {
+        String[] pDate = date.split("/");
+        final int DATE_FORMAT = 3;
+        if (pDate.length != DATE_FORMAT) {
+            return false;
+        }
+        if (isNumeric(pDate[0]) && isNumeric(pDate[1]) && isNumeric(pDate[2])) {
+            return true;
+        }
+        return false;
+    }
+
+    private Date parseDate(String date) {
+        if (isDateFormat(date)) {
+            String[] pDate = date.split("/");
+            int month = Integer.parseInt(pDate[0]);
+            int day = Integer.parseInt(pDate[1]);
+            int year = Integer.parseInt(pDate[2]);
+
+            Date newDate = new Date(month, day, year);
+            if (newDate.isValid()) {
+                return newDate;
+            }
+        }
+        System.out.println(date + " is not a valid date!");
+        return null;
+    }
+
+    private boolean isNumeric(String date) {
+        for (int i = 0; i < date.length(); i++) {
+            if (!Character.isDigit(date.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    private boolean isBoolean(String bool) {
+        boolean result = Boolean.parseBoolean(bool);
+        if (result == false) {
+            if (!bool.equals("false")) { return false; }
+        }
+        return true;
+    }
+
 }

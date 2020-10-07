@@ -59,7 +59,7 @@ public class Date {
      *
      * @return True if the month has proper number of days
      */
-    private boolean validDates() {
+    public boolean validDays() {
         if (month == Month.APR || month == Month.JUN || month == Month.SEP || month == Month.NOV) {
             return (day - DateSpecial.EVEN_DAYS <= 0);
         } else if (month == Month.JAN || month == Month.MAR || month == Month.MAY || month == Month.JUL
@@ -90,10 +90,10 @@ public class Date {
 
         if (isLeapYear()) {
             if (month == Month.FEB) { return (day - DateSpecial.FEB_DAYS + 1 <= 0); }
-            else { return validDates(); }
+            else { return validDays(); }
         } else {
             if (month == Month.FEB) { return (day - DateSpecial.FEB_DAYS <= 0); }
-            else { return validDates(); }
+            else { return validDays(); }
         }
     }
 }

@@ -178,6 +178,7 @@ public class AccountDatabase {
          */
     }
 
+    /*
     private int stringCompare(String str1, String str2)
     {
         int l1 = str1.length();
@@ -205,6 +206,7 @@ public class AccountDatabase {
             return 0;
         }
     }
+    */
 
     /**
      * Print accounts by the date that it was opened in ascending order
