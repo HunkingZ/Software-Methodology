@@ -2,13 +2,14 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 import java.text.DecimalFormat;
 
-/** UI for I/O handling
+/**
+ * UI for I/O handling
  *
  * @author Hanqing Zhao, Richard Xu
  */
 public class TransactionManager {
     public void run() {
-        Scanner scan = new Scanner(System.in); //scanner to read user input
+        Scanner scan = new Scanner(System.in);
         String input = scan.nextLine();
 
         Stream:
@@ -76,6 +77,17 @@ public class TransactionManager {
             }
             input = scan.nextLine();
         }
+    }
 
+    private Profile parseProfile(String forename, String surname) {
+        return new Profile(forename, surname);
+    }
+
+    private double parseBalance(String balance) {
+        double pBalance;
+
+        try {
+            Double.parseDouble(balance);
+        } catch ()
     }
 }

@@ -1,3 +1,9 @@
+/**
+ * Sub-class of abstract class Account.
+ * Account type of savings.
+ *
+ * @author Hanqing Zhao, Richard Xu
+ */
 public class Savings extends Account{
     private boolean isLoyal;
 

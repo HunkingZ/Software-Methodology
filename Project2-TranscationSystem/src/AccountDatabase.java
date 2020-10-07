@@ -2,7 +2,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 /**
- * Database class that stores information on all active accounts
+ * Database class that stores information on all active accounts.
  * Concurrent array of abstract object(s), account.
  *
  * @author Hanqing Zhao, Richard Xu
@@ -26,8 +26,11 @@ public class AccountDatabase {
      * @return The index of the account or -1 if not found
      */
     private int find(Account account) {
-        for (int i = 0; i < database.length; i++)
-            if (database[i].equals(account)) { return i; }
+        for (int i = 0; i < size; i++) {
+            if (database[i].equals(account)) {
+                return i;
+            }
+        }
 
         return -1;
     }
@@ -108,24 +111,23 @@ public class AccountDatabase {
     /**
      * Sort accounts based on date opened in ascending order
      */
-    private void sortByDateopen() {
+    private void sortByDateOpen() {
         //bubble sort
         for (int i = 0; i < (size - 1); i++) {
             for (int j = 0; j < (size - 1 - i); j++) {
                 Date lAccountDate = database[j].getDate();
-                Date rAccountDate = database[j+1].getDate();
+                Date rAccountDate = database[j + 1].getDate();
 
                 //if left account was opened later than right account, swap them
                 if (lAccountDate.compareTo(rAccountDate) > 0) {
                     Account lAccount = database[j];
-                    Account rAccount = database[j+1];
+                    Account rAccount = database[j + 1];
 
                     database[j] = rAccount;
-                    database[j+1] = lAccount;
+                    database[j + 1] = lAccount;
                 }
             }
         }
-
 
         /*
         Arrays.sort(accounts, new Comparator<Account>() {
@@ -141,6 +143,24 @@ public class AccountDatabase {
      * Sort accounts based on last name in ascending order
      */
     private void sortByLastName() {
+        //bubble sort
+        for (int i = 0; i < (size - 1); i++) {
+            for (int j = 0; j < (size - 1 - i); j++) {
+                String lAccountSurname = database[j].getlName();
+                String rAccountSurname = database[j + 1].getlName();
+
+                //if left account surname is alphabetically before the right account surname, swap them
+                if (lAccountSurname.compareTo(rAccountSurname) > 0) {
+                    Account lAccount = database[j];
+                    Account rAccount = database[j + 1];
+
+                    database[j] = rAccount;
+                    database[j + 1] = lAccount;
+                }
+            }
+        }
+
+        /*
         Arrays.sort(database, new Comparator<Account>() {
             @Override
             public int compare(Account o1, Account o2) {
@@ -155,11 +175,11 @@ public class AccountDatabase {
                 }
             }
         });
+         */
     }
 
     private int stringCompare(String str1, String str2)
     {
-
         int l1 = str1.length();
         int l2 = str2.length();
         int lmin = Math.min(l1, l2);
@@ -190,7 +210,7 @@ public class AccountDatabase {
      * Print accounts by the date that it was opened in ascending order
      */
     public void printByDateOpen() {
-        sortByDateopen();
+        sortByDateOpen();
         printAccounts();
     }
 

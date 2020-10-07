@@ -1,3 +1,9 @@
+/**
+ * Sub-class of abstract class Account.
+ * Account type of checking.
+ *
+ * @author Hanqing Zhao, Richard Xu
+ */
 public class Checking extends Account {
     private boolean directDeposit;
 

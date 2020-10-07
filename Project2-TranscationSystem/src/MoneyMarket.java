@@ -1,3 +1,9 @@
+/**
+ * Sub-class of abstract class Account.
+ * Account type of money market.
+ *
+ * @author Hanqing Zhao, Richard Xu
+ */
 public class MoneyMarket extends Account{
     private int withdrawals;
 

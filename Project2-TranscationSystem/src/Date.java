@@ -1,3 +1,8 @@
+/**
+ * Class that formats and holds information regarding a specific date.
+ *
+ * @author Hanqing Zhao, Richard Xu
+ */
 public class Date {
     private int year;
     private int month;
@@ -69,8 +74,8 @@ public class Date {
      * @return True if the year is a leap year
      */
     private boolean isLeapYear() {
-        if (year % DateSpecial.LEAP == 0 && year % DateSpecial.CENTURY_NO_LEAP != 0
-                || year % DateSpecial.CENTURY_4_LEAP == 0) { return true; }
+        if ((year % DateSpecial.LEAP == 0 && year % DateSpecial.CENTURY_NO_LEAP != 0)
+                || (year % DateSpecial.CENTURY_4_LEAP == 0)) { return true; }
 
         return false;
     }

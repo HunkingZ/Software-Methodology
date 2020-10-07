@@ -1,3 +1,9 @@
+/**
+ * Account abstract class that defines the type of account that will be opened.
+ * Subclasses are: Savings, Checking, and Money Market.
+ *
+ * @author Hanqing Zhao, Richard Xu
+ */
 public abstract class Account {
     private Profile holder;
     private double balance;
@@ -15,7 +21,7 @@ public abstract class Account {
      * @param amount The amount to remove from the account
      */
     public void debit(double amount) { balance -= amount; }
-    
+
     /**
      * Increase the account balance by a certain amount
      *
@@ -34,7 +40,7 @@ public abstract class Account {
 
         return "*" + getType()
                 + "*" + fullName
-                + "* " + balance
+                + "* $" + balance
                 + "*" + getDate()
                 + "*";
     }
@@ -86,10 +92,12 @@ public abstract class Account {
         return this.balance;
     }
 
+    /*
     public boolean updateBalance(double balance) {
         if (this.balance + balance < 0) { return false; }
 
         this.balance += balance;
         return true;
     }
+     */
 }
