@@ -9,15 +9,25 @@ public abstract class Account {
         this.dateopen = dateopen;
     }
 
-    //decrease the balance by amount
-    public void debit(double amount) {
-        balance -= amount;
-    }
-    //increase the balance by amount
+    /**
+     * Decrease the account balance by a certain amount
+     *
+     * @param amount The amount to remove from the account
+     */
+    public void debit(double amount) { balance -= amount; }
+    
+    /**
+     * Increase the account balance by a certain amount
+     *
+     * @param amount The amount to add to the account
+     */
     public void credit(double amount) {
         balance += amount;
     }
 
+    /**
+     * @return String of *Account type*Full name* $balance*account open date*
+     */
     @Override
     public String toString() {
         String fullName = holder.getfName() + " " + holder.getlName();
@@ -29,16 +39,36 @@ public abstract class Account {
                 + "*";
     }
 
+    /**
+     * Monthly interest added to the account dependent on account type and specifications
+     *
+     * @return Monthly interest
+     */
     public abstract double monthlyInterest();
 
+    /**
+     * Monthly fee decreased from the account dependent on account type and specifications
+     *
+     * @return Monthly fee
+     */
     public abstract double monthlyFee();
 
+    /**
+     * Checks if two accounts are exactly the same
+     *
+     * @param account The account to compare with
+     * @return True if accounts match | False if accounts are different
+     */
     public boolean equals(Account account) {
-        return this.holder.equals(account.holder) && this.getClass() == account.getClass();
+        return (this.holder.equals(account.holder))
+                && (this.getClass() == account.getClass());
     }
 
     /**
-     * @return String that indicates the account type
+     * Checks the account type
+     * Savings, Checking, or Money Market
+     *
+     * @return Account type as a string
      */
     public abstract String getType();
 

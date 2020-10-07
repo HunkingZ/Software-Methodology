@@ -8,7 +8,7 @@ import java.util.Comparator;
  * @author Hanqing Zhao, Richard Xu
  */
 public class AccountDatabase {
-    private Account[] accounts;
+    private Account[] database;
     private int size = 0;
     private int capacity = 5;
 
@@ -16,7 +16,7 @@ public class AccountDatabase {
      * Constructor for the database of accounts
      */
     public AccountDatabase() {
-        accounts = new Account[capacity];
+        database = new Account[capacity];
     }
 
     /**
@@ -26,9 +26,8 @@ public class AccountDatabase {
      * @return The index of the account or -1 if not found
      */
     private int find(Account account) {
-        for (int i = 0; i < accounts.length; i++)
-            if (accounts[i].equals(account))
-                return i;
+        for (int i = 0; i < database.length; i++)
+            if (database[i].equals(account)) { return i; }
 
         return -1;
     }
@@ -40,8 +39,8 @@ public class AccountDatabase {
         capacity += 5;
 
         Account[] biggerDatabase = new Account[capacity];
-        System.arraycopy(accounts, 0, biggerDatabase, 0, size);
-        accounts = biggerDatabase;
+        System.arraycopy(database, 0, biggerDatabase, 0, size);
+        database = biggerDatabase;
     }
 
     /**
@@ -53,7 +52,7 @@ public class AccountDatabase {
     public boolean add(Account account) {
         if (find(account) != -1) { return false; }
 
-        accounts[size++] = account;
+        database[size++] = account;
         if (size >= capacity) { grow(); }
         return true;
     }
@@ -70,8 +69,8 @@ public class AccountDatabase {
         //replace target account with last account and remove the last index
         if (accountIndex == -1) { return false; }
         else {
-            accounts[accountIndex] = accounts[--size];
-            accounts[size] = null;
+            database[accountIndex] = database[--size];
+            database[size] = null;
             return true;
         }
     }
@@ -87,7 +86,7 @@ public class AccountDatabase {
         int accountIndex = find(account);
 
         if (accountIndex == -1) { return false; }
-        else { accounts[accountIndex].updateBalance(amount); }
+        else { database[accountIndex].credit(amount); }
         return true;
     }
 
@@ -102,7 +101,7 @@ public class AccountDatabase {
         int accountIndex = find(account);
 
         if (accountIndex == -1) { return -1; }
-        else if (!accounts[accountIndex].updateBalance(-amount)) { return 1; }
+        else if (database[accountIndex].getBalance() - amount >= 0) { database[accountIndex].debit(amount); }
         return 0;
     }
 
@@ -113,16 +112,16 @@ public class AccountDatabase {
         //bubble sort
         for (int i = 0; i < (size - 1); i++) {
             for (int j = 0; j < (size - 1 - i); j++) {
-                Date lAccountDate = accounts[j].getDate();
-                Date rAccountDate = accounts[j+1].getDate();
+                Date lAccountDate = database[j].getDate();
+                Date rAccountDate = database[j+1].getDate();
 
                 //if left account was opened later than right account, swap them
                 if (lAccountDate.compareTo(rAccountDate) > 0) {
-                    Account lAccount = accounts[j];
-                    Account rAccount = accounts[j+1];
+                    Account lAccount = database[j];
+                    Account rAccount = database[j+1];
 
-                    accounts[j] = rAccount;
-                    accounts[j+1] = lAccount;
+                    database[j] = rAccount;
+                    database[j+1] = lAccount;
                 }
             }
         }
@@ -142,7 +141,7 @@ public class AccountDatabase {
      * Sort accounts based on last name in ascending order
      */
     private void sortByLastName() {
-        Arrays.sort(accounts, new Comparator<Account>() {
+        Arrays.sort(database, new Comparator<Account>() {
             @Override
             public int compare(Account o1, Account o2) {
                 String lname1 = o1.getlName();
@@ -208,7 +207,7 @@ public class AccountDatabase {
      */
     public void printAccounts() {
         for (int i = 0; i < size; i++) {
-            System.out.println(accounts[i]);
+            System.out.println(database[i]);
         }
     }
 }

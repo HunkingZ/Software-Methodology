@@ -3,9 +3,9 @@ public class MoneyMarket extends Account{
 
     private static final double INTEREST_RATE = 0.0065;
 
-    public MoneyMarket(Profile holder, double balance, Date dateopen, int withdrawals) {
+    public MoneyMarket(Profile holder, double balance, Date dateopen) {
         super(holder, balance, dateopen);
-        this.withdrawals = withdrawals;
+        this.withdrawals = 0;
     }
 
     /**
