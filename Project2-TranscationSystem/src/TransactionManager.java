@@ -35,7 +35,7 @@ public class TransactionManager {
                     break;
                 }
                 case "OS": { //open a savings account
-                    String saving = "Saving";
+                    String saving = "Savings";
                     Account ac = createAccount(arguments, saving);
                     if (ac != null) {
                         if (!database.add(ac)) {
@@ -72,31 +72,40 @@ public class TransactionManager {
                 }
                 case "DC": { //deposit money to a checking account associated with the name
                     depositAccount(arguments, "Checking");
+                    break;
                 }
                 case "DS": { //deposit money to a savings account associated with the name
                     depositAccount(arguments, "Savings");
+                    break;
                 }
                 case "DM": { //deposit money to a money market account associated with the name
                     depositAccount(arguments, "Money Market");
+                    break;
                 }
                 case "WC": { //withdraw money from a checking account associated with the name
-
+                    withdrawAccount(arguments, "Checking");
+                    break;
                 }
                 case "WS": { //withdraw  money from a saving account associated with the name
-
+                    withdrawAccount(arguments, "Savings");
+                    break;
                 }
                 case "WM": { //withdraw money from a market account associated with the name
-
+                    withdrawAccount(arguments, "Money Market");
+                    break;
                 }
                 case "PA": { //print the list of accounts in the database
-
+                    database.printAccounts();
+                    break;
                 }
                 case "PD": { //calculate the monthly interests and fees, and print the account statements,
                                 // sorted by the dates opened in ascending order
-
+                    database.printByDateOpen();
+                    break;
                 }
                 case "PN": { //same with PD, but sorted by the last names in ascending order
-
+                    database.printByLastName();
+                    break;
                 }
                 case "Q": { //transaction complete
                     System.out.println("Transaction processing completed");
