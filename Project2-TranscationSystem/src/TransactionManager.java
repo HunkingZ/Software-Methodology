@@ -108,7 +108,7 @@ public class TransactionManager {
                     break;
                 }
                 case "Q": { //transaction complete
-                    System.out.println("Transaction processing completed");
+                    System.out.println("Transaction processing completed.");
                     break Stream;
                 }
                 default: {
@@ -118,6 +118,7 @@ public class TransactionManager {
             }
             input = scan.nextLine();
         }
+
     }
 
     private Profile parseProfile(String forename, String surname) {
@@ -169,20 +170,30 @@ public class TransactionManager {
         return null;
     }
 
-    private boolean isNumeric(String date) {
-        for (int i = 0; i < date.length(); i++) {
-            if (!Character.isDigit(date.charAt(i))) {
+    private boolean isNumeric(String num) {
+        for (int i = 0; i < num.length(); i++) {
+            if (!Character.isDigit(num.charAt(i))) {
                 return false;
             }
         }
         return true;
     }
 
+    private boolean isDouble(String balance) {
+        try {
+            Double.parseDouble(balance);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+
+    }
+
 
     private boolean isBoolean(String bool) {
         boolean result = Boolean.parseBoolean(bool);
         if (result == false) {
-            if (!bool.equals("false")) { return false; }
+            if (!bool.toLowerCase().equals("false")) { return false; }
         }
         return true;
     }
@@ -208,7 +219,7 @@ public class TransactionManager {
             return null;
         }
         String moneyInput = arguments.next();
-        if (!isNumeric(moneyInput)) {
+        if (!isDouble(moneyInput)) {
             System.out.println("Input data type mismatch.");
             return null;
         }
@@ -274,7 +285,7 @@ public class TransactionManager {
 
     private Account findAccount(Scanner arguments, String type) {
         if (database.getSize() == 0) {
-            System.out.println("Database is empty.");
+            System.out.println("Account does not exist.");
             return null;
         }
         if (!arguments.hasNext()) {
@@ -313,25 +324,33 @@ public class TransactionManager {
         Account target = findAccount(arguments, type);
         if (target == null) { return; }
         String moneyInput = arguments.next();
-        if (!isNumeric(moneyInput)) {
+        if (!isDouble(moneyInput)) {
             System.out.println("Input data type mismatch.");
             return;
         }
         double amount = parseBalance(moneyInput);
-        database.deposit(target, amount);
-        System.out.println(amount + "deposited to account.");
+        if (database.deposit(target, amount)) {
+            System.out.println(amount + "deposited to account.");
+        } else {
+            System.out.println("Account does not exist.");
+        }
     }
 
     private void withdrawAccount(Scanner arguments, String type) {
         Account target = findAccount(arguments, type);
         if (target == null) { return; }
         String moneyInput = arguments.next();
-        if (!isNumeric(moneyInput)) {
+        if (!isDouble(moneyInput)) {
             System.out.println("Input data type mismatch.");
             return;
         }
         double amount = parseBalance(moneyInput);
-        database.withdrawal(target, amount);
-        System.out.println(amount + "withdrawn from account.");
+        if (database.withdrawal(target, amount) == 0) {
+            System.out.println(amount + " withdrawn from account.");
+        } else if (database.withdrawal(target, amount) == 1) {
+            System.out.println("Insufficient funds.");
+        } else {
+            System.out.println("Account does not exist.");
+        }
     }
 }

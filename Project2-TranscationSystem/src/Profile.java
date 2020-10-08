@@ -16,4 +16,5 @@ public class Profile {
     public boolean equals(Profile profile) {
         return (this.fname.equals(profile.getfName()) && this.lname.equals(profile.getlName()));
     }
+
 }

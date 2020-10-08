@@ -86,10 +86,10 @@ public class Date {
      * @return True if the date is properly input
      */
     public boolean isValid() {
-        if (month > Month.DEC) { return false; }
+        if (month > Month.DEC || month < Month.JAN) { return false; }
 
         if (isLeapYear()) {
-            if (month == Month.FEB) { return (day - DateSpecial.FEB_DAYS + 1 <= 0); }
+            if (month == Month.FEB) { return (day - (DateSpecial.FEB_DAYS + 1) <= 0); }
             else { return validDays(); }
         } else {
             if (month == Month.FEB) { return (day - DateSpecial.FEB_DAYS <= 0); }

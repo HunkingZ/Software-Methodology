@@ -105,7 +105,8 @@ public class AccountDatabase {
         int accountIndex = find(account);
 
         if (accountIndex == -1) { return -1; }
-        else if (database[accountIndex].getBalance() - amount >= 0) { database[accountIndex].debit(amount); }
+        else if (database[accountIndex].getBalance() - amount < 0) { return 1; }
+        database[accountIndex].debit(amount);
         return 0;
     }
 
@@ -229,9 +230,15 @@ public class AccountDatabase {
      * Prints accounts
      */
     public void printAccounts() {
+        if (size == 0) {
+            System.out.println("Database is empty.");
+            return;
+        }
+        System.out.println("--Listing accounts in the database--");
         for (int i = 0; i < size; i++) {
             System.out.println(database[i]);
         }
+        System.out.println("--end of listing--");
     }
 
     public int getSize() {
