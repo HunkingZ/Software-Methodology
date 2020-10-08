@@ -1,3 +1,5 @@
+import java.math.BigDecimal;
+
 /**
  * Account abstract class that defines the type of account that will be opened.
  * Subclasses are: Savings, Checking, and Money Market.
@@ -8,18 +10,6 @@ public abstract class Account {
     private Profile holder;
     private double balance;
     private Date dateopen;
-    //private final Type accountType;
-    //private String accountType;
-    /*
-    public enum Type {
-        SAVING, CHECKING, MONEYMARKET;
-        @Override
-        public String toString() {
-            return super.toString().toLowerCase();
-        }
-    }
-     */
-
 
     public Account(Profile holder, double balance, Date dateopen) {
         this.holder = holder;
@@ -93,6 +83,8 @@ public abstract class Account {
      */
     public abstract String getType();
 
+    public abstract double getInterest();
+    public abstract double getFee();
     public Date getDate () {
         return dateopen;
     }
@@ -103,20 +95,16 @@ public abstract class Account {
         return holder.getfName();
     }
 
-    public double getBalance() {
-        return this.balance;
-    }
+    public double getBalance() { return this.balance; }
 
     public Profile getHolder() {
         return this.holder;
     }
 
-    /*
-    public boolean updateBalance(double balance) {
-        if (this.balance + balance < 0) { return false; }
-
-        this.balance += balance;
-        return true;
+    public double round(double balance) {
+        int rounding = (int)this.balance*100;
+        double roundedBalance = rounding / 100.0;
+        return roundedBalance;
     }
-     */
+
 }

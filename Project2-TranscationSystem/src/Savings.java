@@ -7,8 +7,8 @@
 public class Savings extends Account{
     private boolean isLoyal;
 
-    private static final double INTEREST_RATE = 0.0025;
-    private static final double PROMO_RATE = 0.0035;
+    private static final double INTEREST_RATE = 0.0025 / 12;
+    private static final double PROMO_RATE = 0.0035 / 12;
 
     public Savings(Profile holder, double balance, Date dateopen, boolean isLoyal) {
         super(holder, balance, dateopen);
@@ -33,6 +33,16 @@ public class Savings extends Account{
 
         if (balance >= WAIVE_THRESHOLD) { return 0; }
         return MONTHLY_FEE;
+    }
+
+    @Override
+    public double getInterest() {
+        return getBalance() * monthlyInterest();
+    }
+
+    @Override
+    public double getFee() {
+        return monthlyFee();
     }
 
     /**

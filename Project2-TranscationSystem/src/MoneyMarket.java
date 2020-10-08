@@ -7,7 +7,7 @@
 public class MoneyMarket extends Account{
     private int withdrawals;
 
-    private static final double INTEREST_RATE = 0.0065;
+    private static final double INTEREST_RATE = 0.0065 / 12;
 
     public MoneyMarket(Profile holder, double balance, Date dateopen) {
         super(holder, balance, dateopen);
@@ -43,5 +43,15 @@ public class MoneyMarket extends Account{
     @Override
     public String getType() {
         return "Money Market";
+    }
+
+    @Override
+    public double getInterest() {
+        return getBalance()*monthlyInterest();
+    }
+
+    @Override
+    public double getFee() {
+        return monthlyFee();
     }
 }
