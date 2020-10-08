@@ -108,8 +108,7 @@ public class AccountDatabase {
         else if (database[accountIndex].getBalance() - amount < 0) { return 1; }
 
         database[accountIndex].debit(amount);
-        if(database[accountIndex].getType().equals("Money Market")) {  }
-
+        database[accountIndex].increase();
         return 0;
     }
 
@@ -171,11 +170,13 @@ public class AccountDatabase {
             double interst = database[i].getInterest();
             double fee = database[i].monthlyFee();
             System.out.println(database[i]);
-            deposit(database[i], interst);
-            withdrawal(database[i], fee);
+            database[i].credit(interst);
+            database[i].debit(fee);
+
             System.out.printf("interest : $ %.02f\n", interst);
             System.out.println("fee : $ " + fee);
             System.out.printf("new balance : $ %.02f\n\n", database[i].getBalance());
+            database[i].reset();
         }
     }
 
@@ -194,11 +195,13 @@ public class AccountDatabase {
             double interst = database[i].getInterest();
             double fee = database[i].monthlyFee();
             System.out.println(database[i]);
-            deposit(database[i], interst);
-            withdrawal(database[i], fee);
+            database[i].credit(interst);
+            database[i].debit(fee);
+
             System.out.printf("interest : $ %.02f\n", interst);
             System.out.println("fee : $ " + fee);
             System.out.printf("new balance : $ %.02f\n\n", database[i].getBalance());
+            database[i].reset();
         }
     }
 
@@ -213,6 +216,7 @@ public class AccountDatabase {
         }
         System.out.println("--Listing accounts in the database--");
         for (int i = 0; i < size; i++) {
+            database[i].reset();
             System.out.println(database[i]);
         }
         System.out.println("--end of listing--");

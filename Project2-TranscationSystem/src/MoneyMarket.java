@@ -51,7 +51,8 @@ public class MoneyMarket extends Account{
     /**
      * Updates withdrawal counter for this instance
      */
-    public void update() { this.withdrawals++; }
+    @Override
+    public void increase() { this.withdrawals++; }
 
     /**
      * @return String that indicates the account type
@@ -64,5 +65,15 @@ public class MoneyMarket extends Account{
     @Override
     public double getInterest() {
         return getBalance()*monthlyInterest();
+    }
+
+    @Override
+    public String getSpecial() {
+        return "*" + withdrawals + " withdrawals*";
+    }
+
+    @Override
+    public void reset() {
+        this.withdrawals = 0;
     }
 }

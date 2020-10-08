@@ -52,11 +52,31 @@ public class Checking extends Account {
     public double getInterest() {
         return getBalance() * monthlyInterest();
     }
+
+    @Override
+    public String getSpecial() {
+        if (directDeposit) {
+            return "*direct deposit account*";
+        } else {
+            return "";
+        }
+    }
+
     /**
      * @return String that indicates the account type
      */
     @Override
     public String getType() {
         return "Checking";
+    }
+
+    @Override
+    public void reset() {
+        return;
+    }
+
+    @Override
+    public void increase() {
+        return;
     }
 }

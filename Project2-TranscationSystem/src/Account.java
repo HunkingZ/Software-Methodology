@@ -46,11 +46,12 @@ public abstract class Account {
     public String toString() {
         String fullName = holder.getfName() + " " + holder.getlName();
 
+        String balanceString = String.format("%.2f", balance);
         return "*" + getType()
                 + "*" + fullName
-                + "* $" + balance
+                + "* $" + balanceString
                 + "*" + getDate()
-                + "*";
+                + getSpecial();
     }
 
     /**
@@ -87,6 +88,8 @@ public abstract class Account {
      * @return Account type as a string
      */
     public abstract String getType();
+    public abstract void reset();
+    public abstract void increase();
 
     public Date getDate () {
         return dateopen;
@@ -107,4 +110,5 @@ public abstract class Account {
     }
 
     public abstract double getInterest();
+    public abstract String getSpecial();
 }

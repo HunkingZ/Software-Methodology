@@ -59,11 +59,30 @@ public class Savings extends Account{
         return getBalance() * monthlyInterest();
     }
 
+    @Override
+    public String getSpecial() {
+        if (isLoyal) {
+            return "*special Savings account*";
+        } else {
+            return "";
+        }
+    }
+
     /**
      * @return String that indicates the account type
      */
     @Override
     public String getType() {
         return "Savings";
+    }
+
+    @Override
+    public void reset() {
+        return;
+    }
+
+    @Override
+    public void increase() {
+        return;
     }
 }
