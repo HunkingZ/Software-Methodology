@@ -49,11 +49,6 @@ public class Checking extends Account {
     }
 
     @Override
-    public double getFee() {
-        return monthlyFee();
-    }
-
-    @Override
     public double getInterest() {
         return getBalance() * monthlyInterest();
     }

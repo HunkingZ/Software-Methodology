@@ -65,9 +65,4 @@ public class MoneyMarket extends Account{
     public double getInterest() {
         return getBalance()*monthlyInterest();
     }
-
-    @Override
-    public double getFee() {
-        return monthlyFee();
-    }
 }

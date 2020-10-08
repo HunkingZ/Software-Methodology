@@ -59,11 +59,6 @@ public class Savings extends Account{
         return getBalance() * monthlyInterest();
     }
 
-    @Override
-    public double getFee() {
-        return monthlyFee();
-    }
-
     /**
      * @return String that indicates the account type
      */

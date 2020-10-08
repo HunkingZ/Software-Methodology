@@ -8,17 +8,6 @@ public abstract class Account {
     private Profile holder;
     private double balance;
     private Date dateopen;
-    //private final Type accountType;
-    //private String accountType;
-    /*
-    public enum Type {
-        SAVING, CHECKING, MONEYMARKET;
-        @Override
-        public String toString() {
-            return super.toString().toLowerCase();
-        }
-    }
-     */
 
     /**
      * Super constructor for the baseline of an account
@@ -117,12 +106,5 @@ public abstract class Account {
         return this.holder;
     }
 
-    /*
-    public boolean updateBalance(double balance) {
-        if (this.balance + balance < 0) { return false; }
-
-        this.balance += balance;
-        return true;
-    }
-     */
+    public abstract double getInterest();
 }
