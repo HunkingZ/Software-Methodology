@@ -157,14 +157,18 @@ public class AccountDatabase {
     }
 
     /**
-     * Print accounts by the date that it was opened in ascending order
+     * Print account statements by the date that it was opened in ascending order
      */
     public void printByDateOpen() {
         if (size == 0) {
             System.out.println("Database is empty.");
             return;
         }
+
+        Account[] originalDB = new Account[capacity];
+        System.arraycopy(database, 0, originalDB, 0, size);
         sortByDateOpen();
+
         System.out.println("--Printing statements by date opened--");
         for (int i = 0; i < size; i++) {
             double interst = database[i].getInterest();
@@ -176,20 +180,23 @@ public class AccountDatabase {
             System.out.printf("interest : $ %.02f\n", interst);
             System.out.println("fee : $ " + fee);
             System.out.printf("new balance : $ %.02f\n\n", database[i].getBalance());
-            //database[i].reset();
         }
+        database = originalDB;
     }
 
     /**
-     * Prints accounts by the last name of each account in ascending order
+     * Prints account statements by the last name of each account in ascending order
      */
-
     public void printByLastName() {
         if (size == 0) {
             System.out.println("Database is empty.");
             return;
         }
+
+        Account[] originalDB = new Account[capacity];
+        System.arraycopy(database, 0, originalDB, 0, size);
         sortByLastName();
+
         System.out.println("--Printing statements by last name--");
         for (int i = 0; i < size; i++) {
             double interst = database[i].getInterest();
@@ -201,14 +208,13 @@ public class AccountDatabase {
             System.out.printf("interest : $ %.02f\n", interst);
             System.out.println("fee : $ " + fee);
             System.out.printf("new balance : $ %.02f\n\n", database[i].getBalance());
-            //database[i].reset();
         }
+        database = originalDB;
     }
 
     /**
      * Prints accounts
      */
-
     public void printAccounts() {
         if (size == 0) {
             System.out.println("Database is empty.");
@@ -217,11 +223,15 @@ public class AccountDatabase {
         System.out.println("--Listing accounts in the database--");
         for (int i = 0; i < size; i++) {
             System.out.println(database[i]);
-            //database[i].reset();
         }
         System.out.println("--end of listing--");
     }
 
+    /**
+     * Size of the database
+     *
+     * @return int size of the database
+     */
     public int getSize() {
         return this.size;
     }

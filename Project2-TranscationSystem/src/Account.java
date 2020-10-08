@@ -88,27 +88,58 @@ public abstract class Account {
      * @return Account type as a string
      */
     public abstract String getType();
-    public abstract void reset();
+
+    /**
+     * Increases money market withdrawal counter by one
+     */
     public abstract void increase();
 
-    public Date getDate () {
-        return dateopen;
-    }
-    public String getlName() {
-        return holder.getlName();
-    }
-    public String getfName() {
-        return holder.getfName();
-    }
+    /**
+     * Date of account opening
+     *
+     * @return Date linked to account
+     */
+    public Date getDate () { return dateopen; }
 
-    public double getBalance() {
-        return this.balance;
-    }
+    /**
+     * Last name of account holder
+     *
+     * @return Last name linked to account
+     */
+    public String getlName() { return holder.getlName(); }
 
-    public Profile getHolder() {
-        return this.holder;
-    }
+    /**
+     * First name of account holder
+     *
+     * @return First name linked to account
+     */
+    public String getfName() { return holder.getfName(); }
 
+    /**
+     * Total balance currently in the account
+     *
+     * @return Account balance
+     */
+    public double getBalance() { return this.balance; }
+
+    /**
+     * Account holder information
+     *
+     * @return Account holder
+     */
+    public Profile getHolder() { return this.holder; }
+
+    /**
+     * Calculate interest based on account type and data members
+     *
+     * @return Calculated account specified interest
+     */
     public abstract double getInterest();
+
+    /**
+     * Gets special values regarding the account type
+     *
+     * @return String of account type specified unique characteristics
+     */
     public abstract String getSpecial();
 }

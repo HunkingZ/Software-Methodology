@@ -90,10 +90,8 @@ public class Date {
 
         if (isLeapYear()) {
             if (month == Month.FEB) { return (day - (DateSpecial.FEB_DAYS + 1) <= 0); }
-            else { return validDays(); }
-        } else {
-            if (month == Month.FEB) { return (day - DateSpecial.FEB_DAYS <= 0); }
-            else { return validDays(); }
         }
+        if (month == Month.FEB) { return (day - DateSpecial.FEB_DAYS <= 0); }
+        return validDays();
     }
 }
