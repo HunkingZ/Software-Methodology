@@ -9,12 +9,21 @@ public class MoneyMarket extends Account{
 
     private static final double INTEREST_RATE = 0.0065;
 
+    /**
+     * Constructor for a money market account
+     *
+     * @param holder The owner of the account
+     * @param balance The balance of the account
+     * @param dateopen The date that the account was opened
+     */
     public MoneyMarket(Profile holder, double balance, Date dateopen) {
         super(holder, balance, dateopen);
         this.withdrawals = 0;
     }
 
     /**
+     * Monthly interest added to the account dependent on account type and specifications
+     *
      * @return Monthly interest
      */
     @Override
@@ -23,6 +32,8 @@ public class MoneyMarket extends Account{
     }
 
     /**
+     * Monthly fee decreased from the account dependent on account type and specifications
+     *
      * @return Monthly fee
      */
     @Override
@@ -36,6 +47,11 @@ public class MoneyMarket extends Account{
         if (balance >= WAIVE_THRESHOLD && withdrawals <= WITHDRAWAL_THRESHOLD) { return 0; }
         return MONTHLY_FEE;
     }
+
+    /**
+     * Updates withdrawal counter for this instance
+     */
+    public void update() { this.withdrawals++; }
 
     /**
      * @return String that indicates the account type

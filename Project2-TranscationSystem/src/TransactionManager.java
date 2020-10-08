@@ -1,6 +1,4 @@
 import java.util.Scanner;
-import java.util.StringTokenizer;
-import java.text.DecimalFormat;
 
 /**
  * UI for I/O handling
@@ -9,6 +7,10 @@ import java.text.DecimalFormat;
  */
 public class TransactionManager {
     public AccountDatabase database = new AccountDatabase();
+
+    /**
+     * I/O Handler interface for user inputs
+     */
     public void run() {
         System.out.println("Transaction processing starts.....");
         Scanner scan = new Scanner(System.in);
@@ -121,6 +123,13 @@ public class TransactionManager {
 
     }
 
+    /**
+     * Validates and creates a Profile type based on given input
+     *
+     * @param forename String of first name
+     * @param surname String of last name
+     * @return The constructed profile based on forename and surname or null if invalid input
+     */
     private Profile parseProfile(String forename, String surname) {
         if (forename == null || surname == null) {
             return null;
@@ -128,29 +137,45 @@ public class TransactionManager {
         return new Profile(forename, surname);
     }
 
+    /**
+     * Validates and creates an a double value based on given input
+     *
+     * @param balance String to validate and construct as double
+     * @return The string input as a double or -1 if invalid input
+     */
     public static double parseBalance(String balance) {
-        if (balance == null) {
-            return -1;
-        }
-        try {
-            return Double.parseDouble(balance);
-        } catch (NumberFormatException e) {
-            return -1;
-        }
+        if (balance == null) { return -1; }
+
+        try { return Double.parseDouble(balance); }
+        catch (NumberFormatException e) { return -1; }
     }
 
+    /**
+     * Validates that an input is in the proper format of Date type (int/int/int)
+     *
+     * @param date String of input to validate
+     * @return True if input is proper (int/int/int) or False if invalid input
+     */
     private boolean isDateFormat(String date) {
         String[] pDate = date.split("/");
         final int DATE_FORMAT = 3;
-        if (pDate.length != DATE_FORMAT) {
-            return false;
-        }
-        if (isNumeric(pDate[0]) && isNumeric(pDate[1]) && isNumeric(pDate[2])) {
+        if (pDate.length == DATE_FORMAT
+                && isInteger(pDate[0])
+                && isInteger(pDate[1])
+                && isInteger(pDate[2])) {
             return true;
         }
+
+        System.out.println("Input data type mismatch.");
         return false;
     }
 
+    /**
+     * Validates and creates a date based on given input
+     *
+     * @param date String of input to validate and convert into a Date type
+     * @return The parsed date or null if invalid input
+     */
     private Date parseDate(String date) {
         if (date == null) {
             return null;
@@ -170,7 +195,13 @@ public class TransactionManager {
         return null;
     }
 
-    private boolean isNumeric(String num) {
+    /**
+     * Validates an input to be purely numeric
+     *
+     * @param num String of input to check
+     * @return True if input is an integer or False if invalid input
+     */
+    private boolean isInteger(String num) {
         for (int i = 0; i < num.length(); i++) {
             if (!Character.isDigit(num.charAt(i))) {
                 return false;
@@ -179,89 +210,106 @@ public class TransactionManager {
         return true;
     }
 
+    /**
+     * Validates an input to be of double
+     *
+     * @param balance String of input to check
+     * @return True if input is double or False if invalid input
+     */
     private boolean isDouble(String balance) {
         try {
             Double.parseDouble(balance);
             return true;
         } catch (NumberFormatException e) {
+            System.out.println("Input data type mismatch.");
             return false;
         }
 
     }
 
-
+    /**
+     * Validates an input to be of boolean
+     *
+     * @param bool String of input to check
+     * @return True if input is boolean (true|false) or False if invalid input
+     */
     private boolean isBoolean(String bool) {
         boolean result = Boolean.parseBoolean(bool);
-        if (result == false) {
-            if (!bool.toLowerCase().equals("false")) { return false; }
+        if (!result) {
+            if (!bool.toLowerCase().equals("false")) {
+                System.out.println("Input data type mismatch.");
+                return false;
+            }
         }
         return true;
     }
 
+    /**
+     * Validates an input to exist
+     *
+     * @param arguments Input command
+     * @return True if there is an input or False if there is no input
+     */
+    private boolean validateArgs(Scanner arguments) {
+        if(arguments.hasNext()) { return true; }
+        else {
+            System.out.println("Input data type mismatch.");
+            return false;
+        }
+    }
 
+    /**
+     * Creates an account based on the given input
+     *
+     * @param arguments Input commands
+     * @param type Account type (Checking|Savings|Money Market)
+     * @return New account specified by the parameters
+     */
     private Account createAccount(Scanner arguments, String type) {
-        if (!arguments.hasNext()) {
-            System.out.println("Input data type mismatch.");
-            return null;
-        }
-        //Profile holder = parseProfile(arguments.next(), arguments.next());
+        //confirm valid name
+        if (!validateArgs(arguments)) { return null; }
         String firstName = arguments.next();
-        if (!arguments.hasNext()) {
-            System.out.println("Input data type mismatch.");
-            return null;
-        }
+        if (!validateArgs(arguments)) { return null; }
         String lastName = arguments.next();
-
         Profile personalProfile = parseProfile(firstName, lastName);
 
-        if (!arguments.hasNext()) {
-            System.out.println("Input data type mismatch.");
-            return null;
-        }
-        String moneyInput = arguments.next();
-        if (!isDouble(moneyInput)) {
-            System.out.println("Input data type mismatch.");
-            return null;
-        }
-        double balance = parseBalance(moneyInput);
+        //confirm valid balance
+        if (!validateArgs(arguments)) { return null; }
+        String balance = arguments.next();
+        if (!isDouble(balance)) { return null; }
+        double pBalance = parseBalance(balance);
 
+        //confirm valid date
+        if (!validateArgs(arguments)) { return null; }
         String dateInput = arguments.next();
-        if (!isDateFormat(dateInput)) {
-            System.out.println("Input data type mismatch.");
-            return null;
-        }
+        if (!isDateFormat(dateInput)) { return null; }
         Date date = parseDate(dateInput);
-        if (date == null) {
-            return null;
-        }
+        if (date == null) { return null; }
 
-        Account newAccount;
         switch (type) {
             case "Checking": {
+                //confirm valid direct deposit
+                if (!validateArgs(arguments)) { return null; }
                 String directDeposit = arguments.next();
-                if (!isBoolean(directDeposit)) {
-                    System.out.println("Input data type mismatch.");
-                    return null;
-                }
-                Boolean pDirectDeposit = Boolean.parseBoolean(directDeposit);
+                if (!isBoolean(directDeposit)) { return null; }
+                boolean pDirectDeposit = Boolean.parseBoolean(directDeposit);
 
-                return new Checking(personalProfile, balance, date, pDirectDeposit);
-
+                //create and return checking account
+                return new Checking(personalProfile, pBalance, date, pDirectDeposit);
             }
             case "Savings": {
+                //confirm valid loyalty program
+                if (!validateArgs(arguments)) { return null; }
                 String isLoyal = arguments.next();
-                if (!isBoolean(isLoyal)) {
-                    System.out.println("Input data type mismatch.");
-                    return null;
-                }
-                Boolean pIsLoyal = Boolean.parseBoolean(isLoyal);
+                if (!isBoolean(isLoyal)) { return null; }
+                boolean pIsLoyal = Boolean.parseBoolean(isLoyal);
 
-                return new Savings(personalProfile, balance, date, pIsLoyal);
-
+                //create and return savings account
+                return new Savings(personalProfile, pBalance, date, pIsLoyal);
             }
             case "Money Market": {
-                return new MoneyMarket(personalProfile, balance, date);
-
+                //create and return money market account
+                return new MoneyMarket(personalProfile, pBalance, date);
             }
             default: {
                 return null;
@@ -269,88 +317,83 @@ public class TransactionManager {
         }
     }
 
-    private void closeAccount(Scanner arguments, String type) {
-        Account target = findAccount(arguments, type);
-        if (target == null) {
-            return;
-        }
-
-        if (database.remove(target)) {
-            System.out.println("Account closed and removed from the database.");
-        } else {
-            System.out.println("Account does not exist.");
-        }
-        return;
-    }
-
+    /**
+     * Find the account based on the given input
+     *
+     * @param arguments Input command
+     * @param type Account type (Checking|Savings|Money Market)
+     * @return Account based on strictly the name and type
+     */
     private Account findAccount(Scanner arguments, String type) {
         if (database.getSize() == 0) {
             System.out.println("Account does not exist.");
             return null;
         }
-        if (!arguments.hasNext()) {
-            System.out.println("Input data type mismatch.");
-            return null;
-        }
-        //Profile holder = parseProfile(arguments.next(), arguments.next());
+
+        if (!validateArgs(arguments)) { return null; }
         String firstName = arguments.next();
-        if (!arguments.hasNext()) {
-            System.out.println("Input data type mismatch.");
-            return null;
-        }
+        if (!arguments.hasNext()) { return null; }
         String lastName = arguments.next();
 
         Profile personalProfile = parseProfile(firstName, lastName);
-        Account target;
+
         switch (type) {
-            case "Checking": {
-                target = new Checking(personalProfile, -1, null, false);
-                break;
-            }
-            case "Savings": {
-                target = new Savings(personalProfile, -1, null, false);
-                break;
-            }
-            case "Money Market": {
-                target = new MoneyMarket(personalProfile, -1, null);
-                break;
-            }
-            default: return null;
+            case "Checking" -> { return new Checking(personalProfile, -1, null, false); }
+            case "Savings" -> { return new Savings(personalProfile, -1, null, false); }
+            case "Money Market" -> { return new MoneyMarket(personalProfile, -1, null); }
+            default -> { return null; }
         }
-        return target;
     }
 
+    /**
+     * Find the account and remove the account
+     *
+     * @param arguments Input command
+     * @param type Account type (Checking|Savings|Money Market)
+     */
+    private void closeAccount(Scanner arguments, String type) {
+        Account target = findAccount(arguments, type);
+        if (target == null) { return; }
+
+        if (database.remove(target)) { System.out.println("Account closed and removed from the database."); }
+        else { System.out.println("Account does not exist."); }
+    }
+
+    /**
+     * Deposit a specified amount into an account
+     *
+     * @param arguments Input command
+     * @param type Account type (Checking|Savings|Money Market)
+     */
     private void depositAccount(Scanner arguments, String type) {
         Account target = findAccount(arguments, type);
         if (target == null) { return; }
-        String moneyInput = arguments.next();
-        if (!isDouble(moneyInput)) {
-            System.out.println("Input data type mismatch.");
-            return;
-        }
-        double amount = parseBalance(moneyInput);
-        if (database.deposit(target, amount)) {
-            System.out.println(amount + "deposited to account.");
-        } else {
-            System.out.println("Account does not exist.");
-        }
+
+        if (!validateArgs(arguments)) { return; }
+        String amount = arguments.next();
+        if (!isDouble(amount)) { return; }
+        double pAmount = parseBalance(amount);
+
+        if (database.deposit(target, pAmount)) { System.out.println(amount + " deposited to account."); }
+        else { System.out.println("Account does not exist."); }
     }
 
+    /**
+     * Withdraw a specified amount from an account
+     * Will not succeed if account does not have the specified balance
+     *
+     * @param arguments Input command
+     * @param type Account type (Checking|Savings|Money Market)
+     */
     private void withdrawAccount(Scanner arguments, String type) {
         Account target = findAccount(arguments, type);
         if (target == null) { return; }
-        String moneyInput = arguments.next();
-        if (!isDouble(moneyInput)) {
-            System.out.println("Input data type mismatch.");
-            return;
-        }
-        double amount = parseBalance(moneyInput);
-        if (database.withdrawal(target, amount) == 0) {
-            System.out.println(amount + " withdrawn from account.");
-        } else if (database.withdrawal(target, amount) == 1) {
-            System.out.println("Insufficient funds.");
-        } else {
-            System.out.println("Account does not exist.");
-        }
+        String amount = arguments.next();
+        if (!isDouble(amount)) { return; }
+        double pAmount = parseBalance(amount);
+
+        if (database.withdrawal(target, pAmount) == 0) { System.out.println(amount + " withdrawn from account."); }
+        else if (database.withdrawal(target, pAmount) == 1) { System.out.println("Insufficient funds."); }
+        else { System.out.println("Account does not exist."); }
     }
 }

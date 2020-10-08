@@ -20,12 +20,18 @@ public abstract class Account {
     }
      */
 
-
+    /**
+     * Super constructor for the baseline of an account
+     * This constructor will never be called -- only used as a non-abstract guideline for sub-classes
+     *
+     * @param holder The owner of the account
+     * @param balance The balance of the account
+     * @param dateopen The date that the account was opened
+     */
     public Account(Profile holder, double balance, Date dateopen) {
         this.holder = holder;
         this.balance = balance;
         this.dateopen = dateopen;
-        //this.accountType = accountType;
     }
 
     /**

@@ -10,11 +10,25 @@ public class Savings extends Account{
     private static final double INTEREST_RATE = 0.0025;
     private static final double PROMO_RATE = 0.0035;
 
+
+    /**
+     * Constructor for a savings account
+     *
+     * @param holder The owner of the account
+     * @param balance The balance of the account
+     * @param dateopen The date that the account was opened
+     * @param isLoyal True if loyalty program on or False if loyalty program off
+     */
     public Savings(Profile holder, double balance, Date dateopen, boolean isLoyal) {
         super(holder, balance, dateopen);
         this.isLoyal = isLoyal;
     }
 
+    /**
+     * Monthly interest added to the account dependent on account type and specifications
+     *
+     * @return Monthly interest
+     */
     @Override
     public double monthlyInterest() {
         if (isLoyal) {
@@ -24,6 +38,11 @@ public class Savings extends Account{
         }
     }
 
+    /**
+     * Monthly fee decreased from the account dependent on account type and specifications
+     *
+     * @return Monthly fee
+     */
     @Override
     public double monthlyFee() {
         final int MONTHLY_FEE = 5;
