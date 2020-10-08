@@ -9,8 +9,8 @@ public class Checking extends Account {
 
     private static final double INTEREST_RATE = 0.0005;
 
-    public Checking(Profile holder, double balance, Date dateopen, boolean directDeposit) {
-        super(holder, balance, dateopen);
+    public Checking(Profile holder, double balance, Date dateopen, boolean directDeposit, Type accountType) {
+        super(holder, balance, dateopen, accountType);
         this.directDeposit = directDeposit;
     }
 

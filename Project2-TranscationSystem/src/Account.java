@@ -8,11 +8,21 @@ public abstract class Account {
     private Profile holder;
     private double balance;
     private Date dateopen;
+    private final Type accountType;
+    //private String accountType;
+    public enum Type {
+        SAVING, CHECKING, MONEYMARKET;
+        @Override
+        public String toString() {
+            return super.toString().toLowerCase();
+        }
+    }
 
-    public Account(Profile holder, double balance, Date dateopen) {
+    public Account(Profile holder, double balance, Date dateopen, Type accountType) {
         this.holder = holder;
         this.balance = balance;
         this.dateopen = dateopen;
+        this.accountType = accountType;
     }
 
     /**
@@ -76,7 +86,9 @@ public abstract class Account {
      *
      * @return Account type as a string
      */
-    public abstract String getType();
+    public String getType() {
+        return accountType.toString();
+    }
 
     public Date getDate () {
         return dateopen;

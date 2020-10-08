@@ -1,7 +1,5 @@
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * Database that hosts all information regarding accounts in this session.
  *
@@ -20,10 +18,10 @@ class AccountDatabaseTest {
 
     Account one = new Savings(holder1, 0, date1, true);
     Account two = new Checking(holder1, 0, date1, true);
-    Account three = new MoneyMarket(holder1, 0, date1);
+    Account three = new MoneyMarket(holder1, 0, date1, accountType);
     Account four = new Savings(holder2, 0, date2, false);
     Account five = new Checking(holder2, 0, date3, false);
-    Account six = new MoneyMarket(holder2, 0, date4);
+    Account six = new MoneyMarket(holder2, 0, date4, accountType);
 
     @Test
     void add() {
