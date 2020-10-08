@@ -176,7 +176,7 @@ public class AccountDatabase {
             System.out.printf("interest : $ %.02f\n", interst);
             System.out.println("fee : $ " + fee);
             System.out.printf("new balance : $ %.02f\n\n", database[i].getBalance());
-            database[i].reset();
+            //database[i].reset();
         }
     }
 
@@ -201,7 +201,7 @@ public class AccountDatabase {
             System.out.printf("interest : $ %.02f\n", interst);
             System.out.println("fee : $ " + fee);
             System.out.printf("new balance : $ %.02f\n\n", database[i].getBalance());
-            database[i].reset();
+            //database[i].reset();
         }
     }
 
@@ -216,8 +216,8 @@ public class AccountDatabase {
         }
         System.out.println("--Listing accounts in the database--");
         for (int i = 0; i < size; i++) {
-            database[i].reset();
             System.out.println(database[i]);
+            //database[i].reset();
         }
         System.out.println("--end of listing--");
     }
