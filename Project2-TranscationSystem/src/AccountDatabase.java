@@ -31,9 +31,9 @@ public class AccountDatabase {
                 return i;
             }
         }
-
         return -1;
     }
+
 
     /**
      * Increases the capacity of the database by 5.
@@ -53,7 +53,8 @@ public class AccountDatabase {
      * @return True if account is added or False if account already exists
      */
     public boolean add(Account account) {
-        if (find(account) != -1) { return false; }
+
+        if (size != 0 && (find(account) != -1)) { return false; }
 
         database[size++] = account;
         if (size >= capacity) { grow(); }
@@ -70,7 +71,7 @@ public class AccountDatabase {
         int accountIndex = find(account);
 
         //replace target account with last account and remove the last index
-        if (accountIndex == -1) { return false; }
+        if (size != 0 && accountIndex == -1) { return false; }
         else {
             database[accountIndex] = database[--size];
             database[size] = null;
@@ -231,5 +232,9 @@ public class AccountDatabase {
         for (int i = 0; i < size; i++) {
             System.out.println(database[i]);
         }
+    }
+
+    public int getSize() {
+        return this.size;
     }
 }

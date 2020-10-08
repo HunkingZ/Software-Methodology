@@ -12,4 +12,8 @@ public class Profile {
     public String getlName() {
         return lname;
     }
+
+    public boolean equals(Profile profile) {
+        return (this.fname.equals(profile.getfName()) && this.lname.equals(profile.getlName()));
+    }
 }

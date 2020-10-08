@@ -10,8 +10,8 @@ public class Savings extends Account{
     private static final double INTEREST_RATE = 0.0025;
     private static final double PROMO_RATE = 0.0035;
 
-    public Savings(Profile holder, double balance, Date dateopen, boolean isLoyal, Type accountType) {
-        super(holder, balance, dateopen, accountType);
+    public Savings(Profile holder, double balance, Date dateopen, boolean isLoyal) {
+        super(holder, balance, dateopen);
         this.isLoyal = isLoyal;
     }
 

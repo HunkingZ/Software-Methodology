@@ -15,7 +15,7 @@ public class Date {
      * @param month The month
      * @param day The day
      */
-    public Date(int year, int month, int day) {
+    public Date(int month, int day, int year) {
         this.year = year;
         this.month = month;
         this.day = day;

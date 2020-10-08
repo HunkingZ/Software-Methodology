@@ -23,47 +23,61 @@ public class TransactionManager {
 
             switch (command) {
                 case "OC": { //open a checking account
-                    String check = "CHECKING";
+                    String check = "Checking";
                     Account ac = createAccount(arguments, check);
                     if (ac != null) {
-                        database.add(ac);
+                        if (!database.add(ac)) {
+                            System.out.println("Account is already in the database.");
+                        } else {
+                            System.out.println("Account opened and added to the database.");
+                        }
                     }
                     break;
-                    //isparseDate == null, break;
                 }
                 case "OS": { //open a savings account
-                    String saving = "SAVING";
+                    String saving = "Saving";
                     Account ac = createAccount(arguments, saving);
                     if (ac != null) {
-                        database.add(ac);
+                        if (!database.add(ac)) {
+                            System.out.println("Account is already in the database.");
+                        } else {
+                            System.out.println("Account opened and added to the database.");
+                        }
                     }
                     break;
                 }
                 case "OM": { //open a money market account
-                    String moneymarket = "MONEYMARKET";
+                    String moneymarket = "Money Market";
                     Account ac = createAccount(arguments, moneymarket);
                     if (ac != null) {
-                        database.add(ac);
+                        if (!database.add(ac)) {
+                            System.out.println("Account is already in the database.");
+                        } else {
+                            System.out.println("Account opened and added to the database.");
+                        }
                     }
                     break;
                 }
                 case "CC": { //close a checking account associated with the name
-
+                    closeAccount(arguments, "Checking");
+                    break;
                 }
                 case "CS": { //close a savings account associated with the name
-
+                    closeAccount(arguments, "Savings");
+                    break;
                 }
                 case "CM": { //close a savings account associated with the name
-
+                    closeAccount(arguments, "Money Market");
+                    break;
                 }
                 case "DC": { //deposit money to a checking account associated with the name
-
+                    depositAccount(arguments, "Checking");
                 }
                 case "DS": { //deposit money to a savings account associated with the name
-
+                    depositAccount(arguments, "Savings");
                 }
                 case "DM": { //deposit money to a money market account associated with the name
-
+                    depositAccount(arguments, "Money Market");
                 }
                 case "WC": { //withdraw money from a checking account associated with the name
 
@@ -98,10 +112,16 @@ public class TransactionManager {
     }
 
     private Profile parseProfile(String forename, String surname) {
+        if (forename == null || surname == null) {
+            return null;
+        }
         return new Profile(forename, surname);
     }
 
     public static double parseBalance(String balance) {
+        if (balance == null) {
+            return -1;
+        }
         try {
             return Double.parseDouble(balance);
         } catch (NumberFormatException e) {
@@ -122,6 +142,9 @@ public class TransactionManager {
     }
 
     private Date parseDate(String date) {
+        if (date == null) {
+            return null;
+        }
         if (isDateFormat(date)) {
             String[] pDate = date.split("/");
             int month = Integer.parseInt(pDate[0]);
@@ -155,29 +178,32 @@ public class TransactionManager {
         return true;
     }
 
+
     private Account createAccount(Scanner arguments, String type) {
         if (!arguments.hasNext()) {
             System.out.println("Input data type mismatch.");
             return null;
         }
+        //Profile holder = parseProfile(arguments.next(), arguments.next());
         String firstName = arguments.next();
         if (!arguments.hasNext()) {
             System.out.println("Input data type mismatch.");
             return null;
         }
         String lastName = arguments.next();
+
+        Profile personalProfile = parseProfile(firstName, lastName);
+
         if (!arguments.hasNext()) {
             System.out.println("Input data type mismatch.");
             return null;
         }
-        Profile personalProfile = parseProfile(firstName, lastName);
-
         String moneyInput = arguments.next();
         if (!isNumeric(moneyInput)) {
             System.out.println("Input data type mismatch.");
             return null;
         }
-        double balance = Double.parseDouble(moneyInput);
+        double balance = parseBalance(moneyInput);
 
         String dateInput = arguments.next();
         if (!isDateFormat(dateInput)) {
@@ -188,56 +214,115 @@ public class TransactionManager {
         if (date == null) {
             return null;
         }
-        Account.Type accountType = Account.Type.valueOf("CHECKING");
 
-        switch (accountType) {
-            case CHECKING: {
-                String boolInput = arguments.next();
-                if (!isBoolean(boolInput)) {
+        Account newAccount;
+        switch (type) {
+            case "Checking": {
+                String directDeposit = arguments.next();
+                if (!isBoolean(directDeposit)) {
                     System.out.println("Input data type mismatch.");
                     return null;
                 }
-                Boolean bool = Boolean.parseBoolean(boolInput);
+                Boolean pDirectDeposit = Boolean.parseBoolean(directDeposit);
 
-                Account newAccount = new Checking(personalProfile, balance, date, bool, accountType);
-                return newAccount;
+                return new Checking(personalProfile, balance, date, pDirectDeposit);
+
             }
-            case SAVING: {
-                String boolInput = arguments.next();
-                if (!isBoolean(boolInput)) {
+            case "Savings": {
+                String isLoyal = arguments.next();
+                if (!isBoolean(isLoyal)) {
                     System.out.println("Input data type mismatch.");
                     return null;
                 }
-                Boolean bool = Boolean.parseBoolean(boolInput);
+                Boolean pIsLoyal = Boolean.parseBoolean(isLoyal);
 
-                Account newAccount = new Savings(personalProfile, balance, date, bool, accountType);
-                return newAccount;
-            }
-            case MONEYMARKET: {
-                Account newAccount = new MoneyMarket(personalProfile, balance, date, accountType);
-                return newAccount;
-            }
-        }
+                return new Savings(personalProfile, balance, date, pIsLoyal);
 
-        /*
-        if (type.equals("C") || type.equals("S")) {
-            String boolInput = arguments.next();
-            if (!isBoolean(boolInput)) {
-                System.out.println("Input data type mismatch.");
+            }
+            case "Money Market": {
+                return new MoneyMarket(personalProfile, balance, date);
+
+            }
+            default: {
                 return null;
             }
-            Boolean bool = Boolean.parseBoolean(boolInput);
-
-            if (type.equals("C")) {
-                Account.Type account = Account.Type.valueOf("CHECKING");
-                Account newAccount = new Checking(personalProfile, balance, date, bool, account);
-            } else {
-                Account.Type saving = Account.Type.valueOf("SAVING");
-                Account newAccount = new Savings(personalProfile, balance, date, bool, saving);
-            }
         }
-         */
-        return null;
     }
 
+    private void closeAccount(Scanner arguments, String type) {
+        Account target = findAccount(arguments, type);
+        if (target == null) {
+            return;
+        }
+
+        if (database.remove(target)) {
+            System.out.println("Account closed and removed from the database.");
+        } else {
+            System.out.println("Account does not exist.");
+        }
+        return;
+    }
+
+    private Account findAccount(Scanner arguments, String type) {
+        if (database.getSize() == 0) {
+            System.out.println("Database is empty.");
+            return null;
+        }
+        if (!arguments.hasNext()) {
+            System.out.println("Input data type mismatch.");
+            return null;
+        }
+        //Profile holder = parseProfile(arguments.next(), arguments.next());
+        String firstName = arguments.next();
+        if (!arguments.hasNext()) {
+            System.out.println("Input data type mismatch.");
+            return null;
+        }
+        String lastName = arguments.next();
+
+        Profile personalProfile = parseProfile(firstName, lastName);
+        Account target;
+        switch (type) {
+            case "Checking": {
+                target = new Checking(personalProfile, -1, null, false);
+                break;
+            }
+            case "Savings": {
+                target = new Savings(personalProfile, -1, null, false);
+                break;
+            }
+            case "Money Market": {
+                target = new MoneyMarket(personalProfile, -1, null);
+                break;
+            }
+            default: return null;
+        }
+        return target;
+    }
+
+    private void depositAccount(Scanner arguments, String type) {
+        Account target = findAccount(arguments, type);
+        if (target == null) { return; }
+        String moneyInput = arguments.next();
+        if (!isNumeric(moneyInput)) {
+            System.out.println("Input data type mismatch.");
+            return;
+        }
+        double amount = parseBalance(moneyInput);
+        database.deposit(target, amount);
+        System.out.println(amount + "deposited to account.");
+    }
+
+    private void withdrawAccount(Scanner arguments, String type) {
+        Account target = findAccount(arguments, type);
+        if (target == null) { return; }
+        String moneyInput = arguments.next();
+        if (!isNumeric(moneyInput)) {
+            System.out.println("Input data type mismatch.");
+            return;
+        }
+        double amount = parseBalance(moneyInput);
+        database.withdrawal(target, amount);
+        System.out.println(amount + "withdrawn from account.");
+    }
 }

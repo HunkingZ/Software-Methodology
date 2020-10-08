@@ -8,8 +8,9 @@ public abstract class Account {
     private Profile holder;
     private double balance;
     private Date dateopen;
-    private final Type accountType;
+    //private final Type accountType;
     //private String accountType;
+    /*
     public enum Type {
         SAVING, CHECKING, MONEYMARKET;
         @Override
@@ -17,12 +18,14 @@ public abstract class Account {
             return super.toString().toLowerCase();
         }
     }
+     */
 
-    public Account(Profile holder, double balance, Date dateopen, Type accountType) {
+
+    public Account(Profile holder, double balance, Date dateopen) {
         this.holder = holder;
         this.balance = balance;
         this.dateopen = dateopen;
-        this.accountType = accountType;
+        //this.accountType = accountType;
     }
 
     /**
@@ -76,8 +79,10 @@ public abstract class Account {
      * @return True if accounts match | False if accounts are different
      */
     public boolean equals(Account account) {
-        return (this.holder.equals(account.holder))
-                && (this.getClass() == account.getClass());
+        return ((this.holder.equals(account.getHolder()))
+                //&& (this.dateopen.compareTo(account.getDate()) == 0)
+                && (this.getType().equals(account.getType()))
+        );
     }
 
     /**
@@ -86,9 +91,7 @@ public abstract class Account {
      *
      * @return Account type as a string
      */
-    public String getType() {
-        return accountType.toString();
-    }
+    public abstract String getType();
 
     public Date getDate () {
         return dateopen;
@@ -102,6 +105,10 @@ public abstract class Account {
 
     public double getBalance() {
         return this.balance;
+    }
+
+    public Profile getHolder() {
+        return this.holder;
     }
 
     /*
