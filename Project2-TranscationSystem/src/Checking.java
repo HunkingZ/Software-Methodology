@@ -7,7 +7,7 @@
 public class Checking extends Account {
     private boolean directDeposit;
 
-    private static final double INTEREST_RATE = 0.0005;
+    private static final double INTEREST_RATE = 0.0005 / 12;
 
     /**
      * Constructor for a checking account
@@ -48,6 +48,15 @@ public class Checking extends Account {
         return MONTHLY_FEE;
     }
 
+    @Override
+    public double getFee() {
+        return monthlyFee();
+    }
+
+    @Override
+    public double getInterest() {
+        return getBalance() * monthlyInterest();
+    }
     /**
      * @return String that indicates the account type
      */
