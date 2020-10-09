@@ -1,6 +1,3 @@
-import java.util.Arrays;
-import java.util.Comparator;
-
 /**
  * Database class that stores information on all active accounts.
  * Concurrent array of abstract object(s), account.
@@ -8,7 +5,7 @@ import java.util.Comparator;
  * @author Hanqing Zhao, Richard Xu
  */
 public class AccountDatabase {
-    private Account[] database;
+    private Account[] accounts;
     private int size = 0;
     private int capacity = 5;
 
@@ -16,7 +13,7 @@ public class AccountDatabase {
      * Constructor for the database of accounts
      */
     public AccountDatabase() {
-        database = new Account[capacity];
+        accounts = new Account[capacity];
     }
 
     /**
@@ -27,7 +24,7 @@ public class AccountDatabase {
      */
     private int find(Account account) {
         for (int i = 0; i < size; i++) {
-            if (database[i].equals(account)) {
+            if (accounts[i].equals(account)) {
                 return i;
             }
         }
@@ -42,8 +39,8 @@ public class AccountDatabase {
         capacity += 5;
 
         Account[] biggerDatabase = new Account[capacity];
-        System.arraycopy(database, 0, biggerDatabase, 0, size);
-        database = biggerDatabase;
+        System.arraycopy(accounts, 0, biggerDatabase, 0, size);
+        accounts = biggerDatabase;
     }
 
     /**
@@ -56,7 +53,7 @@ public class AccountDatabase {
 
         if (size != 0 && (find(account) != -1)) { return false; }
 
-        database[size++] = account;
+        accounts[size++] = account;
         if (size >= capacity) { grow(); }
         return true;
     }
@@ -73,8 +70,8 @@ public class AccountDatabase {
         //replace target account with last account and remove the last index
         if (size != 0 && accountIndex == -1) { return false; }
         else {
-            database[accountIndex] = database[--size];
-            database[size] = null;
+            accounts[accountIndex] = accounts[--size];
+            accounts[size] = null;
             return true;
         }
     }
@@ -90,7 +87,7 @@ public class AccountDatabase {
         int accountIndex = find(account);
 
         if (accountIndex == -1) { return false; }
-        else { database[accountIndex].credit(amount); }
+        else { accounts[accountIndex].credit(amount); }
         return true;
     }
 
@@ -105,10 +102,10 @@ public class AccountDatabase {
         int accountIndex = find(account);
 
         if (accountIndex == -1) { return -1; }
-        else if (database[accountIndex].getBalance() - amount < 0) { return 1; }
+        else if (accounts[accountIndex].getBalance() - amount < 0) { return 1; }
 
-        database[accountIndex].debit(amount);
-        database[accountIndex].increase();
+        accounts[accountIndex].debit(amount);
+        accounts[accountIndex].increase();
         return 0;
     }
 
@@ -119,16 +116,16 @@ public class AccountDatabase {
         //bubble sort
         for (int i = 0; i < (size - 1); i++) {
             for (int j = 0; j < (size - 1 - i); j++) {
-                Date lAccountDate = database[j].getDate();
-                Date rAccountDate = database[j + 1].getDate();
+                Date lAccountDate = accounts[j].getDate();
+                Date rAccountDate = accounts[j + 1].getDate();
 
                 //if left account was opened later than right account, swap them
                 if (lAccountDate.compareTo(rAccountDate) > 0) {
-                    Account lAccount = database[j];
-                    Account rAccount = database[j + 1];
+                    Account lAccount = accounts[j];
+                    Account rAccount = accounts[j + 1];
 
-                    database[j] = rAccount;
-                    database[j + 1] = lAccount;
+                    accounts[j] = rAccount;
+                    accounts[j + 1] = lAccount;
                 }
             }
         }
@@ -141,16 +138,16 @@ public class AccountDatabase {
         //bubble sort
         for (int i = 0; i < (size - 1); i++) {
             for (int j = 0; j < (size - 1 - i); j++) {
-                String lAccountSurname = database[j].getlName();
-                String rAccountSurname = database[j + 1].getlName();
+                String lAccountSurname = accounts[j].getlName();
+                String rAccountSurname = accounts[j + 1].getlName();
 
                 //if left account surname is alphabetically before the right account surname, swap them
                 if (lAccountSurname.compareTo(rAccountSurname) > 0) {
-                    Account lAccount = database[j];
-                    Account rAccount = database[j + 1];
+                    Account lAccount = accounts[j];
+                    Account rAccount = accounts[j + 1];
 
-                    database[j] = rAccount;
-                    database[j + 1] = lAccount;
+                    accounts[j] = rAccount;
+                    accounts[j + 1] = lAccount;
                 }
             }
         }
@@ -167,15 +164,15 @@ public class AccountDatabase {
         sortByDateOpen();
         System.out.println("--Printing statements by date opened--");
         for (int i = 0; i < size; i++) {
-            double interst = database[i].getInterest();
-            double fee = database[i].monthlyFee();
-            System.out.println(database[i]);
-            database[i].credit(interst);
-            database[i].debit(fee);
+            double interst = accounts[i].getInterest();
+            double fee = accounts[i].monthlyFee();
+            System.out.println(accounts[i]);
+            accounts[i].credit(interst);
+            accounts[i].debit(fee);
 
             System.out.printf("interest : $ %.02f\n", interst);
             System.out.println("fee : $ " + fee);
-            System.out.printf("new balance : $ %.02f\n\n", database[i].getBalance());
+            System.out.printf("new balance : $ %.02f\n\n", accounts[i].getBalance());
             //database[i].reset();
         }
     }
@@ -192,15 +189,15 @@ public class AccountDatabase {
         sortByLastName();
         System.out.println("--Printing statements by last name--");
         for (int i = 0; i < size; i++) {
-            double interst = database[i].getInterest();
-            double fee = database[i].monthlyFee();
-            System.out.println(database[i]);
-            database[i].credit(interst);
-            database[i].debit(fee);
+            double interst = accounts[i].getInterest();
+            double fee = accounts[i].monthlyFee();
+            System.out.println(accounts[i]);
+            accounts[i].credit(interst);
+            accounts[i].debit(fee);
 
             System.out.printf("interest : $ %.02f\n", interst);
             System.out.println("fee : $ " + fee);
-            System.out.printf("new balance : $ %.02f\n\n", database[i].getBalance());
+            System.out.printf("new balance : $ %.02f\n\n", accounts[i].getBalance());
             //database[i].reset();
         }
     }
@@ -216,7 +213,7 @@ public class AccountDatabase {
         }
         System.out.println("--Listing accounts in the database--");
         for (int i = 0; i < size; i++) {
-            System.out.println(database[i]);
+            System.out.println(accounts[i]);
             //database[i].reset();
         }
         System.out.println("--end of listing--");
