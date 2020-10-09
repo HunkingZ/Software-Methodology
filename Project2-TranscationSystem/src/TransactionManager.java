@@ -143,7 +143,7 @@ public class TransactionManager {
      * @param balance String to validate and construct as double
      * @return The string input as a double or -1 if invalid input
      */
-    public static double parseBalance(String balance) {
+    private double parseBalance(String balance) {
         if (balance == null) { return -1; }
 
         try { return Double.parseDouble(balance); }
