@@ -28,9 +28,7 @@ public class Checking extends Account {
      * @return Monthly interest
      */
     @Override
-    public double monthlyInterest() {
-        return INTEREST_RATE;
-    }
+    public double monthlyInterest() { return INTEREST_RATE; }
 
     /**
      * Monthly fee decreased from the account dependent on account type and specifications
