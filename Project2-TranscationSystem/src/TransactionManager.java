@@ -6,7 +6,7 @@ import java.util.Scanner;
  * @author Hanqing Zhao, Richard Xu
  */
 public class TransactionManager {
-    public AccountDatabase database = new AccountDatabase();
+    private AccountDatabase database = new AccountDatabase();
 
     /**
      * I/O Handler interface for user inputs
