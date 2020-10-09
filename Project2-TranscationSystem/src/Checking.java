@@ -28,9 +28,7 @@ public class Checking extends Account {
      * @return Monthly interest
      */
     @Override
-    public double monthlyInterest() {
-        return INTEREST_RATE;
-    }
+    public double monthlyInterest() { return INTEREST_RATE; }
 
     /**
      * Monthly fee decreased from the account dependent on account type and specifications
@@ -48,11 +46,21 @@ public class Checking extends Account {
         return MONTHLY_FEE;
     }
 
+    /**
+     * Calculates interest based on account type specifications
+     *
+     * @return Calculated interest
+     */
     @Override
     public double getInterest() {
         return getBalance() * monthlyInterest();
     }
 
+    /**
+     * Gets special values regarding the account type
+     *
+     * @return Indication of direct deposit if true or nothing if false
+     */
     @Override
     public String getSpecial() {
         if (directDeposit) {
@@ -63,20 +71,16 @@ public class Checking extends Account {
     }
 
     /**
-     * @return String that indicates the account type
+     * Indicates the account type
+     *
+     * @return Account type as a string
      */
     @Override
-    public String getType() {
-        return "Checking";
-    }
+    public String getType() { return "Checking"; }
 
+    /**
+     * Does nothing for this class
+     */
     @Override
-    public void reset() {
-        return;
-    }
-
-    @Override
-    public void increase() {
-        return;
-    }
+    public void increase() { return; }
 }
