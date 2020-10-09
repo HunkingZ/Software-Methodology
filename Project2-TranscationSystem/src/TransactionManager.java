@@ -110,7 +110,7 @@ public class TransactionManager {
                     break;
                 }
                 case "Q": { //transaction complete
-                    System.out.println("Transaction processing completed.");
+                    System.out.println("\nTransaction processing completed.");
                     break Stream;
                 }
                 default: {
@@ -374,7 +374,7 @@ public class TransactionManager {
         if (!isDouble(amount)) { return; }
         double pAmount = parseBalance(amount);
 
-        if (database.deposit(target, pAmount)) { System.out.println(amount + " deposited to account."); }
+        if (database.deposit(target, pAmount)) { System.out.printf("%.2f deposited to account.\n", pAmount); }
         else { System.out.println("Account does not exist."); }
     }
 
@@ -392,7 +392,7 @@ public class TransactionManager {
         if (!isDouble(amount)) { return; }
         double pAmount = parseBalance(amount);
 
-        if (database.withdrawal(target, pAmount) == 0) { System.out.println(amount + " withdrawn from account."); }
+        if (database.withdrawal(target, pAmount) == 0) { System.out.printf("%.2f withdrawn from account.\n", pAmount); }
         else if (database.withdrawal(target, pAmount) == 1) { System.out.println("Insufficient funds."); }
         else { System.out.println("Account does not exist."); }
     }

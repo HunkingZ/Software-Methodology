@@ -166,19 +166,21 @@ public class AccountDatabase {
         System.arraycopy(accounts, 0, originalDB, 0, size);
         sortByDateOpen();
 
-        System.out.println("--Printing statements by date opened--");
+        System.out.println("\n--Printing statements by date opened--");
         for (int i = 0; i < size; i++) {
+            System.out.println("");
             double interst = accounts[i].getInterest();
             double fee = accounts[i].monthlyFee();
             System.out.println(accounts[i]);
             accounts[i].credit(interst);
             accounts[i].debit(fee);
 
-            System.out.printf("interest : $ %.02f\n", interst);
-            System.out.println("fee : $ " + fee);
-            System.out.printf("new balance : $ %.02f\n\n", accounts[i].getBalance());
+            System.out.printf("interest: $ %.02f\n", interst);
+            System.out.printf("fee: $ %.2f\n", fee);
+            System.out.printf("new balance: $ %.02f\n", accounts[i].getBalance());
         }
         accounts = originalDB;
+        System.out.println("--end of printing--");
     }
 
     /**
@@ -194,19 +196,21 @@ public class AccountDatabase {
         System.arraycopy(accounts, 0, originalDB, 0, size);
         sortByLastName();
 
-        System.out.println("--Printing statements by last name--");
+        System.out.println("\n--Printing statements by last name--");
         for (int i = 0; i < size; i++) {
+            System.out.println("");
             double interst = accounts[i].getInterest();
             double fee = accounts[i].monthlyFee();
             System.out.println(accounts[i]);
             accounts[i].credit(interst);
             accounts[i].debit(fee);
 
-            System.out.printf("interest : $ %.02f\n", interst);
-            System.out.println("fee : $ " + fee);
-            System.out.printf("new balance : $ %.02f\n\n", accounts[i].getBalance());
+            System.out.printf("interest: $ %.02f\n", interst);
+            System.out.printf("fee: $ %.2f\n", fee);
+            System.out.printf("new balance: $ %.02f\n", accounts[i].getBalance());
         }
         accounts = originalDB;
+        System.out.println("--end of printing--");
     }
 
     /**
