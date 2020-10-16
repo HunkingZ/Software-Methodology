@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
@@ -45,18 +46,46 @@
                               <Label text="Last Name" GridPane.rowIndex="1" />
                               <Label text="Date Open" GridPane.rowIndex="2" />
                               <Label text="Balance" GridPane.rowIndex="3" />
-                              <TextField GridPane.columnIndex="1" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <RadioButton mnemonicParsing="false" text="Checking" GridPane.columnIndex="2" />
-                              <RadioButton mnemonicParsing="false" text="Saving" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                              <RadioButton mnemonicParsing="false" text="Money Market" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                              <CheckBox mnemonicParsing="false" text="Direct deposit" GridPane.columnIndex="3" />
-                              <CheckBox mnemonicParsing="false" text="Loyal customer" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                              <Button mnemonicParsing="false" text="Open Account" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                              <Button mnemonicParsing="false" text="Close Account" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                              <Button mnemonicParsing="false" text="Clear" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                              <TextField fx:id="oca_fName" GridPane.columnIndex="1" />
+                              <TextField fx:id="oca_lName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                 <children>
+                                    <TextField fx:id="oca_month" promptText="mm">
+                                       <HBox.margin>
+                                          <Insets top="5.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <Label text="/">
+                                       <HBox.margin>
+                                          <Insets left="2.0" right="2.0" top="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField fx:id="oca_day" promptText="dd">
+                                       <HBox.margin>
+                                          <Insets top="5.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <Label text="/">
+                                       <HBox.margin>
+                                          <Insets left="2.0" right="2.0" top="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField fx:id="oca_year" promptText="yyyy">
+                                       <HBox.margin>
+                                          <Insets top="5.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="oca_balance" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <RadioButton fx:id="oca_Checking" mnemonicParsing="false" text="Checking" GridPane.columnIndex="2" />
+                              <RadioButton fx:id="oca_Savings" mnemonicParsing="false" text="Savings" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <RadioButton fx:id="oca_MoneyMarket" mnemonicParsing="false" text="Money Market" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <CheckBox fx:id="oca_DirectDeposit" mnemonicParsing="false" text="Direct deposit" GridPane.columnIndex="3" />
+                              <CheckBox fx:id="oca_LoyalCustomer" mnemonicParsing="false" text="Loyal customer" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <Button fx:id="oca_open" mnemonicParsing="false" onAction="#open" text="Open Account" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                              <Button fx:id="oca_close" mnemonicParsing="false" onAction="#close" text="Close Account" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                              <Button fx:id="oca_clear" mnemonicParsing="false" onAction="#clear" text="Clear" GridPane.columnIndex="4" GridPane.rowIndex="3" />
                            </children>
                         </GridPane>
                      </children>
@@ -82,15 +111,15 @@
                            <children>
                               <Label text="First Name" />
                               <Label text="Last Name" GridPane.rowIndex="1" />
-                              <Label prefHeight="37.0" prefWidth="149.0" text="Account" GridPane.rowIndex="2" />
-                              <TextField GridPane.columnIndex="1" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <RadioButton mnemonicParsing="false" text="Checking" GridPane.columnIndex="2" />
-                              <RadioButton mnemonicParsing="false" text="Savings" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                              <RadioButton mnemonicParsing="false" text="Money Market" GridPane.columnIndex="3" />
-                              <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="150.0" text="Deposit" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                              <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="152.0" text="Withdraw" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                              <Label prefHeight="37.0" prefWidth="149.0" text="Amount" GridPane.rowIndex="2" />
+                              <TextField fx:id="dw_fName" GridPane.columnIndex="1" />
+                              <TextField fx:id="dw_lName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="dw_amount" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <RadioButton fx:id="dw_Checking" mnemonicParsing="false" text="Checking" GridPane.columnIndex="2" />
+                              <RadioButton fx:id="dw_Savings" mnemonicParsing="false" text="Savings" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <RadioButton fx:id="dw_MoneyMarket" mnemonicParsing="false" text="Money Market" GridPane.columnIndex="3" />
+                              <Button fx:id="deposit" mnemonicParsing="false" onAction="#deposit" prefHeight="27.0" prefWidth="150.0" text="Deposit" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <Button fx:id="withdraw" mnemonicParsing="false" onAction="#withdraw" prefHeight="27.0" prefWidth="152.0" text="Withdraw" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                            </children>
                         </GridPane>
                      </children>
