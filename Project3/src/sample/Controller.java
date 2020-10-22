@@ -1,9 +1,8 @@
 package sample;
-
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
-import java.awt.*;
-import java.awt.event.ActionEvent;
+import javafx.scene.control.TextField;
+//import java.awt.event.ActionEvent;
 
 public class Controller {
     @FXML
@@ -11,12 +10,12 @@ public class Controller {
                         dw_fName, dw_lName, dw_amount;
 
     @FXML
-    void open(ActionEvent event) {
+    void openAccount(ActionEvent event) {
 
     }
 
     @FXML
-    void close(ActionEvent event) {
+    void closeAccount(ActionEvent event) {
 
     }
 

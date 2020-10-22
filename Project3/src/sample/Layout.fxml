@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <top>
       <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
@@ -83,8 +83,8 @@
                               <RadioButton fx:id="oca_MoneyMarket" mnemonicParsing="false" text="Money Market" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                               <CheckBox fx:id="oca_DirectDeposit" mnemonicParsing="false" text="Direct deposit" GridPane.columnIndex="3" />
                               <CheckBox fx:id="oca_LoyalCustomer" mnemonicParsing="false" text="Loyal customer" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                              <Button fx:id="oca_open" mnemonicParsing="false" onAction="#open" text="Open Account" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                              <Button fx:id="oca_close" mnemonicParsing="false" onAction="#close" text="Close Account" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                              <Button fx:id="oca_open" mnemonicParsing="false" onAction="#openAccount" text="Open Account" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                              <Button fx:id="oca_close" mnemonicParsing="false" onAction="#closeAccount" text="Close Account" GridPane.columnIndex="3" GridPane.rowIndex="3" />
                               <Button fx:id="oca_clear" mnemonicParsing="false" onAction="#clear" text="Clear" GridPane.columnIndex="4" GridPane.rowIndex="3" />
                            </children>
                         </GridPane>

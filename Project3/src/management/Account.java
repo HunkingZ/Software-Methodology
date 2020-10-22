@@ -7,9 +7,10 @@ package management;
  * @author Hanqing Zhao, Richard Xu
  */
 public abstract class Account {
+    private final Date dateOpen;
     private Profile holder;
     private double balance;
-    private Date dateopen;
+
 
     /**
      * Super constructor for the baseline of an account
@@ -22,7 +23,7 @@ public abstract class Account {
     public Account(Profile holder, double balance, Date dateopen) {
         this.holder = holder;
         this.balance = balance;
-        this.dateopen = dateopen;
+        this.dateOpen = dateopen;
     }
 
     /**
@@ -101,7 +102,7 @@ public abstract class Account {
      *
      * @return Date linked to account
      */
-    public Date getDate () { return dateopen; }
+    public Date getDate () { return dateOpen; }
 
     /**
      * Last name of account holder

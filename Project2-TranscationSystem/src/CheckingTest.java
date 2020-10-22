@@ -82,7 +82,6 @@ class CheckingTest {
 
         System.out.println("\n<--->\n");
 
-
         System.out.printf("The monthly fee of "
                 + h3.getfName() + h3.getlName()
                 + "'s account is: %.2f\n", a3.monthlyFee());

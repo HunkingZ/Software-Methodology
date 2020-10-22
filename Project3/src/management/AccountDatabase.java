@@ -201,13 +201,13 @@ public class AccountDatabase {
         System.out.println("\n--Printing statements by last name--");
         for (int i = 0; i < size; i++) {
             System.out.println("");
-            double interst = accounts[i].getInterest();
+            double interest = accounts[i].getInterest();
             double fee = accounts[i].monthlyFee();
             System.out.println(accounts[i]);
-            accounts[i].credit(interst);
+            accounts[i].credit(interest);
             accounts[i].debit(fee);
 
-            System.out.printf("interest: $ %.02f\n", interst);
+            System.out.printf("interest: $ %.02f\n", interest);
             System.out.printf("fee: $ %.2f\n", fee);
             System.out.printf("new balance: $ %.02f\n", accounts[i].getBalance());
         }

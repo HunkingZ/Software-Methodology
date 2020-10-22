@@ -4,15 +4,18 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 
     @Override
+    public void start(Stage primaryStage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("Layout.fxml"));
+        primaryStage.setTitle("Hello World");
+        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.show();
+    }
+    /*
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("Layout.fxml"));
         primaryStage.setTitle("Hello World");
@@ -32,7 +35,7 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(hbox, 400, 300));
         primaryStage.show();
     }
-
+     */
 
     public static void main(String[] args) {
         launch(args);
