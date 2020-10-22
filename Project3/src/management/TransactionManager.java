@@ -267,7 +267,7 @@ public class TransactionManager {
      * @param type Account type (Checking|Savings|Money Market)
      * @return New account specified by the parameters
      */
-    private Account createAccount(Scanner arguments, String type) {
+    public Account createAccount(Scanner arguments, String type) {
         //confirm valid name
         if (!validateArgs(arguments)) { return null; }
         String firstName = arguments.next();
@@ -326,7 +326,7 @@ public class TransactionManager {
      * @param type Account type (Checking|Savings|Money Market)
      * @return Account based on strictly the name and type
      */
-    private Account findAccount(Scanner arguments, String type) {
+    public Account findAccount(Scanner arguments, String type) {
         if (database.getSize() == 0) {
             System.out.println("Account does not exist.");
             return null;
@@ -353,7 +353,7 @@ public class TransactionManager {
      * @param arguments Input command
      * @param type Account type (Checking|Savings|Money Market)
      */
-    private void closeAccount(Scanner arguments, String type) {
+    public void closeAccount(Scanner arguments, String type) {
         Account target = findAccount(arguments, type);
         if (target == null) { return; }
 
@@ -367,7 +367,7 @@ public class TransactionManager {
      * @param arguments Input command
      * @param type Account type (Checking|Savings|Money Market)
      */
-    private void depositAccount(Scanner arguments, String type) {
+    public void depositAccount(Scanner arguments, String type) {
         Account target = findAccount(arguments, type);
         if (target == null) { return; }
 
@@ -387,7 +387,7 @@ public class TransactionManager {
      * @param arguments Input command
      * @param type Account type (Checking|Savings|Money Market)
      */
-    private void withdrawAccount(Scanner arguments, String type) {
+    public void withdrawAccount(Scanner arguments, String type) {
         Account target = findAccount(arguments, type);
         if (target == null) { return; }
         String amount = arguments.next();
