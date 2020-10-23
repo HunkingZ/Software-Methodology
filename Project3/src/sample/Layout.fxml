@@ -11,6 +11,7 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -78,9 +79,12 @@
                                  </children>
                               </HBox>
                               <TextField fx:id="oca_balance" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <RadioButton fx:id="oca_Checking" mnemonicParsing="false" text="Checking" GridPane.columnIndex="2" />
-                              <RadioButton fx:id="oca_Savings" mnemonicParsing="false" text="Savings" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                              <RadioButton fx:id="oca_MoneyMarket" mnemonicParsing="false" text="Money Market" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <RadioButton fx:id="oca_Checking" mnemonicParsing="false" onAction="#handleBind" text="Checking" GridPane.columnIndex="2">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="accountType" />
+                                 </toggleGroup></RadioButton>
+                              <RadioButton fx:id="oca_Savings" mnemonicParsing="false" onAction="#handleBind" text="Savings" toggleGroup="$accountType" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <RadioButton fx:id="oca_MoneyMarket" mnemonicParsing="false" onAction="#handleBind" text="Money Market" toggleGroup="$accountType" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                               <CheckBox fx:id="oca_DirectDeposit" mnemonicParsing="false" text="Direct deposit" GridPane.columnIndex="3" />
                               <CheckBox fx:id="oca_LoyalCustomer" mnemonicParsing="false" text="Loyal customer" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                               <Button fx:id="oca_open" mnemonicParsing="false" onAction="#openAccount" text="Open Account" GridPane.columnIndex="2" GridPane.rowIndex="3" />
@@ -115,9 +119,12 @@
                               <TextField fx:id="dw_fName" GridPane.columnIndex="1" />
                               <TextField fx:id="dw_lName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <TextField fx:id="dw_amount" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <RadioButton fx:id="dw_Checking" mnemonicParsing="false" text="Checking" GridPane.columnIndex="2" />
-                              <RadioButton fx:id="dw_Savings" mnemonicParsing="false" text="Savings" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                              <RadioButton fx:id="dw_MoneyMarket" mnemonicParsing="false" text="Money Market" GridPane.columnIndex="3" />
+                              <RadioButton fx:id="dw_Checking" mnemonicParsing="false" text="Checking" GridPane.columnIndex="2">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="accountManage" />
+                                 </toggleGroup></RadioButton>
+                              <RadioButton fx:id="dw_Savings" mnemonicParsing="false" text="Savings" toggleGroup="$accountManage" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <RadioButton fx:id="dw_MoneyMarket" mnemonicParsing="false" text="Money Market" toggleGroup="$accountManage" GridPane.columnIndex="3" />
                               <Button fx:id="deposit" mnemonicParsing="false" onAction="#deposit" prefHeight="27.0" prefWidth="150.0" text="Deposit" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                               <Button fx:id="withdraw" mnemonicParsing="false" onAction="#withdraw" prefHeight="27.0" prefWidth="152.0" text="Withdraw" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                            </children>

@@ -226,7 +226,6 @@ public class TransactionManager {
             System.out.println("Input data type mismatch.");
             return false;
         }
-
     }
 
     /**
