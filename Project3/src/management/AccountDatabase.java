@@ -158,76 +158,86 @@ public class AccountDatabase {
     /**
      * Print account statements by the date that it was opened in ascending order
      */
-    public void printByDateOpen() {
+    public String printByDateOpen() {
         if (size == 0) {
-            System.out.println("Database is empty.");
-            return;
+            return null;
         }
 
         Account[] originalDB = new Account[capacity];
         System.arraycopy(accounts, 0, originalDB, 0, size);
         sortByDateOpen();
 
-        System.out.println("\n--Printing statements by date opened--");
+        String result;
+        result = ("--Printing statements by date opened--\n");
         for (int i = 0; i < size; i++) {
-            System.out.println("");
-            double interst = accounts[i].getInterest();
+            double interest = accounts[i].getInterest();
             double fee = accounts[i].monthlyFee();
-            System.out.println(accounts[i]);
-            accounts[i].credit(interst);
+            result = result + accounts[i];
+
+            accounts[i].credit(interest);
             accounts[i].debit(fee);
 
-            System.out.printf("interest: $ %.02f\n", interst);
-            System.out.printf("fee: $ %.2f\n", fee);
-            System.out.printf("new balance: $ %.02f\n", accounts[i].getBalance());
+            String lineInterest = String.format("interest: $ %.02f\n", interest);
+            String lineFee = String.format("fee: $ %.02f\n", fee);
+            String lineBalance = String.format("new balance: $ %.02f\n", accounts[i].getBalance());
+            result = result + lineInterest + lineFee + lineBalance;
         }
         accounts = originalDB;
-        System.out.println("--end of printing--");
+        result = result + "--end of printing--";
+        //System.out.println("--end of printing--");
+        return result;
     }
 
     /**
      * Prints account statements by the last name of each account in ascending order
      */
-    public void printByLastName() {
+    public String printByLastName() {
         if (size == 0) {
-            System.out.println("Database is empty.");
-            return;
+            return null;
         }
 
         Account[] originalDB = new Account[capacity];
         System.arraycopy(accounts, 0, originalDB, 0, size);
         sortByLastName();
+        String result;
 
-        System.out.println("\n--Printing statements by last name--");
+        result = ("--Printing statements by last name--\n");
+
         for (int i = 0; i < size; i++) {
-            System.out.println("");
             double interest = accounts[i].getInterest();
             double fee = accounts[i].monthlyFee();
-            System.out.println(accounts[i]);
+            result = result + accounts[i];
             accounts[i].credit(interest);
             accounts[i].debit(fee);
 
-            System.out.printf("interest: $ %.02f\n", interest);
-            System.out.printf("fee: $ %.2f\n", fee);
-            System.out.printf("new balance: $ %.02f\n", accounts[i].getBalance());
+            String lineInterest = String.format("interest: $ %.02f\n", interest);
+            String lineFee = String.format("fee: $ %.02f\n", fee);
+            String lineBalance = String.format("new balance: $ %.02f\n", accounts[i].getBalance());
+            result = result + lineInterest + lineFee + lineBalance;
         }
         accounts = originalDB;
-        System.out.println("--end of printing--");
+        result = result + "--end of printing--";
+        return result;
     }
 
     /**
      * Prints accounts
      */
-    public void printAccounts() {
+    public String printAccounts() {
         if (size == 0) {
-            System.out.println("Database is empty.");
-            return;
+            //System.out.println("Database is empty.");
+            return null;
         }
-        System.out.println("--Listing accounts in the database--");
+        String result;
+        result = "--Listing accounts in the database--\n";
+        //System.out.println("--Listing accounts in the database--");
         for (int i = 0; i < size; i++) {
-            System.out.println(accounts[i]);
+            result = result + accounts[i] + "\n";
+            //System.out.println(accounts[i]);
         }
-        System.out.println("--end of listing--");
+        result = result + "--end of listing--";
+        //System.out.println("--end of listing--");
+        return result;
     }
 
     /**

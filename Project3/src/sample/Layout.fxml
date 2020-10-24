@@ -148,9 +148,9 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Button fx:id="print" mnemonicParsing="false" onAction="#Print" text="Print" />
-                                    <Button fx:id="printByLastName" mnemonicParsing="false" onAction="#PrintByLastName" text="Print By Last Name" GridPane.columnIndex="1" />
-                                    <Button fx:id="printByOpenDate" mnemonicParsing="false" onAction="#PrintByOpenDate" text="Print By Open Date" GridPane.columnIndex="2" />
+                                    <Button fx:id="print" mnemonicParsing="false" onAction="#resP" text="Print" />
+                                    <Button fx:id="printByLastName" mnemonicParsing="false" onAction="#resPName" text="Print By Last Name" GridPane.columnIndex="1" />
+                                    <Button fx:id="printByOpenDate" mnemonicParsing="false" onAction="#resPDate" text="Print By Open Date" GridPane.columnIndex="2" />
                                  </children>
                               </GridPane>
                            </children>

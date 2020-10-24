@@ -24,9 +24,7 @@ public class Controller {
     private CheckBox oca_DirectDeposit, oca_LoyalCustomer;
 
     @FXML
-    private TextArea resultArea;
-
-
+    public TextArea resultArea;
 
 
     @FXML
@@ -55,6 +53,7 @@ public class Controller {
                 if (newChecking != null) {
                     checkExist(newChecking);
                 }
+                break;
             }
             case "Savings": {
                 boolean isLC = oca_LoyalCustomer.isSelected();
@@ -62,13 +61,16 @@ public class Controller {
                 if (newSaving != null) {
                     checkExist(newSaving);
                 }
+                break;
             }
             case "Money Market": {
                 Account newMoneyMarket = new MoneyMarket(holder, balance, openDate);
                 if (newMoneyMarket != null) {
                     checkExist(newMoneyMarket);
                 }
+                break;
             }
+
         }
 
 
@@ -112,6 +114,36 @@ public class Controller {
         }
     }
 
+    @FXML
+    void resP(ActionEvent event) {
+        String printResult = database.printAccounts();
+        if (printResult == null) {
+            resultArea.setText("Database is empty.");
+            return;
+        }
+        resultArea.setText(printResult);
+    }
+
+    @FXML
+    void resPName(ActionEvent event) {
+        String printResult = database.printByLastName();
+        if (printResult == null) {
+            resultArea.setText("Database is empty.");
+            return;
+        }
+        resultArea.setText(printResult);
+    }
+
+    @FXML
+    void resPDate(ActionEvent event) {
+        String printResult = database.printByDateOpen();
+        if (printResult == null) {
+            resultArea.setText("Database is empty.");
+            return;
+        }
+        resultArea.setText(printResult);
+    }
+
     private Account makeAccount(String type, Profile holder, double balance, Date openDate) {
         switch (type) {
             case "Checking": {
@@ -148,9 +180,9 @@ public class Controller {
 
     private void checkExist(Account account) {
         if (!database.add(account)) {
-            resultArea.appendText("Account is already in the database.\n");
+            resultArea.setText("Account is already in the database.\n");
         } else {
-            resultArea.appendText("Account opened and added to the database.\n");
+            resultArea.setText("Account opened and added to the database.\n");
         }
     }
 }
