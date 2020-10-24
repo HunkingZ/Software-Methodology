@@ -2,15 +2,13 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import management.*;
 
 //import java.awt.event.ActionEvent;
 
 public class Controller {
+    private AccountDatabase database = new AccountDatabase();
 
     @FXML
     private TextField oca_fName, oca_lName, oca_balance, oca_month, oca_day, oca_year,
@@ -25,6 +23,8 @@ public class Controller {
     @FXML
     private CheckBox oca_DirectDeposit, oca_LoyalCustomer;
 
+    @FXML
+    private TextArea resultArea;
 
 
 
@@ -52,15 +52,22 @@ public class Controller {
             case "Checking": {
                 boolean isDD = oca_DirectDeposit.isSelected();
                 Account newChecking = new Checking(holder, balance, openDate, isDD);
-                System.out.println(newChecking.toString());
+                if (newChecking != null) {
+                    checkExist(newChecking);
+                }
             }
             case "Savings": {
-                if (oca_LoyalCustomer.isSelected()) {
-
+                boolean isLC = oca_LoyalCustomer.isSelected();
+                Account newSaving = new Savings(holder, balance, openDate, isLC);
+                if (newSaving != null) {
+                    checkExist(newSaving);
                 }
             }
             case "Money Market": {
-
+                Account newMoneyMarket = new MoneyMarket(holder, balance, openDate);
+                if (newMoneyMarket != null) {
+                    checkExist(newMoneyMarket);
+                }
             }
         }
 
@@ -137,5 +144,13 @@ public class Controller {
             System.out.println("Invalid date input");
         }
         return null;
+    }
+
+    private void checkExist(Account account) {
+        if (!database.add(account)) {
+            resultArea.appendText("Account is already in the database.\n");
+        } else {
+            resultArea.appendText("Account opened and added to the database.\n");
+        }
     }
 }
