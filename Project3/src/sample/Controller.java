@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -24,26 +25,36 @@ public class Controller {
     private CheckBox oca_DirectDeposit, oca_LoyalCustomer;
 
     @FXML
-    public TextArea resultArea;
+    private TextArea resultArea;
 
+    @FXML
+    private Button oca_open, oca_close;
 
     @FXML
     void openAccount(ActionEvent event) {
         String fName = oca_fName.getText();
         String lName = oca_lName.getText();
-        double balance = Double.parseDouble(oca_balance.getText());
+        String inputBalance = oca_balance.getText();
         String month = oca_month.getText();
         String day = oca_day.getText();
         String year = oca_year.getText();
+
+        if (!oca_checkValid(fName, lName, inputBalance, month, day, year)) {
+            resultArea.appendText("Invalid Input\n");
+            return;
+        }
+        double balance;
+        if (validateBalance(inputBalance)) {
+            balance = Double.parseDouble(inputBalance);
+        } else {
+            return;
+        }
         Profile holder = new Profile(fName, lName);
         Date openDate = parseDate(month, day, year);
+        if (openDate == null) {
+            return;
+        }
 
-        /*
-        boolean isChecking = Boolean.parseBoolean(oca_Checking.getText());
-        boolean isSavings = Boolean.parseBoolean(oca_Savings.getText());
-        boolean isDirect = Boolean.parseBoolean(oca_DirectDeposit.getText());
-        boolean isLoyal = Boolean.parseBoolean(oca_LoyalCustomer.getText());
-         */
         String selectedAccountType = ((RadioButton) accountType.getSelectedToggle()).getText();
 
         switch (selectedAccountType) {
@@ -78,12 +89,33 @@ public class Controller {
 
     @FXML
     void closeAccount(ActionEvent event) {
+        String fName = oca_fName.getText();
+        String lName = oca_lName.getText();
 
+
+        if (!oca_checkValid(fName, lName, "0", "0", "0", "0")) {
+            resultArea.appendText("Invalid Input\n");
+            return;
+        }
+        Profile holder = new Profile(fName, lName);
+        String selectedAccountType = ((RadioButton) accountType.getSelectedToggle()).getText();
+
+        Account target = findAccount(selectedAccountType, holder);
+
+        if (target == null) {
+            resultArea.appendText("Account does not exits.\n");
+            return;
+        }
+        if (database.remove(target)) {
+            resultArea.appendText("Account closed and removed from the database.\n");
+        } else {
+            resultArea.appendText("Account does not exist.\n");
+        }
     }
 
     @FXML
     void clear(ActionEvent event) {
-
+        resultArea.clear();
     }
 
     @FXML
@@ -100,6 +132,32 @@ public class Controller {
     void handleBind(ActionEvent event) {
         oca_LoyalCustomer.setDisable(oca_Checking.isSelected());
         oca_DirectDeposit.setDisable(oca_Savings.isSelected());
+
+        BooleanBinding bb = new BooleanBinding() {
+            {
+                super.bind(oca_Checking.textProperty(),
+                        oca_Savings.textProperty(),
+                        oca_MoneyMarket.textProperty());
+            }
+
+            @Override
+            protected boolean computeValue() {
+                return (!oca_Checking.isSelected()
+                        && !oca_Savings.isSelected()
+                        && !oca_MoneyMarket.isSelected());
+            }
+        };
+
+        oca_open.disableProperty().bind(bb);
+        oca_close.disableProperty().bind(bb);
+
+        /*
+        oca_open.setDisable(oca_Checking.isSelected() || oca_Savings.isSelected()
+                || oca_MoneyMarket.isSelected());
+        oca_close.setVisible(oca_Checking.isSelected() || oca_Savings.isSelected()
+                || oca_MoneyMarket.isSelected());
+         */
+
         if (oca_MoneyMarket.isSelected()) {
             oca_LoyalCustomer.setDisable(true);
             oca_DirectDeposit.setDisable(true);
@@ -118,30 +176,43 @@ public class Controller {
     void resP(ActionEvent event) {
         String printResult = database.printAccounts();
         if (printResult == null) {
-            resultArea.setText("Database is empty.");
+            resultArea.appendText("Database is empty.\n");
             return;
         }
-        resultArea.setText(printResult);
+        resultArea.appendText(printResult + "\n");
     }
 
     @FXML
     void resPName(ActionEvent event) {
         String printResult = database.printByLastName();
         if (printResult == null) {
-            resultArea.setText("Database is empty.");
+            resultArea.appendText("Database is empty.\n");
             return;
         }
-        resultArea.setText(printResult);
+        resultArea.appendText(printResult + "\n");
     }
 
     @FXML
     void resPDate(ActionEvent event) {
         String printResult = database.printByDateOpen();
         if (printResult == null) {
-            resultArea.setText("Database is empty.");
+            resultArea.appendText("Database is empty.\n");
             return;
         }
-        resultArea.setText(printResult);
+        resultArea.appendText(printResult + "\n");
+    }
+
+    public Account findAccount(String type, Profile holder) {
+        if (database.getSize() == 0) {
+            return null;
+        }
+
+        switch (type) {
+            case "Checking" -> { return new Checking(holder, -1, null, false); }
+            case "Savings" -> { return new Savings(holder, -1, null, false); }
+            case "Money Market" -> { return new MoneyMarket(holder, -1, null); }
+            default -> { return null; }
+        }
     }
 
     private Account makeAccount(String type, Profile holder, double balance, Date openDate) {
@@ -171,18 +242,38 @@ public class Controller {
             if (date.isValid()) {
                 return date;
             }
-            System.out.println(date.toString() + " is not a valid date!");
+            resultArea.appendText(date.toString() + " is not a valid date!\n");
+            return null;
         } catch (NumberFormatException e) {
-            System.out.println("Invalid date input");
+            resultArea.appendText("Invalid date input\n");
+            return null;
         }
-        return null;
+    }
+
+    private boolean validateBalance(String stringBalance) {
+        try {
+            double balance = Double.parseDouble(stringBalance);
+            return true;
+        } catch (NumberFormatException e) {
+            resultArea.appendText("Invalid balance input\n");
+            return false;
+        }
     }
 
     private void checkExist(Account account) {
         if (!database.add(account)) {
-            resultArea.setText("Account is already in the database.\n");
+            resultArea.appendText("Account is already in the database.\n");
         } else {
-            resultArea.setText("Account opened and added to the database.\n");
+            resultArea.appendText("Account opened and added to the database.\n");
         }
+    }
+
+    private boolean oca_checkValid(String fName, String lName, String inputBalance,
+                                   String month, String day, String year) {
+        if (fName.equals("") || lName.equals("") || inputBalance.equals("")
+                || month.equals("") || day.equals("") || year.equals("")) {
+            return false;
+        }
+        return true;
     }
 }
