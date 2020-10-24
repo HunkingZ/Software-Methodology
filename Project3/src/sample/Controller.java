@@ -6,8 +6,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import management.*;
 
-//import java.awt.event.ActionEvent;
-
 public class Controller {
     private AccountDatabase database = new AccountDatabase();
 
@@ -39,7 +37,7 @@ public class Controller {
         String day = oca_day.getText();
         String year = oca_year.getText();
 
-        if (!oca_checkValid(fName, lName, inputBalance, month, day, year)) {
+        if (!ocaCheckValid(fName, lName, inputBalance, month, day, year)) {
             resultArea.appendText("Invalid Input\n");
             return;
         }
@@ -93,7 +91,7 @@ public class Controller {
         String lName = oca_lName.getText();
 
 
-        if (!oca_checkValid(fName, lName, "0", "0", "0", "0")) {
+        if (!ocaCheckValid(fName, lName, "0", "0", "0", "0")) {
             resultArea.appendText("Invalid Input\n");
             return;
         }
@@ -120,12 +118,63 @@ public class Controller {
 
     @FXML
     void deposit(ActionEvent event) {
+        String fName = dw_fName.getText();
+        String lName = dw_lName.getText();
+        String inputAmount = dw_amount.getText();
+
+        if (!dwCheckValid(fName, lName, inputAmount)) {
+            resultArea.appendText("Invalid Input\n");
+            return;
+        }
+
+        Profile holder = new Profile(fName, lName);
+
+        double amount;
+        if (validateBalance(inputAmount)) {
+            amount = Double.parseDouble(inputAmount);
+        } else {
+            return;
+        }
+
+        String selectedAccountType = ((RadioButton) accountManage.getSelectedToggle()).getText();
+        Account target = findAccount(selectedAccountType, holder);
+        if (database.deposit(target, amount)) {
+            String out = String.format("%.2f deposited to account.\n", amount);
+            resultArea.appendText(out);
+        } else {
+            resultArea.appendText("Account does not exist.\n");
+        }
 
     }
 
     @FXML
     void withdraw(ActionEvent event) {
+        String fName = dw_fName.getText();
+        String lName = dw_lName.getText();
+        String inputAmount = dw_amount.getText();
 
+        if (!dwCheckValid(fName, lName, inputAmount)) {
+            resultArea.appendText("Invalid Input\n");
+            return;
+        }
+
+        Profile holder = new Profile(fName, lName);
+
+        double amount;
+        if (validateBalance(inputAmount)) {
+            amount = Double.parseDouble(inputAmount);
+        } else {
+            return;
+        }
+
+        String selectedAccountType = ((RadioButton) accountManage.getSelectedToggle()).getText();
+        Account target = findAccount(selectedAccountType, holder);
+        if (database.withdrawal(target, amount) == 0) {
+            String out = String.format("%.2f withdrawn from account.\n", amount);
+            resultArea.appendText(out);
+        } else if (database.withdrawal(target, amount) == 1) {
+            resultArea.appendText("Insufficient funds.\n");
+        } else { resultArea.appendText("Account does not exist.\n"); }
     }
 
     @FXML
@@ -255,7 +304,7 @@ public class Controller {
             double balance = Double.parseDouble(stringBalance);
             return true;
         } catch (NumberFormatException e) {
-            resultArea.appendText("Invalid balance input\n");
+            resultArea.appendText("Invalid Numeric Input!\n");
             return false;
         }
     }
@@ -268,10 +317,17 @@ public class Controller {
         }
     }
 
-    private boolean oca_checkValid(String fName, String lName, String inputBalance,
-                                   String month, String day, String year) {
+    private boolean ocaCheckValid(String fName, String lName, String inputBalance,
+                                  String month, String day, String year) {
         if (fName.equals("") || lName.equals("") || inputBalance.equals("")
                 || month.equals("") || day.equals("") || year.equals("")) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean dwCheckValid(String fName, String lName, String Amount) {
+        if (fName.equals("") || lName.equals("") || Amount.equals("")) {
             return false;
         }
         return true;
