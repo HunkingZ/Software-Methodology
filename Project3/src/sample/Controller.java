@@ -44,17 +44,17 @@ public class Controller {
         if (!ocaCheckValid(fName, lName, inputBalance, month, day, year)) {
             return;
         }
+
+        Date openDate = parseDate(month, day, year);
+
         double balance;
-        if (validateBalance(inputBalance)) {
+        if (validateBalance(inputBalance) && openDate != null) {
             balance = Double.parseDouble(inputBalance);
         } else {
             return;
         }
         Profile holder = new Profile(fName, lName);
-        Date openDate = parseDate(month, day, year);
-        if (openDate == null) {
-            return;
-        }
+
 
         String selectedAccountType = ((RadioButton) accountType.getSelectedToggle()).getText();
 
