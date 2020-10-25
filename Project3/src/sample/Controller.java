@@ -225,30 +225,30 @@ public class Controller {
     void resP(ActionEvent event) {
         String printResult = database.printAccounts();
         if (printResult == null) {
-            resultArea.appendText("Database is empty.\n");
+            resultArea.setText("Database is empty.\n");
             return;
         }
-        resultArea.appendText(printResult + "\n");
+        resultArea.setText(printResult + "\n");
     }
 
     @FXML
     void resPName(ActionEvent event) {
         String printResult = database.printByLastName();
         if (printResult == null) {
-            resultArea.appendText("Database is empty.\n");
+            resultArea.setText("Database is empty.\n");
             return;
         }
-        resultArea.appendText(printResult + "\n");
+        resultArea.setText(printResult + "\n");
     }
 
     @FXML
     void resPDate(ActionEvent event) {
         String printResult = database.printByDateOpen();
         if (printResult == null) {
-            resultArea.appendText("Database is empty.\n");
+            resultArea.setText("Database is empty.\n");
             return;
         }
-        resultArea.appendText(printResult + "\n");
+        resultArea.setText(printResult + "\n");
     }
 
     public Account findAccount(String type, Profile holder) {
@@ -319,6 +319,12 @@ public class Controller {
 
     private boolean ocaCheckValid(String fName, String lName, String inputBalance,
                                   String month, String day, String year) {
+        boolean result = true;
+        if (fName.equals("")) {
+            resultArea.appendText("First Name is Empty!");
+            result = false;
+        }
+
         if (fName.equals("") || lName.equals("") || inputBalance.equals("")
                 || month.equals("") || day.equals("") || year.equals("")) {
             return false;
