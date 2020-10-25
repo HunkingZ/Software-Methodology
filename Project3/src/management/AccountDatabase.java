@@ -248,4 +248,8 @@ public class AccountDatabase {
     public int getSize() {
         return this.size;
     }
+
+    public Account getAccountByIndex(int index) {
+        return accounts[index];
+    }
 }

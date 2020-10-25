@@ -1,6 +1,5 @@
 package sample;
 
-import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -8,7 +7,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import management.*;
 
-import java.io.File;
+import java.io.*;
+import java.util.Scanner;
 
 public class Controller {
     private AccountDatabase database = new AccountDatabase();
@@ -42,7 +42,6 @@ public class Controller {
         String year = oca_year.getText();
 
         if (!ocaCheckValid(fName, lName, inputBalance, month, day, year)) {
-            resultArea.appendText("Invalid Input\n");
             return;
         }
         double balance;
@@ -77,7 +76,7 @@ public class Controller {
                 break;
             }
             case "Money Market": {
-                Account newMoneyMarket = new MoneyMarket(holder, balance, openDate);
+                Account newMoneyMarket = new MoneyMarket(holder, balance, openDate, 0);
                 if (newMoneyMarket != null) {
                     checkExist(newMoneyMarket);
                 }
@@ -85,8 +84,6 @@ public class Controller {
             }
 
         }
-
-
     }
 
     @FXML
@@ -96,7 +93,6 @@ public class Controller {
 
 
         if (!ocaCheckValid(fName, lName, "0", "0", "0", "0")) {
-            resultArea.appendText("Invalid Input\n");
             return;
         }
         Profile holder = new Profile(fName, lName);
@@ -105,18 +101,27 @@ public class Controller {
         Account target = findAccount(selectedAccountType, holder);
 
         if (target == null) {
-            resultArea.appendText("Account does not exits.\n");
+            resultArea.setText("Account does not exits.\n");
             return;
         }
         if (database.remove(target)) {
-            resultArea.appendText("Account closed and removed from the database.\n");
+            resultArea.setText("Account closed and removed from the database.\n");
         } else {
-            resultArea.appendText("Account does not exist.\n");
+            resultArea.setText("Account does not exist.\n");
         }
     }
 
     @FXML
     void clear(ActionEvent event) {
+        oca_fName.clear();
+        oca_lName.clear();
+        oca_month.clear();
+        oca_day.clear();
+        oca_year.clear();
+        oca_balance.clear();
+        dw_lName.clear();
+        dw_fName.clear();
+        dw_amount.clear();
         resultArea.clear();
     }
 
@@ -127,7 +132,6 @@ public class Controller {
         String inputAmount = dw_amount.getText();
 
         if (!dwCheckValid(fName, lName, inputAmount)) {
-            resultArea.appendText("Invalid Input\n");
             return;
         }
 
@@ -144,9 +148,9 @@ public class Controller {
         Account target = findAccount(selectedAccountType, holder);
         if (database.deposit(target, amount)) {
             String out = String.format("%.2f deposited to account.\n", amount);
-            resultArea.appendText(out);
+            resultArea.setText(out);
         } else {
-            resultArea.appendText("Account does not exist.\n");
+            resultArea.setText("Account does not exist.\n");
         }
 
     }
@@ -158,7 +162,6 @@ public class Controller {
         String inputAmount = dw_amount.getText();
 
         if (!dwCheckValid(fName, lName, inputAmount)) {
-            resultArea.appendText("Invalid Input\n");
             return;
         }
 
@@ -175,41 +178,16 @@ public class Controller {
         Account target = findAccount(selectedAccountType, holder);
         if (database.withdrawal(target, amount) == 0) {
             String out = String.format("%.2f withdrawn from account.\n", amount);
-            resultArea.appendText(out);
+            resultArea.setText(out);
         } else if (database.withdrawal(target, amount) == 1) {
-            resultArea.appendText("Insufficient funds.\n");
-        } else { resultArea.appendText("Account does not exist.\n"); }
+            resultArea.setText("Insufficient funds.\n");
+        } else { resultArea.setText("Account does not exist.\n"); }
     }
 
     @FXML
     void handleBind(ActionEvent event) {
         oca_LoyalCustomer.setDisable(oca_Checking.isSelected());
         oca_DirectDeposit.setDisable(oca_Savings.isSelected());
-
-        BooleanBinding bb = new BooleanBinding() {
-            {
-                super.bind(oca_Checking.textProperty(),
-                        oca_Savings.textProperty(),
-                        oca_MoneyMarket.textProperty());
-            }
-
-            @Override
-            protected boolean computeValue() {
-                return (!oca_Checking.isSelected()
-                        && !oca_Savings.isSelected()
-                        && !oca_MoneyMarket.isSelected());
-            }
-        };
-
-        oca_open.disableProperty().bind(bb);
-        oca_close.disableProperty().bind(bb);
-
-        /*
-        oca_open.setDisable(oca_Checking.isSelected() || oca_Savings.isSelected()
-                || oca_MoneyMarket.isSelected());
-        oca_close.setVisible(oca_Checking.isSelected() || oca_Savings.isSelected()
-                || oca_MoneyMarket.isSelected());
-         */
 
         if (oca_MoneyMarket.isSelected()) {
             oca_LoyalCustomer.setDisable(true);
@@ -256,7 +234,7 @@ public class Controller {
     }
 
     @FXML
-    void importFile(ActionEvent event) {
+    void importFile(ActionEvent event) throws FileNotFoundException {
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Open Source File for the import");
         chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"),
@@ -264,10 +242,48 @@ public class Controller {
         Stage stage = new Stage();
         File sourceFile = chooser.showOpenDialog(stage);
 
+        Scanner databaseParser = new Scanner(sourceFile);
+        database = new AccountDatabase();
+
+        int count = 0;
+        while (databaseParser.hasNextLine()) {
+            String inputLine = databaseParser.nextLine();
+            String[] accInfo = inputLine.split(",");
+            String type = accInfo[0];
+            String fName = accInfo[1];
+            String lName = accInfo[2];
+            Profile holder = new Profile(fName, lName);
+            double balance = Double.parseDouble(accInfo[3]);
+            String[] dateInfo = accInfo[4].split("/");
+            String month = dateInfo[0];
+            String day = dateInfo[1];
+            String year = dateInfo[2];
+            Date dateOpen = parseDate(month, day, year);
+
+            switch (type) {
+                case "S": {
+                    boolean isLoyal = Boolean.parseBoolean(accInfo[5]);
+                    database.add(new Savings(holder, balance, dateOpen, isLoyal));
+                    break;
+                }
+                case "C": {
+                    boolean isDeposit = Boolean.parseBoolean(accInfo[5]);
+                    database.add(new Checking(holder, balance, dateOpen, isDeposit));
+                    break;
+                }
+                case "M": {
+                    int withdrawals = Integer.parseInt(accInfo[5]);
+                    database.add(new MoneyMarket(holder, balance, dateOpen, withdrawals));
+                    break;
+                }
+            }
+            System.out.println(count++);
+        }
+        databaseParser.close();
     }
 
     @FXML
-    void exportFile(ActionEvent event) {
+    void exportFile(ActionEvent event) throws IOException {
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Open target File for the export");
         chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"),
@@ -275,6 +291,33 @@ public class Controller {
         Stage stage = new Stage();
         File targetFile = chooser.showSaveDialog(stage);
 
+        BufferedWriter writer = new BufferedWriter(new FileWriter(targetFile, true));
+
+        for (int i = 0; i < database.getSize(); i++) {
+            Account account = database.getAccountByIndex(i);
+            String type = account.getType();
+            String fName = account.getfName();
+            String lName = account.getlName();
+            Double balance = account.getBalance();
+            Date accDate = account.getDate();
+            String special = account.getSpecialValue();
+            switch (type) {
+                case "Savings": {
+                    writer.append("S,");
+                    break;
+                }
+                case "Checking": {
+                    writer.append("C,");
+                    break;
+                }
+                case "Money Market": {
+                    writer.append("M,");
+                    break;
+                }
+            }
+            writer.append(String.format("%s,%s,%.2f,%s,%s\n", fName, lName, balance, accDate, special));
+        }
+        writer.close();
     }
 
     public Account findAccount(String type, Profile holder) {
@@ -285,7 +328,7 @@ public class Controller {
         switch (type) {
             case "Checking" -> { return new Checking(holder, -1, null, false); }
             case "Savings" -> { return new Savings(holder, -1, null, false); }
-            case "Money Market" -> { return new MoneyMarket(holder, -1, null); }
+            case "Money Market" -> { return new MoneyMarket(holder, -1, null, 0); }
             default -> { return null; }
         }
     }
@@ -301,7 +344,7 @@ public class Controller {
                 return new Savings(holder, balance, openDate, isLC);
             }
             case "Money Market": {
-                return new MoneyMarket(holder, balance, openDate);
+                return new MoneyMarket(holder, balance, openDate, 0);
             }
         }
         return null;
@@ -330,38 +373,58 @@ public class Controller {
             double balance = Double.parseDouble(stringBalance);
             return true;
         } catch (NumberFormatException e) {
-            resultArea.appendText("Invalid Numeric Input!\n");
+            resultArea.appendText("Balance/Amount is Invalid!\n");
             return false;
         }
     }
 
     private void checkExist(Account account) {
         if (!database.add(account)) {
-            resultArea.appendText("Account is already in the database.\n");
+            resultArea.setText("Account is already in the database.\n");
         } else {
-            resultArea.appendText("Account opened and added to the database.\n");
+            resultArea.setText("Account opened and added to the database.\n");
         }
     }
 
     private boolean ocaCheckValid(String fName, String lName, String inputBalance,
                                   String month, String day, String year) {
+        resultArea.clear();
         boolean result = true;
         if (fName.equals("")) {
-            resultArea.appendText("First Name is Empty!");
+            resultArea.appendText("First Name is Empty!\n");
             result = false;
         }
-
-        if (fName.equals("") || lName.equals("") || inputBalance.equals("")
-                || month.equals("") || day.equals("") || year.equals("")) {
-            return false;
+        if (lName.equals("")) {
+            resultArea.appendText("Last Name is Empty!\n");
+            result = false;
         }
-        return true;
+        if (inputBalance.equals("")) {
+            resultArea.appendText("Balance is Empty!\n");
+            result = false;
+        }
+        if (month.equals("") || day.equals("") || year.equals("")) {
+            resultArea.appendText("Date is Invalid!\n");
+            result = false;
+        }
+        return result;
     }
 
     private boolean dwCheckValid(String fName, String lName, String Amount) {
-        if (fName.equals("") || lName.equals("") || Amount.equals("")) {
-            return false;
+        boolean result = true;
+
+        resultArea.clear();
+        if (fName.equals("")) {
+            resultArea.appendText("First Name is Empty!\n");
+            result = false;
         }
-        return true;
+        if (lName.equals("")) {
+            resultArea.appendText("Last Name is Empty!\n");
+            result = false;
+        }
+        if (Amount.equals("")) {
+            resultArea.appendText("Amount is Empty!\n");
+            result = false;
+        }
+        return result;
     }
 }

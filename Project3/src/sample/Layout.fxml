@@ -80,14 +80,14 @@
                                  </children>
                               </HBox>
                               <TextField fx:id="oca_balance" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <RadioButton fx:id="oca_Checking" mnemonicParsing="false" onAction="#handleBind" text="Checking" GridPane.columnIndex="2">
+                              <RadioButton fx:id="oca_Checking" mnemonicParsing="false" onAction="#handleBind" selected="true" text="Checking" GridPane.columnIndex="2">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="accountType" />
                                  </toggleGroup></RadioButton>
                               <RadioButton fx:id="oca_Savings" mnemonicParsing="false" onAction="#handleBind" text="Savings" toggleGroup="$accountType" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                               <RadioButton fx:id="oca_MoneyMarket" mnemonicParsing="false" onAction="#handleBind" text="Money Market" toggleGroup="$accountType" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                               <CheckBox fx:id="oca_DirectDeposit" mnemonicParsing="false" text="Direct deposit" GridPane.columnIndex="3" />
-                              <CheckBox fx:id="oca_LoyalCustomer" mnemonicParsing="false" text="Loyal customer" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <CheckBox fx:id="oca_LoyalCustomer" disable="true" mnemonicParsing="false" text="Loyal customer" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                               <Button fx:id="oca_open" mnemonicParsing="false" onAction="#openAccount" text="Open Account" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                               <Button fx:id="oca_close" mnemonicParsing="false" onAction="#closeAccount" text="Close Account" GridPane.columnIndex="3" GridPane.rowIndex="3" />
                               <Button fx:id="oca_clear" mnemonicParsing="false" onAction="#clear" text="Clear" GridPane.columnIndex="4" GridPane.rowIndex="3" />
@@ -120,7 +120,7 @@
                               <TextField fx:id="dw_fName" GridPane.columnIndex="1" />
                               <TextField fx:id="dw_lName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <TextField fx:id="dw_amount" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <RadioButton fx:id="dw_Checking" mnemonicParsing="false" text="Checking" GridPane.columnIndex="2">
+                              <RadioButton fx:id="dw_Checking" mnemonicParsing="false" selected="true" text="Checking" GridPane.columnIndex="2">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="accountManage" />
                                  </toggleGroup></RadioButton>

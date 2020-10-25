@@ -85,4 +85,9 @@ public class Checking extends Account {
      */
     @Override
     public void increase() { }
+
+    @Override
+    public String getSpecialValue() {
+        return "" + directDeposit;
+    }
 }

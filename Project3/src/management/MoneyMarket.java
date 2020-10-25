@@ -18,9 +18,9 @@ public class MoneyMarket extends Account{
      * @param balance The balance of the account
      * @param dateopen The date that the account was opened
      */
-    public MoneyMarket(Profile holder, double balance, Date dateopen) {
+    public MoneyMarket(Profile holder, double balance, Date dateopen, int withdrawals) {
         super(holder, balance, dateopen);
-        this.withdrawals = 0;
+        this.withdrawals = withdrawals;
     }
 
     /**
@@ -81,5 +81,10 @@ public class MoneyMarket extends Account{
     @Override
     public String getSpecial() {
         return "*" + withdrawals + " withdrawals*";
+    }
+
+    @Override
+    public String getSpecialValue() {
+        return "" + withdrawals;
     }
 }

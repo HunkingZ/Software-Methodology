@@ -145,4 +145,6 @@ public abstract class Account {
      * @return String of account type specified unique characteristics
      */
     public abstract String getSpecial();
+
+    public abstract String getSpecialValue();
 }

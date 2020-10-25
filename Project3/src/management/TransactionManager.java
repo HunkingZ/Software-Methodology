@@ -309,7 +309,7 @@ public class TransactionManager {
             }
             case "Money Market": {
                 //create and return money market account
-                return new MoneyMarket(personalProfile, pBalance, date);
+                return new MoneyMarket(personalProfile, pBalance, date, 0);
             }
             default: {
                 return null;
@@ -340,7 +340,7 @@ public class TransactionManager {
         switch (type) {
             case "Checking" -> { return new Checking(personalProfile, -1, null, false); }
             case "Savings" -> { return new Savings(personalProfile, -1, null, false); }
-            case "Money Market" -> { return new MoneyMarket(personalProfile, -1, null); }
+            case "Money Market" -> { return new MoneyMarket(personalProfile, -1, null, 0); }
             default -> { return null; }
         }
     }
