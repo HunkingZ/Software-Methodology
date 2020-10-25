@@ -122,7 +122,6 @@ public class TransactionManager {
             }
             input = scan.nextLine();
         }
-
     }
 
     /**

@@ -4,7 +4,11 @@ import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import management.*;
+
+import java.io.File;
 
 public class Controller {
     private AccountDatabase database = new AccountDatabase();
@@ -249,6 +253,28 @@ public class Controller {
             return;
         }
         resultArea.setText(printResult + "\n");
+    }
+
+    @FXML
+    void importFile(ActionEvent event) {
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Open Source File for the import");
+        chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"),
+                new FileChooser.ExtensionFilter("All Files", "*.*"));
+        Stage stage = new Stage();
+        File sourceFile = chooser.showOpenDialog(stage);
+
+    }
+
+    @FXML
+    void exportFile(ActionEvent event) {
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Open target File for the export");
+        chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"),
+                new FileChooser.ExtensionFilter("All Files", "*.*"));
+        Stage stage = new Stage();
+        File targetFile = chooser.showSaveDialog(stage);
+
     }
 
     public Account findAccount(String type, Profile holder) {
