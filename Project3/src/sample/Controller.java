@@ -79,10 +79,7 @@ public class Controller {
                 }
                 break;
             }
-
         }
-
-
     }
 
     @FXML
@@ -225,30 +222,30 @@ public class Controller {
     void resP(ActionEvent event) {
         String printResult = database.printAccounts();
         if (printResult == null) {
-            resultArea.appendText("Database is empty.\n");
+            resultArea.setText("Database is empty. 0\n");
             return;
         }
-        resultArea.appendText(printResult + "\n");
+        resultArea.setText(printResult + "\n");
     }
 
     @FXML
     void resPName(ActionEvent event) {
         String printResult = database.printByLastName();
         if (printResult == null) {
-            resultArea.appendText("Database is empty.\n");
+            resultArea.setText("Database is empty. 1\n");
             return;
         }
-        resultArea.appendText(printResult + "\n");
+        resultArea.setText(printResult + "\n");
     }
 
     @FXML
     void resPDate(ActionEvent event) {
         String printResult = database.printByDateOpen();
         if (printResult == null) {
-            resultArea.appendText("Database is empty.\n");
+            resultArea.setText("Database is empty. 2\n");
             return;
         }
-        resultArea.appendText(printResult + "\n");
+        resultArea.setText(printResult + "\n");
     }
 
     public Account findAccount(String type, Profile holder) {
@@ -333,3 +330,4 @@ public class Controller {
         return true;
     }
 }
+// --module-path "C:\APPS\JavaFX\javafx-sdk-15\lib" --add-modules javafx.controls,javafx.fxml
