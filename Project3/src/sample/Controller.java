@@ -410,12 +410,12 @@ public class Controller {
             resultArea.appendText("Last Name is Empty!\n");
             result = false;
         }
-        if (inputBalance.equals("")) {
-            resultArea.appendText("Balance is Empty!\n");
-            result = false;
-        }
         if (month.equals("") || day.equals("") || year.equals("")) {
             resultArea.appendText("Date is Invalid!\n");
+            result = false;
+        }
+        if (inputBalance.equals("")) {
+            resultArea.appendText("Balance is Empty!\n");
             result = false;
         }
         return result;
