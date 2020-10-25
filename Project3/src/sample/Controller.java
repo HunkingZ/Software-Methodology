@@ -79,7 +79,10 @@ public class Controller {
                 }
                 break;
             }
+
         }
+
+
     }
 
     @FXML
@@ -222,7 +225,7 @@ public class Controller {
     void resP(ActionEvent event) {
         String printResult = database.printAccounts();
         if (printResult == null) {
-            resultArea.setText("Database is empty. 0\n");
+            resultArea.setText("Database is empty.\n");
             return;
         }
         resultArea.setText(printResult + "\n");
@@ -232,7 +235,7 @@ public class Controller {
     void resPName(ActionEvent event) {
         String printResult = database.printByLastName();
         if (printResult == null) {
-            resultArea.setText("Database is empty. 1\n");
+            resultArea.setText("Database is empty.\n");
             return;
         }
         resultArea.setText(printResult + "\n");
@@ -242,7 +245,7 @@ public class Controller {
     void resPDate(ActionEvent event) {
         String printResult = database.printByDateOpen();
         if (printResult == null) {
-            resultArea.setText("Database is empty. 2\n");
+            resultArea.setText("Database is empty.\n");
             return;
         }
         resultArea.setText(printResult + "\n");
@@ -316,6 +319,12 @@ public class Controller {
 
     private boolean ocaCheckValid(String fName, String lName, String inputBalance,
                                   String month, String day, String year) {
+        boolean result = true;
+        if (fName.equals("")) {
+            resultArea.appendText("First Name is Empty!");
+            result = false;
+        }
+
         if (fName.equals("") || lName.equals("") || inputBalance.equals("")
                 || month.equals("") || day.equals("") || year.equals("")) {
             return false;
@@ -330,4 +339,3 @@ public class Controller {
         return true;
     }
 }
-// --module-path "C:\APPS\JavaFX\javafx-sdk-15\lib" --add-modules javafx.controls,javafx.fxml
