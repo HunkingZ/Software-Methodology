@@ -101,7 +101,7 @@ public class Controller {
         Account target = findAccount(selectedAccountType, holder);
 
         if (target == null) {
-            resultArea.setText("Account does not exits.\n");
+            resultArea.setText("Account does not exist.\n");
             return;
         }
         if (database.remove(target)) {
