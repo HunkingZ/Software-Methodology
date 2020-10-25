@@ -234,90 +234,102 @@ public class Controller {
     }
 
     @FXML
-    void importFile(ActionEvent event) throws FileNotFoundException {
-        FileChooser chooser = new FileChooser();
-        chooser.setTitle("Open Source File for the import");
-        chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"),
-                new FileChooser.ExtensionFilter("All Files", "*.*"));
-        Stage stage = new Stage();
-        File sourceFile = chooser.showOpenDialog(stage);
+    void importFile(ActionEvent event) {
+        try {
+            FileChooser chooser = new FileChooser();
+            chooser.setTitle("Open Source File for the import");
+            chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"),
+                    new FileChooser.ExtensionFilter("All Files", "*.*"));
+            Stage stage = new Stage();
+            File sourceFile = chooser.showOpenDialog(stage);
 
-        Scanner databaseParser = new Scanner(sourceFile);
-        database = new AccountDatabase();
+            Scanner databaseParser = new Scanner(sourceFile);
+            database = new AccountDatabase();
 
-        int count = 0;
-        while (databaseParser.hasNextLine()) {
-            String inputLine = databaseParser.nextLine();
-            String[] accInfo = inputLine.split(",");
-            String type = accInfo[0];
-            String fName = accInfo[1];
-            String lName = accInfo[2];
-            Profile holder = new Profile(fName, lName);
-            double balance = Double.parseDouble(accInfo[3]);
-            String[] dateInfo = accInfo[4].split("/");
-            String month = dateInfo[0];
-            String day = dateInfo[1];
-            String year = dateInfo[2];
-            Date dateOpen = parseDate(month, day, year);
+            while (databaseParser.hasNextLine()) {
+                String inputLine = databaseParser.nextLine();
+                String[] accInfo = inputLine.split(",");
+                String type = accInfo[0];
+                String fName = accInfo[1];
+                String lName = accInfo[2];
+                Profile holder = new Profile(fName, lName);
+                double balance = Double.parseDouble(accInfo[3]);
+                String[] dateInfo = accInfo[4].split("/");
+                String month = dateInfo[0];
+                String day = dateInfo[1];
+                String year = dateInfo[2];
+                Date dateOpen = parseDate(month, day, year);
 
-            switch (type) {
-                case "S": {
-                    boolean isLoyal = Boolean.parseBoolean(accInfo[5]);
-                    database.add(new Savings(holder, balance, dateOpen, isLoyal));
-                    break;
-                }
-                case "C": {
-                    boolean isDeposit = Boolean.parseBoolean(accInfo[5]);
-                    database.add(new Checking(holder, balance, dateOpen, isDeposit));
-                    break;
-                }
-                case "M": {
-                    int withdrawals = Integer.parseInt(accInfo[5]);
-                    database.add(new MoneyMarket(holder, balance, dateOpen, withdrawals));
-                    break;
+                switch (type) {
+                    case "S": {
+                        boolean isLoyal = Boolean.parseBoolean(accInfo[5]);
+                        database.add(new Savings(holder, balance, dateOpen, isLoyal));
+                        break;
+                    }
+                    case "C": {
+                        boolean isDeposit = Boolean.parseBoolean(accInfo[5]);
+                        database.add(new Checking(holder, balance, dateOpen, isDeposit));
+                        break;
+                    }
+                    case "M": {
+                        int withdrawals = Integer.parseInt(accInfo[5]);
+                        database.add(new MoneyMarket(holder, balance, dateOpen, withdrawals));
+                        break;
+                    }
                 }
             }
-            System.out.println(count++);
+            databaseParser.close();
+            resultArea.setText("Successfully Imported File.");
+        } catch (FileNotFoundException e) {
+            resultArea.setText("Import File Failed.");
+        } catch (NullPointerException e) {
+            resultArea.setText("Please Select a Import File.");
         }
-        databaseParser.close();
     }
 
     @FXML
-    void exportFile(ActionEvent event) throws IOException {
-        FileChooser chooser = new FileChooser();
-        chooser.setTitle("Open target File for the export");
-        chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"),
-                new FileChooser.ExtensionFilter("All Files", "*.*"));
-        Stage stage = new Stage();
-        File targetFile = chooser.showSaveDialog(stage);
+    void exportFile(ActionEvent event) {
+        try {
+            FileChooser chooser = new FileChooser();
+            chooser.setTitle("Open target File for the export");
+            chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"),
+                    new FileChooser.ExtensionFilter("All Files", "*.*"));
+            Stage stage = new Stage();
+            File targetFile = chooser.showSaveDialog(stage);
 
-        BufferedWriter writer = new BufferedWriter(new FileWriter(targetFile, true));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(targetFile, true));
 
-        for (int i = 0; i < database.getSize(); i++) {
-            Account account = database.getAccountByIndex(i);
-            String type = account.getType();
-            String fName = account.getfName();
-            String lName = account.getlName();
-            Double balance = account.getBalance();
-            Date accDate = account.getDate();
-            String special = account.getSpecialValue();
-            switch (type) {
-                case "Savings": {
-                    writer.append("S,");
-                    break;
+            for (int i = 0; i < database.getSize(); i++) {
+                Account account = database.getAccountByIndex(i);
+                String type = account.getType();
+                String fName = account.getfName();
+                String lName = account.getlName();
+                Double balance = account.getBalance();
+                Date accDate = account.getDate();
+                String special = account.getSpecialValue();
+                switch (type) {
+                    case "Savings": {
+                        writer.append("S,");
+                        break;
+                    }
+                    case "Checking": {
+                        writer.append("C,");
+                        break;
+                    }
+                    case "Money Market": {
+                        writer.append("M,");
+                        break;
+                    }
                 }
-                case "Checking": {
-                    writer.append("C,");
-                    break;
-                }
-                case "Money Market": {
-                    writer.append("M,");
-                    break;
-                }
+                writer.append(String.format("%s,%s,%.2f,%s,%s\n", fName, lName, balance, accDate, special));
             }
-            writer.append(String.format("%s,%s,%.2f,%s,%s\n", fName, lName, balance, accDate, special));
+            writer.close();
+            resultArea.setText("Successfully Export the File.");
+        } catch (IOException e) {
+            resultArea.setText("Export File Failed.");
+        } catch (NullPointerException e) {
+            resultArea.setText("Please Select a File to Export.");
         }
-        writer.close();
     }
 
     public Account findAccount(String type, Profile holder) {
