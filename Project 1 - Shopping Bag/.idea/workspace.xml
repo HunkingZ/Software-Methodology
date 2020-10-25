@@ -25,12 +25,39 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f1ec85b-6b18-4c6a-bfb9-2e791ca4e6c0" name="Default Changelist" comment="Final Version Closed Beta - 2">
+    <list default="true" id="5f1ec85b-6b18-4c6a-bfb9-2e791ca4e6c0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project2-TranscationSystem/src/AccountDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project2-TranscationSystem/src/AccountDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project2-TranscationSystem/src/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project2-TranscationSystem/src/Date.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project2-TranscationSystem/src/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project2-TranscationSystem/src/Profile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project2-TranscationSystem/src/TransactionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Project2-TranscationSystem/src/TransactionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project 1 - Shopping Bag/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project 1 - Shopping Bag/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project 1 - Shopping Bag/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project 1 - Shopping Bag/.idea/src.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project 1 - Shopping Bag/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project 1 - Shopping Bag/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project 1 - Shopping Bag/GroceryItem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project 1 - Shopping Bag/Project 1 - Shopping Bag.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project 1 - Shopping Bag/RunProject1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project 1 - Shopping Bag/Shopping.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project 1 - Shopping Bag/ShoppingBag.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/.idea/intellij-javadocs-4.0.1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/.idea/shelf/Uncommitted_changes_before_Update_at_9_15_2020_11_00_PM__Default_Changelist_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/.idea/src.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/Project 1 - Shopping Bag.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/.idea/intellij-javadocs-4.0.1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/.idea/src.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/Project 1 - Shopping Bag.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/.idea/src.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/out/production/Project 1 - Shopping Bag/.idea/src.iml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +65,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Hunking &lt;zivhunking@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$/.." value="master" />
@@ -54,8 +86,11 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Project 2" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager" selected="Application.ShoppingBag">
+  <component name="RunManager" selected="Application.RunProject1">
     <configuration name="RunProject1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="RunProject1" />
       <module name="Project 1 - Shopping Bag" />
@@ -72,8 +107,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ShoppingBag" />
         <item itemvalue="Application.RunProject1" />
+        <item itemvalue="Application.ShoppingBag" />
         <item itemvalue="Application.ShoppingBag" />
         <item itemvalue="Application.RunProject1" />
         <item itemvalue="Application.RunProject1" />
@@ -117,7 +152,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600975924559</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="fix bugs">
+      <created>1603606908086</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1603606908086</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -151,17 +193,30 @@
     <MESSAGE value="Update" />
     <MESSAGE value="Final Version Closed Beta" />
     <MESSAGE value="Final Version Closed Beta - 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Final Version Closed Beta - 2" />
+    <MESSAGE value="fix bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix bugs" />
   </component>
   <component name="WindowStateProjectService">
     <state x="744" y="360" key="#Notifications" timestamp="1600911131798">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
     <state x="744" y="360" key="#Notifications/1982.5.1858.1080/62.0.1858.1080@62.0.1858.1080" timestamp="1600911131798" />
+    <state x="208" y="25" width="1024" height="817" key="#Project_Structure" timestamp="1603607286523">
+      <screen x="0" y="25" width="1440" height="817" />
+    </state>
+    <state x="208" y="25" width="1024" height="817" key="#Project_Structure/0.25.1440.817@0.25.1440.817" timestamp="1603607286523" />
+    <state x="184" y="92" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603607038904">
+      <screen x="0" y="25" width="1440" height="817" />
+    </state>
+    <state x="184" y="92" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1440.817@0.25.1440.817" timestamp="1603607038904" />
     <state x="738" y="247" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1600923076705">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
     <state x="738" y="247" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/1982.5.1858.1080/62.0.1858.1080@62.0.1858.1080" timestamp="1600923076705" />
+    <state x="200" y="25" key="CommitChangelistDialog2" timestamp="1603606907821">
+      <screen x="0" y="25" width="1440" height="817" />
+    </state>
+    <state x="200" y="25" key="CommitChangelistDialog2/0.25.1440.817@0.25.1440.817" timestamp="1603606907821" />
     <state x="771" y="295" key="FileChooserDialogImpl" timestamp="1601312020570">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
@@ -190,9 +245,14 @@
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
     <state x="621" y="294" key="MultipleFileMergeDialog/1982.5.1858.1080/62.0.1858.1080@62.0.1858.1080" timestamp="1600922970612" />
-    <state x="583" y="269" key="Vcs.Push.Dialog.v2" timestamp="1600975928682">
-      <screen x="62" y="0" width="1858" height="1080" />
+    <state x="208" y="25" width="1024" height="817" key="SettingsEditor" timestamp="1603607319659">
+      <screen x="0" y="25" width="1440" height="817" />
     </state>
+    <state x="208" y="25" width="1024" height="817" key="SettingsEditor/0.25.1440.817@0.25.1440.817" timestamp="1603607319659" />
+    <state x="404" y="228" key="Vcs.Push.Dialog.v2" timestamp="1603606912023">
+      <screen x="0" y="25" width="1440" height="817" />
+    </state>
+    <state x="404" y="228" key="Vcs.Push.Dialog.v2/0.25.1440.817@0.25.1440.817" timestamp="1603606912023" />
     <state x="583" y="269" key="Vcs.Push.Dialog.v2/1982.5.1858.1080/62.0.1858.1080@62.0.1858.1080" timestamp="1600975928682" />
     <state x="809" y="454" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1600975944716">
       <screen x="62" y="0" width="1858" height="1080" />
