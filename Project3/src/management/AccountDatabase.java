@@ -172,7 +172,7 @@ public class AccountDatabase {
         for (int i = 0; i < size; i++) {
             double interest = accounts[i].getInterest();
             double fee = accounts[i].monthlyFee();
-            result = result + accounts[i];
+            result = result + accounts[i] + "\n";
 
             accounts[i].credit(interest);
             accounts[i].debit(fee);
@@ -206,7 +206,7 @@ public class AccountDatabase {
         for (int i = 0; i < size; i++) {
             double interest = accounts[i].getInterest();
             double fee = accounts[i].monthlyFee();
-            result = result + accounts[i];
+            result = result + accounts[i] + "\n";
             accounts[i].credit(interest);
             accounts[i].debit(fee);
 
