@@ -184,7 +184,6 @@ public class AccountDatabase {
         }
         accounts = originalDB;
         result = result + "--end of printing--";
-        //System.out.println("--end of printing--");
         return result;
     }
 
@@ -225,18 +224,14 @@ public class AccountDatabase {
      */
     public String printAccounts() {
         if (size == 0) {
-            //System.out.println("Database is empty.");
             return null;
         }
         String result;
         result = "--Listing accounts in the database--\n";
-        //System.out.println("--Listing accounts in the database--");
         for (int i = 0; i < size; i++) {
             result = result + accounts[i] + "\n";
-            //System.out.println(accounts[i]);
         }
         result = result + "--end of listing--";
-        //System.out.println("--end of listing--");
         return result;
     }
 
