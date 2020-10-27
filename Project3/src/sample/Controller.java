@@ -248,6 +248,10 @@ public class Controller {
 
             while (databaseParser.hasNextLine()) {
                 String inputLine = databaseParser.nextLine();
+                if (inputLine.split(",").length != 6) {
+                    resultArea.setText("Import File Format is Wrong.");
+                    return;
+                }
                 String[] accInfo = inputLine.split(",");
                 String type = accInfo[0];
                 String fName = accInfo[1];

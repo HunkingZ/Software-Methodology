@@ -167,12 +167,12 @@ public class AccountDatabase {
         System.arraycopy(accounts, 0, originalDB, 0, size);
         sortByDateOpen();
 
-        String result;
-        result = ("--Printing statements by date opened--\n");
+        StringBuilder result;
+        result = new StringBuilder(("--Printing statements by date opened--\n"));
         for (int i = 0; i < size; i++) {
             double interest = accounts[i].getInterest();
             double fee = accounts[i].monthlyFee();
-            result = result + accounts[i] + "\n";
+            result.append(accounts[i]).append("\n");
 
             accounts[i].credit(interest);
             accounts[i].debit(fee);
@@ -180,11 +180,11 @@ public class AccountDatabase {
             String lineInterest = String.format("interest: $ %.02f\n", interest);
             String lineFee = String.format("fee: $ %.02f\n", fee);
             String lineBalance = String.format("new balance: $ %.02f\n", accounts[i].getBalance());
-            result = result + lineInterest + lineFee + lineBalance;
+            result.append(lineInterest).append(lineFee).append(lineBalance);
         }
         accounts = originalDB;
-        result = result + "--end of printing--";
-        return result;
+        result.append("--end of printing--");
+        return result.toString();
     }
 
     /**
@@ -198,25 +198,25 @@ public class AccountDatabase {
         Account[] originalDB = new Account[capacity];
         System.arraycopy(accounts, 0, originalDB, 0, size);
         sortByLastName();
-        String result;
+        StringBuilder result = new StringBuilder();
 
-        result = ("--Printing statements by last name--\n");
+        result.append("--Printing statements by last name--\n");
 
         for (int i = 0; i < size; i++) {
             double interest = accounts[i].getInterest();
             double fee = accounts[i].monthlyFee();
-            result = result + accounts[i] + "\n";
+            result.append(accounts[i]).append("\n");
             accounts[i].credit(interest);
             accounts[i].debit(fee);
 
             String lineInterest = String.format("interest: $ %.02f\n", interest);
             String lineFee = String.format("fee: $ %.02f\n", fee);
             String lineBalance = String.format("new balance: $ %.02f\n", accounts[i].getBalance());
-            result = result + lineInterest + lineFee + lineBalance;
+            result.append(lineInterest).append(lineFee).append(lineBalance);
         }
         accounts = originalDB;
-        result = result + "--end of printing--";
-        return result;
+        result.append("--end of printing--");
+        return result.toString();
     }
 
     /**
@@ -226,13 +226,13 @@ public class AccountDatabase {
         if (size == 0) {
             return null;
         }
-        String result;
-        result = "--Listing accounts in the database--\n";
+        StringBuilder result;
+        result = new StringBuilder("--Listing accounts in the database--\n");
         for (int i = 0; i < size; i++) {
-            result = result + accounts[i] + "\n";
+            result.append(accounts[i]).append("\n");
         }
-        result = result + "--end of listing--";
-        return result;
+        result.append("--end of listing--");
+        return result.toString();
     }
 
     /**
