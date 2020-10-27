@@ -158,6 +158,7 @@
                                   </Menu>
                                 </menus>
                               </MenuBar>
+                              <Button mnemonicParsing="false" onAction="#clearDatabase" text="Clear Database" />
                            </children>
                         </VBox>
                      </children>

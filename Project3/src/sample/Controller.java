@@ -59,7 +59,7 @@ public class Controller {
         String selectedAccountType = ((RadioButton) accountType.getSelectedToggle()).getText();
 
         switch (selectedAccountType) {
-            case "Checking": {
+            case "Checking" -> {
                 boolean isDD = oca_DirectDeposit.isSelected();
                 Account newChecking = new Checking(holder, balance, openDate, isDD);
                 if (newChecking != null) {
@@ -67,7 +67,7 @@ public class Controller {
                 }
                 break;
             }
-            case "Savings": {
+            case "Savings" -> {
                 boolean isLC = oca_LoyalCustomer.isSelected();
                 Account newSaving = new Savings(holder, balance, openDate, isLC);
                 if (newSaving != null) {
@@ -75,14 +75,13 @@ public class Controller {
                 }
                 break;
             }
-            case "Money Market": {
+            case "Money Market" -> {
                 Account newMoneyMarket = new MoneyMarket(holder, balance, openDate, 0);
                 if (newMoneyMarket != null) {
                     checkExist(newMoneyMarket);
                 }
                 break;
             }
-
         }
     }
 
@@ -244,12 +243,14 @@ public class Controller {
             File sourceFile = chooser.showOpenDialog(stage);
 
             Scanner databaseParser = new Scanner(sourceFile);
+            AccountDatabase acc = database;
             database = new AccountDatabase();
 
             while (databaseParser.hasNextLine()) {
                 String inputLine = databaseParser.nextLine();
                 if (inputLine.split(",").length != 6) {
-                    resultArea.setText("Import File Format is Wrong.");
+                    resultArea.setText("Import File Format is Wrong. Remain previous Database.");
+                    database = acc;
                     return;
                 }
                 String[] accInfo = inputLine.split(",");
@@ -265,17 +266,17 @@ public class Controller {
                 Date dateOpen = parseDate(month, day, year);
 
                 switch (type) {
-                    case "S": {
+                    case "S" -> {
                         boolean isLoyal = Boolean.parseBoolean(accInfo[5]);
                         database.add(new Savings(holder, balance, dateOpen, isLoyal));
                         break;
                     }
-                    case "C": {
+                    case "C" -> {
                         boolean isDeposit = Boolean.parseBoolean(accInfo[5]);
                         database.add(new Checking(holder, balance, dateOpen, isDeposit));
                         break;
                     }
-                    case "M": {
+                    case "M" -> {
                         int withdrawals = Integer.parseInt(accInfo[5]);
                         database.add(new MoneyMarket(holder, balance, dateOpen, withdrawals));
                         break;
@@ -312,15 +313,15 @@ public class Controller {
                 Date accDate = account.getDate();
                 String special = account.getSpecialValue();
                 switch (type) {
-                    case "Savings": {
+                    case "Savings" -> {
                         writer.append("S,");
                         break;
                     }
-                    case "Checking": {
+                    case "Checking" -> {
                         writer.append("C,");
                         break;
                     }
-                    case "Money Market": {
+                    case "Money Market" -> {
                         writer.append("M,");
                         break;
                     }
@@ -334,6 +335,12 @@ public class Controller {
         } catch (NullPointerException e) {
             resultArea.setText("Please Select a File to Export.");
         }
+    }
+
+    @FXML
+    void clearDatabase() {
+        database = new AccountDatabase();
+        resultArea.setText("Database cleared!");
     }
 
     public Account findAccount(String type, Profile holder) {
@@ -351,15 +358,15 @@ public class Controller {
 
     private Account makeAccount(String type, Profile holder, double balance, Date openDate) {
         switch (type) {
-            case "Checking": {
+            case "Checking" -> {
                 boolean isDD = oca_DirectDeposit.isSelected();
                 return new Checking(holder, balance, openDate, isDD);
             }
-            case "Savings": {
+            case "Savings" -> {
                 boolean isLC = oca_LoyalCustomer.isSelected();
                 return new Savings(holder, balance, openDate, isLC);
             }
-            case "Money Market": {
+            case "Money Market" -> {
                 return new MoneyMarket(holder, balance, openDate, 0);
             }
         }
