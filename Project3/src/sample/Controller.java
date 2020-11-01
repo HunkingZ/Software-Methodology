@@ -62,24 +62,18 @@ public class Controller {
             case "Checking" -> {
                 boolean isDD = oca_DirectDeposit.isSelected();
                 Account newChecking = new Checking(holder, balance, openDate, isDD);
-                if (newChecking != null) {
-                    checkExist(newChecking);
-                }
+                checkExist(newChecking);
                 break;
             }
             case "Savings" -> {
                 boolean isLC = oca_LoyalCustomer.isSelected();
                 Account newSaving = new Savings(holder, balance, openDate, isLC);
-                if (newSaving != null) {
-                    checkExist(newSaving);
-                }
+                checkExist(newSaving);
                 break;
             }
             case "Money Market" -> {
                 Account newMoneyMarket = new MoneyMarket(holder, balance, openDate, 0);
-                if (newMoneyMarket != null) {
-                    checkExist(newMoneyMarket);
-                }
+                checkExist(newMoneyMarket);
                 break;
             }
         }
@@ -354,23 +348,6 @@ public class Controller {
             case "Money Market" -> { return new MoneyMarket(holder, -1, null, 0); }
             default -> { return null; }
         }
-    }
-
-    private Account makeAccount(String type, Profile holder, double balance, Date openDate) {
-        switch (type) {
-            case "Checking" -> {
-                boolean isDD = oca_DirectDeposit.isSelected();
-                return new Checking(holder, balance, openDate, isDD);
-            }
-            case "Savings" -> {
-                boolean isLC = oca_LoyalCustomer.isSelected();
-                return new Savings(holder, balance, openDate, isLC);
-            }
-            case "Money Market" -> {
-                return new MoneyMarket(holder, balance, openDate, 0);
-            }
-        }
-        return null;
     }
 
     private Date parseDate(String month, String day, String year) {
