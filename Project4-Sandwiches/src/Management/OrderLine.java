@@ -16,7 +16,7 @@ public class OrderLine {
     }
     
     public String getSandwichInfo() {
-        String sb = lineNumber + "," +
+        String sb = "Line Number :" + lineNumber + "\n" +
                 sandwich.toString();
         return sb;
     }

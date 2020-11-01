@@ -6,15 +6,7 @@ public class Beef extends Sandwich{
     private double price = 10.99;
     private ArrayList<String> basicIngredient = new ArrayList<>();
 
-    /*
-    public ArrayList<String> getBasicIngredient() {
-        basicIngredient.add("Roast Beef");
-        basicIngredient.add("Provolone Cheese");
-        basicIngredient.add("Mustard");
-        return basicIngredient;
-    }
-     */
-    
+
     @Override
     public double price() {
         return price;

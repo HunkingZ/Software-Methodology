@@ -7,14 +7,6 @@ public class Fish extends Sandwich{
     private double price = 12.99;
     private ArrayList<String> basicIngredient = new ArrayList<>();
 
-    /*
-    public ArrayList<String> getBasicIngredient() {
-        basicIngredient.add("Grilled Snapper");
-        basicIngredient.add("Cilantro");
-        basicIngredient.add("Lime");
-        return basicIngredient;
-    }
-     */
     
     @Override
     public double price() {

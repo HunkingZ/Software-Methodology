@@ -17,14 +17,17 @@ public abstract class Sandwich implements Customizable{
     public abstract String getType();
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(getType());
+        sb.append("Sandwich type : ").append(getType()).append("\n");
+        sb.append("Basic Ingredients : ");
         for (String basic : getBasic()) {
             sb.append(basic).append(",");
         }
+        sb.append("\n").append("Extra ingredients :");
         for (Extra extra : extras) {
             sb.append(extra.toString()).append(",");
         }
-        sb.append(price());
+        sb.append("\n");
+        sb.append("Price: ").append(price());
         return sb.toString();
     }
 }

@@ -6,16 +6,7 @@ public class Chicken extends Sandwich{
     private double price = 8.99;
     private ArrayList<String> basicIngredient = new ArrayList<>();
     private ArrayList<Object> extraArray = new ArrayList<>();
-    
-    
-    /*
-    public ArrayList<String> getBasicIngredient() {
-        basicIngredient.add("Fried Chicken");
-        basicIngredient.add("Spicy Sauce");
-        basicIngredient.add("Pickles");
-        return basicIngredient;
-    }
-     */
+
 
     @Override
     public double price() {

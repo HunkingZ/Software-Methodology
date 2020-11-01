@@ -27,9 +27,9 @@ public class Order implements Customizable{
     public String print() {
         StringBuilder sb = new StringBuilder();
         for (OrderLine orderLine : orderLines) {
-            sb.append(orderLine.getSandwichInfo()).append("\n");
+            sb.append(orderLine.getSandwichInfo()).append("\n----------\n");
         }
-        sb.append(orderLines.size());
+        sb.append("Amount of Order : ").append(orderLines.size());
         return sb.toString();
     }
 }
