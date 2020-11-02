@@ -17,8 +17,8 @@ public abstract class Sandwich implements Customizable{
     public abstract String getType();
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Sandwich type : ").append(getType()).append("\n");
-        sb.append("Basic Ingredients : ");
+        sb.append("Sandwich type :").append(getType()).append("\n");
+        sb.append("Basic Ingredients :");
         for (String basic : getBasic()) {
             sb.append(basic).append(",");
         }

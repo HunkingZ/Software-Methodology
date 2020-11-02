@@ -26,6 +26,8 @@ public class Fish extends Sandwich{
         return "Fish";
     }
 
+    //mustard
+    //pickles
     @Override
     public boolean add(Object obj) {
         extras.add((Extra) obj);
