@@ -80,6 +80,11 @@ public class Savings extends Account{
         }
     }
 
+    /**
+     * Gets special values regarding the account type
+     *
+     * @return Indication of loyalty program if true or nothing if false
+     */
     @Override
     public String getSpecialValue() {
         return "" + isLoyal;

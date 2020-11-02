@@ -86,6 +86,11 @@ public class Checking extends Account {
     @Override
     public void increase() { }
 
+    /**
+     * Gets special values regarding the account type
+     *
+     * @return Indication of direct deposit if true or nothing if false
+     */
     @Override
     public String getSpecialValue() {
         return "" + directDeposit;

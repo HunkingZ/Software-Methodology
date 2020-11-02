@@ -83,6 +83,11 @@ public class MoneyMarket extends Account{
         return "*" + withdrawals + " withdrawals*";
     }
 
+    /**
+     * Gets special values regarding the account type
+     *
+     * @return Number of withdrawals as a string
+     */
     @Override
     public String getSpecialValue() {
         return "" + withdrawals;

@@ -146,5 +146,10 @@ public abstract class Account {
      */
     public abstract String getSpecial();
 
+    /**
+     * Gets direct special value
+     *
+     * @return String of account type's special characteristics
+     */
     public abstract String getSpecialValue();
 }
