@@ -10,6 +10,12 @@ import management.*;
 import java.io.*;
 import java.util.Scanner;
 
+
+/**
+ * New transaction manager equivalent using a GUI
+ *
+ * @author Hanqing Zhao, Richard Xu
+ */
 public class Controller {
     private AccountDatabase database = new AccountDatabase();
 
@@ -32,6 +38,10 @@ public class Controller {
     @FXML
     private Button oca_open, oca_close;
 
+    /**
+     * Opens an account
+     * @param event
+     */
     @FXML
     void openAccount(ActionEvent event) {
         String fName = oca_fName.getText();
@@ -62,23 +72,33 @@ public class Controller {
             case "Checking" -> {
                 boolean isDD = oca_DirectDeposit.isSelected();
                 Account newChecking = new Checking(holder, balance, openDate, isDD);
-                checkExist(newChecking);
+                if (newChecking != null) {
+                    checkExist(newChecking);
+                }
                 break;
             }
             case "Savings" -> {
                 boolean isLC = oca_LoyalCustomer.isSelected();
                 Account newSaving = new Savings(holder, balance, openDate, isLC);
-                checkExist(newSaving);
+                if (newSaving != null) {
+                    checkExist(newSaving);
+                }
                 break;
             }
             case "Money Market" -> {
                 Account newMoneyMarket = new MoneyMarket(holder, balance, openDate, 0);
-                checkExist(newMoneyMarket);
+                if (newMoneyMarket != null) {
+                    checkExist(newMoneyMarket);
+                }
                 break;
             }
         }
     }
 
+    /**
+     * Closes an account
+     * @param event
+     */
     @FXML
     void closeAccount(ActionEvent event) {
         String fName = oca_fName.getText();
@@ -104,6 +124,10 @@ public class Controller {
         }
     }
 
+    /**
+     * Clears all text fields & text areas
+     * @param event
+     */
     @FXML
     void clear(ActionEvent event) {
         oca_fName.clear();
@@ -118,6 +142,10 @@ public class Controller {
         resultArea.clear();
     }
 
+    /**
+     * Deposits a specific amount into an account
+     * @param event
+     */
     @FXML
     void deposit(ActionEvent event) {
         String fName = dw_fName.getText();
@@ -148,6 +176,10 @@ public class Controller {
 
     }
 
+    /**
+     * Withdraws a specific amount from an account
+     * @param event
+     */
     @FXML
     void withdraw(ActionEvent event) {
         String fName = dw_fName.getText();
@@ -177,6 +209,11 @@ public class Controller {
         } else { resultArea.setText("Account does not exist.\n"); }
     }
 
+    /**
+     * Binds account types with their corresponding special values
+     * Only in Open/Close account tab
+     * @param event
+     */
     @FXML
     void handleBind(ActionEvent event) {
         oca_LoyalCustomer.setDisable(oca_Checking.isSelected());
@@ -196,6 +233,10 @@ public class Controller {
         }
     }
 
+    /**
+     * Prints database
+     * @param event
+     */
     @FXML
     void resP(ActionEvent event) {
         String printResult = database.printAccounts();
@@ -206,6 +247,10 @@ public class Controller {
         resultArea.setText(printResult + "\n");
     }
 
+    /**
+     * Prints database based on last name
+     * @param event
+     */
     @FXML
     void resPName(ActionEvent event) {
         String printResult = database.printByLastName();
@@ -216,6 +261,10 @@ public class Controller {
         resultArea.setText(printResult + "\n");
     }
 
+    /**
+     * Prints database based on date opened
+     * @param event
+     */
     @FXML
     void resPDate(ActionEvent event) {
         String printResult = database.printByDateOpen();
@@ -226,6 +275,10 @@ public class Controller {
         resultArea.setText(printResult + "\n");
     }
 
+    /**
+     * Imports a database
+     * @param event
+     */
     @FXML
     void importFile(ActionEvent event) {
         try {
@@ -286,6 +339,10 @@ public class Controller {
         }
     }
 
+    /**
+     * Exports the database
+     * @param event
+     */
     @FXML
     void exportFile(ActionEvent event) {
         try {
@@ -331,12 +388,21 @@ public class Controller {
         }
     }
 
+    /**
+     * Empties the database
+     */
     @FXML
     void clearDatabase() {
         database = new AccountDatabase();
         resultArea.setText("Database cleared!");
     }
 
+    /**
+     * Finds an account
+     * @param type
+     * @param holder
+     * @return target account
+     */
     public Account findAccount(String type, Profile holder) {
         if (database.getSize() == 0) {
             return null;
@@ -350,6 +416,13 @@ public class Controller {
         }
     }
 
+    /**
+     * Creates a date
+     * @param month
+     * @param day
+     * @param year
+     * @return input as a date
+     */
     private Date parseDate(String month, String day, String year) {
         try {
             int intMonth = Integer.parseInt(month);
@@ -368,6 +441,11 @@ public class Controller {
         }
     }
 
+    /**
+     * Confirms a double value
+     * @param stringBalance
+     * @return true if double, false if otherwise
+     */
     private boolean validateBalance(String stringBalance) {
         try {
             double balance = Double.parseDouble(stringBalance);
@@ -378,6 +456,10 @@ public class Controller {
         }
     }
 
+    /**
+     * Adds an account into the database if not prevalent
+     * @param account
+     */
     private void checkExist(Account account) {
         if (!database.add(account)) {
             resultArea.setText("Account is already in the database.\n");
@@ -386,6 +468,17 @@ public class Controller {
         }
     }
 
+    /**
+     * Confirms text fields to have generic data
+     * Only in add/close account tab
+     * @param fName
+     * @param lName
+     * @param inputBalance
+     * @param month
+     * @param day
+     * @param year
+     * @return
+     */
     private boolean ocaCheckValid(String fName, String lName, String inputBalance,
                                   String month, String day, String year) {
         resultArea.clear();
@@ -409,6 +502,14 @@ public class Controller {
         return result;
     }
 
+    /**
+     * Confirms text fields to have generic data
+     * Only in deposit/withdraw account tab
+     * @param fName
+     * @param lName
+     * @param Amount
+     * @return
+     */
     private boolean dwCheckValid(String fName, String lName, String Amount) {
         boolean result = true;
 
