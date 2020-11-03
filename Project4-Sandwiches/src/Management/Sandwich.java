@@ -12,7 +12,7 @@ public abstract class Sandwich implements Customizable{
     }
     public abstract double price();
 
-    abstract ArrayList<String> getBasic();
+    public abstract ArrayList<String> getBasic();
 
     public abstract String getType();
     public String toString() {

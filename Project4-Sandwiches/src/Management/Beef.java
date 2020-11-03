@@ -13,7 +13,7 @@ public class Beef extends Sandwich{
     }
 
     @Override
-    ArrayList<String> getBasic() {
+    public ArrayList<String> getBasic() {
         basicIngredient.add("Roast Beef");
         basicIngredient.add("Provolone Cheese");
         basicIngredient.add("Mustard");
@@ -34,10 +34,15 @@ public class Beef extends Sandwich{
 
     @Override
     public boolean remove(Object obj) {
+        /*
         if (extras.remove(obj)) {
             price -= 1.99;
             return true;
         }
+
+         */
+        extras.remove(obj);
+        price -= 1.99;
         return false;
     }
 }

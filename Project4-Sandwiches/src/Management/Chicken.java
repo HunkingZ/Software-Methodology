@@ -14,7 +14,7 @@ public class Chicken extends Sandwich{
     }
 
     @Override
-    ArrayList<String> getBasic() {
+    public ArrayList<String> getBasic() {
         basicIngredient.add("Fried Chicken");
         basicIngredient.add("Spicy Sauce");
         basicIngredient.add("Pickles");
@@ -35,10 +35,15 @@ public class Chicken extends Sandwich{
 
     @Override
     public boolean remove(Object obj) {
+        /*
         if (extraArray.remove(obj)) {
             price -= 1.99;
             return true;
         }
-        return false;
+
+         */
+        extras.remove(obj);
+        price -= 1.99;
+        return true;
     }
 }

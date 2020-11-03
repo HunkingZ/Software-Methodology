@@ -14,7 +14,7 @@ public class Fish extends Sandwich{
     }
 
     @Override
-    ArrayList<String> getBasic() {
+    public ArrayList<String> getBasic() {
         basicIngredient.add("Grilled Snapper");
         basicIngredient.add("Cilantro");
         basicIngredient.add("Lime");
@@ -37,10 +37,14 @@ public class Fish extends Sandwich{
 
     @Override
     public boolean remove(Object obj) {
+        /*
         if (extras.remove(obj)) {
             price -= 1.99;
             return true;
         }
-        return false;
+         */
+        extras.remove(obj);
+        price -= 1.99;
+        return true;
     }
 }
