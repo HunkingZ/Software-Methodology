@@ -19,7 +19,7 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label text="Basic Ingredients:" />
-                  <TextArea fx:id="select_basic" prefHeight="200.0" prefWidth="200.0" />
+                  <TextArea fx:id="select_basic" minHeight="-Infinity" prefHeight="112.0" prefWidth="68.0" />
                   <Label text="Price:" />
                   <TextArea fx:id="select_price" prefHeight="200.0" prefWidth="200.0" />
                </children>
