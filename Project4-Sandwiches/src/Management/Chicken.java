@@ -49,7 +49,20 @@ public class Chicken extends Sandwich{
         }
 
          */
-        extras.remove(obj);
+        int index;
+        for (int i = 0; i < extras.size(); i++) {
+            Extra extra = extras.get(i);
+            if (extra.name.equals(((Extra) obj).name)) {
+                index = i;
+                int j = index;
+                for (; j + 1 < extras.size(); j++) {
+                    extras.set(j, extras.get(j + 1));
+                }
+                extras.remove(j);
+                break;
+            }
+        }
+        //extras.remove(obj);
         price -= 1.99;
         return true;
     }

@@ -41,15 +41,20 @@ public class Fish extends Sandwich{
 
     @Override
     public boolean remove(Object obj) {
-        /*
-        if (extras.remove(obj)) {
-            price -= 1.99;
-            return true;
-        }
-         */
-        extras.remove(obj);
-        for (Extra extra: extras) {
-            System.out.println(extra.toString());
+
+        int index;
+        for (int i = 0; i < extras.size(); i++) {
+            Extra extra = extras.get(i);
+            if (extra.name.equals(((Extra) obj).name)) {
+                System.out.println(i);
+                index = i;
+                int j = index;
+                for (; j + 1 < extras.size(); j++) {
+                    extras.set(j, extras.get(j + 1));
+                }
+                extras.remove(j);
+                break;
+            }
         }
         price -= 1.99;
         return true;

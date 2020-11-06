@@ -22,7 +22,7 @@ public class SceneBController{
         int index = OD_ListView.getSelectionModel().getSelectedIndex();
         System.out.println(index);
         Order database = controllerA.getDatabase();
-        OrderLine orderLine = database.get(index);
+        OrderLine orderLine = new OrderLine(database.get(index));
         System.out.println(orderLine.toString() + "\n");
         database.add(orderLine);
         for (int i = 0; i < database.size(); i++) {
@@ -63,7 +63,7 @@ public class SceneBController{
         for (String st : list) {
             observableList.add(st);
         }
-        OD_ListView.getItems().addAll(observableList);
+        OD_ListView.setItems(observableList);
     }
 
     private ArrayList<String> getOrderDetails(Order database) {
@@ -76,7 +76,7 @@ public class SceneBController{
 
     private Order reformatOrder(Order database) {
         for (int i = 0; i < database.size(); i++) {
-            database.get(i).setLineNumber(i);
+            database.get(i).setLineNumber(i + 1);
         }
         return database;
     }

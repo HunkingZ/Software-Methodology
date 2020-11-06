@@ -40,14 +40,21 @@ public class Beef extends Sandwich{
 
     @Override
     public boolean remove(Object obj) {
-        /*
-        if (extras.remove(obj)) {
-            price -= 1.99;
-            return true;
+        int index;
+        for (int i = 0; i < extras.size(); i++) {
+            Extra extra = extras.get(i);
+            if (extra.name.equals(((Extra) obj).name)) {
+                System.out.println(i);
+                index = i;
+                int j = index;
+                for (; j + 1 < extras.size(); j++) {
+                    extras.set(j, extras.get(j + 1));
+                }
+                extras.remove(j);
+                break;
+            }
         }
-
-         */
-        extras.remove(obj);
+        //extras.remove(obj);
         price -= 1.99;
         return false;
     }
