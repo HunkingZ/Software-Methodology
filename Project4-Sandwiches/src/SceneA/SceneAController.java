@@ -1,12 +1,15 @@
 package SceneA;
 
 import Management.*;
+import SceneB.SceneBController;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -42,8 +45,10 @@ public class SceneAController implements Initializable {
     private ListView<String> extraProvided, extraSelected;
 
     @FXML
-    private TextArea select_textArea, select_basic, select_price;
+    private TextArea select_textArea;
 
+    @FXML
+    private Label select_basic, select_price;
     @FXML
     void SandwichSelect() {
         String type = sandwichType.getSelectionModel().getSelectedItem().toString();
@@ -142,7 +147,17 @@ public class SceneAController implements Initializable {
         orderLine = new OrderLine(lineNum, sandwich, sandwich.price());
         database.add(orderLine);
         select_textArea.setText(sandwich.getType() + " Added to Your Shopping Cart.");
-        selectInitialize();
+        SandwichSelect();
+    }
+
+    @FXML
+    void openSceneB() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("sceneBLayout.fxml"));
+        SceneBController controller2 = loader.getController();
+
+        controller2.setController(this);
+
+        //controller2.getDatabase(database);
     }
 
     @Override

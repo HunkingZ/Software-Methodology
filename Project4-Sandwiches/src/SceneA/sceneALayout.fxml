@@ -7,33 +7,61 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SceneA.SceneAController">
    <top>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox prefHeight="130.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <ComboBox fx:id="sandwichType" onAction="#SandwichSelect" prefHeight="32.0" prefWidth="151.0" promptText="Sandwich Type" />
             <ImageView fx:id="image" fitHeight="150.0" fitWidth="176.0" pickOnBounds="true" preserveRatio="true" />
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox prefHeight="150.0" prefWidth="141.0">
                <children>
-                  <Label text="Basic Ingredients:" />
-                  <TextArea fx:id="select_basic" minHeight="-Infinity" prefHeight="112.0" prefWidth="101.0" />
-                  <Label text="Price:" />
-                  <TextArea fx:id="select_price" prefHeight="200.0" prefWidth="200.0" />
-               </children>
-            </VBox>
-            <VBox prefHeight="150.0" prefWidth="269.0">
-               <children>
-                  <TextArea fx:id="select_textArea" prefHeight="200.0" prefWidth="200.0">
+                  <Label text="Basic Ingredients:">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Label>
+                  <Label fx:id="select_basic" textFill="GREY" VBox.vgrow="NEVER">
                      <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin></TextArea>
-                  <Button mnemonicParsing="false" onAction="#select_add" text="Add to Shopping Cart" />
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="7.0" />
+                     </padding>
+                  </Label>
+                  <Line endX="19.5" startX="-100.0">
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Line>
+                  <Label text="Price:">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Label>
+                  <Label fx:id="select_price" textFill="GREY" VBox.vgrow="NEVER">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="7.0" />
+                     </padding>
+                  </Label>
                </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
             </VBox>
+            <AnchorPane prefHeight="150.0" prefWidth="368.0">
+               <children>
+                  <Button layoutX="82.0" layoutY="62.0" mnemonicParsing="false" onAction="#openSceneB" text="Order Details" />
+                  <Button layoutX="59.0" layoutY="14.0" mnemonicParsing="false" onAction="#select_add" text="Add to Shopping Cart" />
+               </children>
+            </AnchorPane>
          </children>
       </HBox>
    </top>
@@ -63,4 +91,7 @@
          </children>
       </HBox>
    </center>
+   <bottom>
+      <TextArea fx:id="select_textArea" prefHeight="6.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+   </bottom>
 </BorderPane>
