@@ -8,13 +8,19 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
+import java.awt.event.ActionEvent;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -150,12 +156,21 @@ public class SceneAController implements Initializable {
         SandwichSelect();
     }
 
+
     @FXML
-    void openSceneB() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("sceneBLayout.fxml"));
+    void openSceneB() throws IOException {
+
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../SceneB/sceneBLayout.fxml"));
         SceneBController controller2 = loader.getController();
 
-        controller2.setController(this);
+        Scene scene = new Scene(loader.load(), 600, 400);
+        Stage stage = new Stage();
+        stage.setTitle("New Window");
+        stage.setScene(scene);
+        stage.show();
+        //controller2.setController(this);
+
 
         //controller2.getDatabase(database);
     }
