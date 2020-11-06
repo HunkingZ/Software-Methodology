@@ -170,8 +170,6 @@ public class SceneAController implements Initializable {
         stage.setScene(scene);
         stage.show();
         //controller2.setController(this);
-
-
         //controller2.getDatabase(database);
     }
 
