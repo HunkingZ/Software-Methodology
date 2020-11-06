@@ -20,8 +20,20 @@ public class Order implements Customizable{
 
     @Override
     public boolean remove(Object obj) {
-        if (orderLines.remove(obj)) {
-            return true;
+        int index;
+        for (int i = 0; i < orderLines.size(); i++) {
+            OrderLine orderLine = orderLines.get(i);
+            if (orderLine.getLineNumber() == (((OrderLine) obj).getLineNumber())) {
+                index = i;
+                int j = index;
+
+                for (; j + 1 < orderLines.size(); j++) {
+                    orderLines.set(j, orderLines.get(j + 1));
+
+                }
+                orderLines.remove(j);
+                return true;
+            }
         }
         return false;
     }

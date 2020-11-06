@@ -53,7 +53,7 @@ public abstract class Sandwich implements Customizable{
             }
         }
         String pricePart = String.format("%.2f", price());
-        sb.append("/").append("Price : $").append(pricePart);
+        sb.append("/").append("Price: $").append(pricePart);
         return sb.toString();
     }
 }

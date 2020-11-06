@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SceneB.SceneBController">
@@ -12,5 +14,7 @@
       <Button layoutX="47.0" layoutY="344.0" mnemonicParsing="false" onAction="#clear" text="Clear Order" />
       <Button layoutX="205.0" layoutY="344.0" mnemonicParsing="false" onAction="#back" text="Back" />
       <Button layoutX="518.0" layoutY="344.0" mnemonicParsing="false" onAction="#export" text="Save to File" />
+      <Label fx:id="OD_orderTotal" layoutX="543.0" layoutY="287.0" />
+      <TextArea fx:id="OD_textArea" layoutX="312.0" layoutY="302.0" prefHeight="17.0" prefWidth="201.0" wrapText="true" />
    </children>
 </AnchorPane>

@@ -24,6 +24,7 @@ import java.util.ResourceBundle;
 
 public class SceneAController implements Initializable {
 
+    private Stage stageB = new Stage();
     private Sandwich sandwich;
     private Order database = new Order();
     private OrderLine orderLine;
@@ -163,11 +164,15 @@ public class SceneAController implements Initializable {
         SceneBController controllerB = loader.getController();
         controllerB.setController(this);
         Scene scene = new Scene(orderDetails, 600, 400);
-        Stage stage = new Stage();
-        stage.setTitle("New Window");
-        stage.setScene(scene);
-        stage.show();
+
+        stageB.setTitle("Order Details");
+        stageB.setScene(scene);
+        stageB.show();
         controllerB.start();
+    }
+
+    public void closeSceneB() throws IOException {
+        stageB.close();
     }
 
     @Override
@@ -203,4 +208,5 @@ public class SceneAController implements Initializable {
     public void setDatabase(Order order) {
         database = order;
     }
+
 }

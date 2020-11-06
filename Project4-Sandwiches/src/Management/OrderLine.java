@@ -12,7 +12,7 @@ public class OrderLine {
     }
 
     public OrderLine(OrderLine orderLine) {
-        this.lineNumber = Order.lineNumber;
+        this.lineNumber = orderLine.lineNumber;
         this.sandwich = orderLine.sandwich;
         this.price = orderLine.sandwich.price();
     }
@@ -34,5 +34,9 @@ public class OrderLine {
 
     public void setLineNumber(int index) {
         lineNumber = index;
+    }
+
+    public double getPrice() {
+        return price;
     }
 }
