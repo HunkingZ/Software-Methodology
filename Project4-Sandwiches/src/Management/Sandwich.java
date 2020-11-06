@@ -6,7 +6,7 @@ public abstract class Sandwich implements Customizable{
     static final int MAX_EXTRAS = 6;
     static final double PER_EXTRA = 1.99;
     protected ArrayList<Extra> extras;
-
+    //protected ArrayList<String> basics;
     public Sandwich() {
         extras = new ArrayList<>();
     }
@@ -15,6 +15,8 @@ public abstract class Sandwich implements Customizable{
     public abstract ArrayList<String> getBasic();
 
     public abstract String getType();
+
+    /*
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Sandwich type :").append(getType()).append("\n");
@@ -28,6 +30,31 @@ public abstract class Sandwich implements Customizable{
         }
         sb.append("\n");
         sb.append("Price: ").append(price());
+        return sb.toString();
+    }
+     */
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getType());
+        sb.append("/");
+        System.out.println("basic: \n");
+
+        for (String basic : getBasic()) {
+            sb.append(basic).append(",");
+            System.out.println(basic + "\n");
+        }
+
+
+        //sb.append(getBasic());
+        sb.append("/");
+        System.out.println("extra: \n");
+        for (Extra extra : extras) {
+            sb.append(extra.toString()).append(",");
+            System.out.println(extra + "\n");
+        }
+        String pricePart = String.format("%.2f", price());
+        sb.append("/").append("Price : $").append(pricePart);
         return sb.toString();
     }
 }

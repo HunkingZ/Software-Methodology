@@ -2,13 +2,11 @@ package SceneA;
 
 import Management.*;
 import SceneB.SceneBController;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
@@ -19,7 +17,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -30,7 +27,7 @@ public class SceneAController implements Initializable {
     private Sandwich sandwich;
     private Order database = new Order();
     private OrderLine orderLine;
-    private int lineNum = 1;
+    //private int lineNum = 1;
     private double price;
     private ArrayList<String> selectedExtra;
     private final int MAX_EXTRA_INGREDIENTS = 6;
@@ -150,7 +147,9 @@ public class SceneAController implements Initializable {
             select_textArea.setText("Please Select Your Sandwich.");
             return;
         }
-        orderLine = new OrderLine(lineNum, sandwich, sandwich.price());
+
+        orderLine = new OrderLine(database.lineNumber, sandwich, sandwich.price());
+        database.lineNumber++;
         database.add(orderLine);
         select_textArea.setText(sandwich.getType() + " Added to Your Shopping Cart.");
         SandwichSelect();
@@ -162,12 +161,13 @@ public class SceneAController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../SceneB/sceneBLayout.fxml"));
         Parent orderDetails = loader.load();
         SceneBController controllerB = loader.getController();
+        controllerB.setController(this);
         Scene scene = new Scene(orderDetails, 600, 400);
         Stage stage = new Stage();
         stage.setTitle("New Window");
         stage.setScene(scene);
         stage.show();
-        controllerB.setController(this);
+        controllerB.start();
     }
 
     @Override
@@ -182,10 +182,11 @@ public class SceneAController implements Initializable {
     private String getBasic(Sandwich sand) {
         ArrayList<String> basicList = sand.getBasic();
         StringBuilder sb = new StringBuilder();
+
         for (String basic : basicList) {
             sb.append(basic + "\n");
         }
-        return sb.substring(0, sb.length());
+        return sb.toString();
     }
 
     private void selectInitialize() {
@@ -193,5 +194,13 @@ public class SceneAController implements Initializable {
         extraSelected.getItems().clear();
         availableIngredientList = FXCollections.observableArrayList(initializedExtraList);
         extraProvided.setItems(availableIngredientList);
+    }
+
+    public Order getDatabase() {
+        return database;
+    }
+
+    public void setDatabase(Order order) {
+        database = order;
     }
 }

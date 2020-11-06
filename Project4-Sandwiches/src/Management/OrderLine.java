@@ -20,4 +20,13 @@ public class OrderLine {
                 sandwich.toString();
         return sb;
     }
+
+    public String toString() {
+        String sb =  lineNumber + ") " + sandwich.toString();
+        return sb;
+    }
+
+    public void setLineNumber(int index) {
+        lineNumber = index;
+    }
 }

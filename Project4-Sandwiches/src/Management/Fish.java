@@ -6,7 +6,9 @@ import java.util.ArrayList;
 public class Fish extends Sandwich{
     private double price = 12.99;
     private ArrayList<String> basicIngredient = new ArrayList<>();
-
+    private final String basic1 = "Grilled Snappe";
+    private final String basic2 = "Cilantro";
+    private final String basic3 = "Lime";
     
     @Override
     public double price() {
@@ -15,10 +17,12 @@ public class Fish extends Sandwich{
 
     @Override
     public ArrayList<String> getBasic() {
+        ArrayList<String> basicIngredient = new ArrayList<>();
         basicIngredient.add("Grilled Snapper");
         basicIngredient.add("Cilantro");
         basicIngredient.add("Lime");
         return basicIngredient;
+        //return basic1 + ","+ basic2 + "," + basic3;
     }
 
     @Override

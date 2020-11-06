@@ -4,9 +4,12 @@ import java.util.ArrayList;
 
 public class Chicken extends Sandwich{
     private double price = 8.99;
-    private ArrayList<String> basicIngredient = new ArrayList<>();
+
     private ArrayList<Object> extraArray = new ArrayList<>();
 
+    private final String basic1 = "Fried Chicken";
+    private final String basic2 = "Spicy Sauce";
+    private final String basic3 = "Pickles";
 
     @Override
     public double price() {
@@ -15,10 +18,14 @@ public class Chicken extends Sandwich{
 
     @Override
     public ArrayList<String> getBasic() {
+        ArrayList<String> basicIngredient = new ArrayList<>();
         basicIngredient.add("Fried Chicken");
         basicIngredient.add("Spicy Sauce");
         basicIngredient.add("Pickles");
         return basicIngredient;
+
+
+        //return basic1 + ","+ basic2 + "," + basic3;
     }
 
     @Override

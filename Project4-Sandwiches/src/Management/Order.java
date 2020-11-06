@@ -9,7 +9,9 @@ public class Order implements Customizable{
 
     public Order() {
         orderLines = new ArrayList<>();
+        this.lineNumber = 1;
     }
+
     @Override
     public boolean add(Object obj) {
         orderLines.add((OrderLine) obj);
@@ -31,5 +33,13 @@ public class Order implements Customizable{
         }
         sb.append("Amount of Order : ").append(orderLines.size());
         return sb.toString();
+    }
+
+    public int size() {
+        return orderLines.size();
+    }
+
+    public OrderLine get(int index) {
+        return orderLines.get(index);
     }
 }
