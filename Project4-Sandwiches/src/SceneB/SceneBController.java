@@ -23,7 +23,11 @@ public class SceneBController{
         System.out.println(index);
         Order database = controllerA.getDatabase();
         OrderLine orderLine = database.get(index);
+        System.out.println(orderLine.toString() + "\n");
         database.add(orderLine);
+        for (int i = 0; i < database.size(); i++) {
+            System.out.println(database.get(i).toString());
+        }
         controllerA.setDatabase(reformatOrder(database));
         start();
     }

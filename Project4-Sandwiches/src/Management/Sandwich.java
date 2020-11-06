@@ -38,20 +38,19 @@ public abstract class Sandwich implements Customizable{
         StringBuilder sb = new StringBuilder();
         sb.append(getType());
         sb.append("/");
-        System.out.println("basic: \n");
 
         for (String basic : getBasic()) {
             sb.append(basic).append(",");
-            System.out.println(basic + "\n");
         }
-
 
         //sb.append(getBasic());
         sb.append("/");
-        System.out.println("extra: \n");
-        for (Extra extra : extras) {
-            sb.append(extra.toString()).append(",");
-            System.out.println(extra + "\n");
+        if (extras.size() == 0) {
+            sb.append("no extras");
+        } else {
+            for (Extra extra : extras) {
+                sb.append(extra.toString()).append(",");
+            }
         }
         String pricePart = String.format("%.2f", price());
         sb.append("/").append("Price : $").append(pricePart);

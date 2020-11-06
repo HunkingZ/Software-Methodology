@@ -48,6 +48,9 @@ public class Fish extends Sandwich{
         }
          */
         extras.remove(obj);
+        for (Extra extra: extras) {
+            System.out.println(extra.toString());
+        }
         price -= 1.99;
         return true;
     }
