@@ -1,6 +1,7 @@
 package SceneA;
 
 import Management.*;
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -20,9 +21,16 @@ public class SceneAController implements Initializable {
     private Sandwich sandwich;
     private Order database = new Order();
     private OrderLine orderLine;
-    private int lineNum = 0;
+    private int lineNum = 1;
     private double price;
     private ArrayList<String> selectedExtra;
+    private final int MAX_EXTRA_INGREDIENTS = 6;
+
+    private final ObservableList<String> initializedExtraList = FXCollections.observableArrayList("Bacon", "Pesto",
+            "Pepper Jelly", "Pepper", "Mayonnaise", "Pickled Pepper",
+            "Ranch", "Avocado", "Mozzarella", "Tomatoes", "walnuts");
+    private ObservableList<String> availableIngredientList = FXCollections.observableArrayList(initializedExtraList);
+    private ObservableList<String> selectedIngredientList = FXCollections.observableArrayList();
 
     @FXML
     private ComboBox sandwichType;
@@ -41,8 +49,13 @@ public class SceneAController implements Initializable {
         String type = sandwichType.getSelectionModel().getSelectedItem().toString();
         switch (type) {
             case "Beef" : {
+                /*
                 selectedExtra = new ArrayList<>();
                 extraSelected.getItems().clear();
+                availableIngredientList = initializedExtraList;
+                extraProvided.setItems(availableIngredientList);
+                 */
+                selectInitialize();
                 Image beef = new Image("/Images/Beef.jpg");
                 image.setImage(beef);
                 sandwich = new Beef();
@@ -54,8 +67,14 @@ public class SceneAController implements Initializable {
                 break;
             }
             case "Fish" : {
+                /*
                 selectedExtra = new ArrayList<>();
+                availableIngredientList = initializedExtraList;
+                extraProvided.getItems().addAll(availableIngredientList);
                 extraSelected.getItems().clear();
+
+                 */
+                selectInitialize();
                 Image fish = new Image("/Images/Fish.jpg");
                 image.setImage(fish);
                 sandwich = new Fish();
@@ -67,8 +86,14 @@ public class SceneAController implements Initializable {
                 break;
             }
             default:{
+                /*
                 selectedExtra = new ArrayList<>();
+                availableIngredientList = initializedExtraList;
+                extraProvided.getItems().addAll(availableIngredientList);
                 extraSelected.getItems().clear();
+
+                 */
+                selectInitialize();
                 Image chicken = new Image("/Images/Chicken.jpg");
                 image.setImage(chicken);
                 sandwich = new Chicken();
@@ -84,22 +109,13 @@ public class SceneAController implements Initializable {
 
     @FXML
     void addExtra() {
-        ObservableList<String> list = FXCollections.observableArrayList();
+        //ObservableList<String> list = FXCollections.observableArrayList();
         String selectExtra = extraProvided.getSelectionModel().getSelectedItem();
 
         if (selectedExtra.contains(selectExtra)) {
-            /*
-            selectedExtra.remove(selectExtra);
-            Extra extra = new Extra(selectExtra);
-            sandwich.remove(extra);
-            price = sandwich.price();
-            String textPrice = String.format("$%.2f", price);
-            select_price.setText(textPrice);
-            select_textArea.setText(selectExtra + " Removed!");
-             */
             select_textArea.setText(selectExtra + " Can Not Be Added More Than Once.");
         } else {
-            if (selectedExtra.size() >= 6) {
+            if (selectedExtra.size() >= MAX_EXTRA_INGREDIENTS) {
                 select_textArea.setText("You Can Not Add More Than 6 Extra Ingredients.");
                 return;
             }
@@ -111,15 +127,20 @@ public class SceneAController implements Initializable {
             select_price.setText(textPrice);
             select_textArea.setText(selectExtra + " Added!");
         }
+        /*
         for (String s : selectedExtra) {
-            list.add(s);
+            selectedIngredientList.add(s);
         }
-        extraSelected.setItems(list);
+         */
+        selectedIngredientList.add(selectExtra);
+        availableIngredientList.remove(selectExtra);
+        extraProvided.setItems(availableIngredientList);
+        extraSelected.setItems(selectedIngredientList);
     }
 
     @FXML
     void removeExtra() {
-        ObservableList<String> list = FXCollections.observableArrayList();
+        //ObservableList<String> list = FXCollections.observableArrayList();
         String delete = extraSelected.getSelectionModel().getSelectedItem();
         if (selectedExtra.contains(delete)) {
             selectedExtra.remove(delete);
@@ -130,12 +151,19 @@ public class SceneAController implements Initializable {
             select_price.setText(textPrice);
             select_textArea.setText(delete + " Removed!");
         } else {
-            select_textArea.setText(delete + " Is Not In the List.");
+            select_textArea.setText("There is no extra could be removed.");
+            return;
         }
+        /*
         for (String s : selectedExtra) {
             list.add(s);
         }
-        extraSelected.setItems(list);
+
+         */
+        selectedIngredientList.remove(delete);
+        availableIngredientList.add(delete);
+        extraSelected.setItems(selectedIngredientList);
+        extraProvided.setItems(availableIngredientList);
     }
 
     @FXML
@@ -147,6 +175,7 @@ public class SceneAController implements Initializable {
         orderLine = new OrderLine(lineNum, sandwich, sandwich.price());
         database.add(orderLine);
         select_textArea.setText(sandwich.getType() + " Added to Your Shopping Cart.");
+        selectInitialize();
     }
 
     @Override
@@ -154,11 +183,7 @@ public class SceneAController implements Initializable {
         ObservableList<String> list = FXCollections.observableArrayList("Chicken", "Beef", "Fish");
         sandwichType.setItems(list);
         sandwichType.setValue(list.get(0));
-
-        ObservableList<String> extraList = FXCollections.observableArrayList("Bacon", "Pesto",
-                "Pepper Jelly", "Pepper", "Mayonnaise", "Pickled Pepper",
-                "Ranch", "Avocado", "Mozzarella", "Tomatoes", "walnuts");
-        extraProvided.getItems().addAll(extraList);
+        extraProvided.getItems().addAll(availableIngredientList);
         SandwichSelect();
     }
 
@@ -169,5 +194,12 @@ public class SceneAController implements Initializable {
             sb.append(basic + "\n");
         }
         return sb.substring(0, sb.length());
+    }
+
+    private void selectInitialize() {
+        selectedExtra = new ArrayList<>();
+        extraSelected.getItems().clear();
+        availableIngredientList = FXCollections.observableArrayList(initializedExtraList);
+        extraProvided.setItems(availableIngredientList);
     }
 }
