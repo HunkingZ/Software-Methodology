@@ -159,18 +159,15 @@ public class SceneAController implements Initializable {
 
     @FXML
     void openSceneB() throws IOException {
-
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../SceneB/sceneBLayout.fxml"));
-        SceneBController controller2 = loader.getController();
-
-        Scene scene = new Scene(loader.load(), 600, 400);
+        Parent orderDetails = loader.load();
+        SceneBController controllerB = loader.getController();
+        Scene scene = new Scene(orderDetails, 600, 400);
         Stage stage = new Stage();
         stage.setTitle("New Window");
         stage.setScene(scene);
         stage.show();
-        //controller2.setController(this);
-        //controller2.getDatabase(database);
+        controllerB.setController(this);
     }
 
     @Override
