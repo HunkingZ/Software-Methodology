@@ -72,11 +72,13 @@ public class SceneBController{
     @FXML
     void export() {
         try {
+            /*
             String orderInfo = OD_ListView.getSelectionModel().getSelectedItem();
             if (orderInfo == null) {
                 OD_textArea.setText("Please Select A OrderLine to save.");
                 return;
             }
+             */
             FileChooser chooser = new FileChooser();
             chooser.setTitle("Open target File for the export");
             chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"),
@@ -86,7 +88,13 @@ public class SceneBController{
 
             BufferedWriter writer = new BufferedWriter(new FileWriter(targetFile, true));
 
-            writer.append(orderInfo);
+            Order data = controllerA.getDatabase();
+            for (int i = 0; i < data.size(); i++) {
+                OrderLine orderLine = data.get(i);
+                String sandwichInfo = orderLine.getSandwichInfo();
+                writer.append(sandwichInfo + "\n");
+            }
+
             writer.close();
             OD_textArea.setText("Successfully Export the File.");
         } catch (IOException e) {
