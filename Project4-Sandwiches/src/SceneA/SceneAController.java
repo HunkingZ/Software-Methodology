@@ -53,6 +53,7 @@ public class SceneAController implements Initializable {
 
     @FXML
     private Label select_basic, select_price;
+
     @FXML
     void SandwichSelect() {
         String type = sandwichType.getSelectionModel().getSelectedItem().toString();
