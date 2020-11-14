@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 /**
  *
+ * @author Hanqing Zhao, Richard Xu
  */
 public class Fish extends Sandwich {
     private double price = 12.99;
@@ -43,6 +44,8 @@ public class Fish extends Sandwich {
      * @return
      */
     @Override public boolean add(Object obj) {
+        if (obj == null || !(obj instanceof Extra)) { return false; }
+
         if (extras.size() >= Sandwich.MAX_EXTRAS) { return false; }
 
         extras.add((Extra) obj);
@@ -56,6 +59,7 @@ public class Fish extends Sandwich {
      * @return
      */
     @Override public boolean remove(Object obj) {
+        if (obj == null || !(obj instanceof Extra)) { return false; }
 
         int index;
         for (int i = 0; i < extras.size(); i++) {

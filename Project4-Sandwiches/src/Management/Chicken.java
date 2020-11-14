@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 /**
  *
+ * @author Hanqing Zhao, Richard Xu
  */
 public class Chicken extends Sandwich {
     private double price = 8.99;
@@ -45,6 +46,8 @@ public class Chicken extends Sandwich {
      * @return
      */
     @Override public boolean add(Object obj) {
+        if (obj == null || !(obj instanceof Extra)) { return false; }
+
         if (extras.size() >= Sandwich.MAX_EXTRAS) { return false; }
 
         extras.add((Extra) obj);
@@ -58,6 +61,8 @@ public class Chicken extends Sandwich {
      * @return
      */
     @Override public boolean remove(Object obj) {
+        if (obj == null || !(obj instanceof Extra)) { return false; }
+
         int index;
         for (int i = 0; i < extras.size(); i++) {
             Extra extra = extras.get(i);

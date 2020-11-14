@@ -2,6 +2,7 @@ package Management;
 
 /**
  *
+ * @author Hanqing Zhao, Richard Xu
  */
 public class OrderLine {
     private int lineNumber;

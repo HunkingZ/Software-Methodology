@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 /**
  *
+ * @author Hanqing Zhao, Richard Xu
  */
 public class SceneBController{
     private SceneAController controllerA;
@@ -62,9 +63,8 @@ public class SceneBController{
 
     /**
      *
-     * @throws IOException
      */
-    @FXML void back() throws IOException {
+    @FXML void back() {
         this.controllerA.closeSceneB();
     }
 

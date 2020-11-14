@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 /**
  *
+ * @author Hanqing Zhao, Richard Xu
  */
 public class Order implements Customizable{
     public static int lineNumber;
@@ -23,6 +24,7 @@ public class Order implements Customizable{
      * @return
      */
     @Override public boolean add(Object obj) {
+        if (obj == null || !(obj instanceof OrderLine)) { return false; }
         orderLines.add((OrderLine) obj);
         return true;
     }
@@ -33,6 +35,7 @@ public class Order implements Customizable{
      * @return
      */
     @Override public boolean remove(Object obj) {
+        if (obj == null || !(obj instanceof OrderLine)) { return false; }
         int index;
 
         for (int i = 0; i < orderLines.size(); i++) {
@@ -72,7 +75,6 @@ public class Order implements Customizable{
         if (index < 0 || index >= orderLines.size()) { return null; }
         return orderLines.get(index);
     }
-
 
     /**
      *

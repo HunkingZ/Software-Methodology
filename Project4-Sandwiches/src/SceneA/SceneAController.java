@@ -24,6 +24,7 @@ import java.util.ResourceBundle;
 
 /**
  *
+ * @author Hanqing Zhao, Richard Xu
  */
 public class SceneAController implements Initializable {
 
@@ -175,9 +176,8 @@ public class SceneAController implements Initializable {
 
     /**
      *
-     * @throws IOException
      */
-    public void closeSceneB() throws IOException {
+    public void closeSceneB() {
         stageB.close();
     }
 

@@ -28,7 +28,7 @@ class OrderTest {
     OrderLine olf3 = new OrderLine(f3);
 
     @Test void add() {
-        System.out.println("ADD TEST");
+        System.out.println("ADD TEST: STANDARD, NULL, & EXTREME EDGE");
 
         order.add(olc1);
         order.add(olb1);
@@ -42,6 +42,9 @@ class OrderTest {
         order.add(olb3);
         order.add(olf3);
 
+        order.add(null);
+        order.add("test");
+
         print();
     }
 
@@ -51,7 +54,7 @@ class OrderTest {
         get();
         separate();
 
-        System.out.println("REMOVE TEST");
+        System.out.println("REMOVE TEST: STANDARD");
         explainRemove(olc2);
         explainRemove(olb3);
         order.remove(olc2);
@@ -61,7 +64,7 @@ class OrderTest {
         get();
         separate();
 
-        System.out.println("REMOVE TEST");
+        System.out.println("REMOVE TEST: EDGES");
         explainRemove(olc1);
         explainRemove(olf3);
         order.remove(olc1);
@@ -71,9 +74,35 @@ class OrderTest {
         get();
         separate();
 
-        System.out.println("REMOVE TEST");
+        System.out.println("REMOVE TEST: PREVIOUSLY REMOVED");
         explainRemove(olc1);
         order.remove(olc1);
+        print();
+        size();
+        get();
+        separate();
+
+        System.out.println("REMOVE TEST: NULL");
+        explainRemove(null);
+        order.remove(null);
+        print();
+        size();
+        get();
+        separate();
+
+        Extra e1 = new Extra("Extra1");
+        Extra e2 = new Extra("Extra2");
+        Extra e3 = new Extra("Extra3");
+
+        Sandwich s = new Beef();
+        s.add(e1);
+        s.add(e2);
+        s.add(e3);
+        OrderLine ol = new OrderLine(s);
+
+        System.out.println("REMOVE TEST: NON-EXISTENT");
+        explainRemove(ol);
+        order.remove(ol);
         print();
         size();
         get();
@@ -108,6 +137,10 @@ class OrderTest {
         System.out.println("\n- - - - -\n");
     }
     void explainRemove(OrderLine ol) {
+        if (ol == null) {
+            System.out.println("Removing 'null'");
+            return;
+        }
         System.out.println("Removing serial number: " + ol.getLineNumber());
     }
 }

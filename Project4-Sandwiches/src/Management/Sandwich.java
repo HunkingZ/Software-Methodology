@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 /**
  *
+ * @author Hanqing Zhao, Richard Xu
  */
 public abstract class Sandwich implements Customizable {
     static final int MAX_EXTRAS = 6;
