@@ -101,13 +101,13 @@ public class SceneAController implements Initializable {
         if (selectedExtra.contains(selectExtra)) {
             select_textArea.setText(selectExtra + " Can Not Be Added More Than Once.");
         } else {
-            if (selectedExtra.size() >= MAX_EXTRA_INGREDIENTS) {
+            Extra extra = new Extra(selectExtra);
+            if (!sandwich.add(extra)) {
                 select_textArea.setText("You Can Not Add More Than 6 Extra Ingredients.");
                 return;
             }
             selectedExtra.add(selectExtra);
-            Extra extra = new Extra(selectExtra);
-            sandwich.add(extra);
+
             price = sandwich.price();
             String textPrice = String.format("$%.2f", price);
             select_price.setText(textPrice);

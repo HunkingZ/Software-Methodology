@@ -1,13 +1,24 @@
 package Management;
 
+/**
+ *
+ */
 public class Extra {
     String name;
+
+    /**
+     *
+     * @param name
+     */
     public Extra(String name) {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
+    /**
+     *
+     * @return
+     */
+    @Override public String toString() {
         return name;
     }
 }

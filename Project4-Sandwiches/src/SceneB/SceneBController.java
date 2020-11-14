@@ -135,7 +135,7 @@ public class SceneBController{
         for (int i = 0; i < controllerA.getDatabase().size(); i++)  {
             total += controllerA.getDatabase().get(i).getPrice();
         }
-        OD_orderTotal.setText(String.format("%.2f", total));
+        OD_orderTotal.setText(String.format("$%.2f", total));
     }
 
     /**

@@ -2,13 +2,24 @@ package Management;
 
 import java.util.ArrayList;
 
-public class Chicken extends Sandwich{
+/**
+ *
+ */
+public class Chicken extends Sandwich {
     private double price = 8.99;
 
+    /**
+     *
+     * @return
+     */
     @Override public double price() {
         return price;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override public ArrayList<String> getBasic() {
         ArrayList<String> basicIngredient = new ArrayList<>();
         basicIngredient.add("Fried Chicken");
@@ -20,24 +31,33 @@ public class Chicken extends Sandwich{
         //return basic1 + ","+ basic2 + "," + basic3;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override public String getType() {
         return "Chicken";
     }
 
+    /**
+     *
+     * @param obj
+     * @return
+     */
     @Override public boolean add(Object obj) {
+        if (extras.size() >= Sandwich.MAX_EXTRAS) { return false; }
+
         extras.add((Extra) obj);
-        price += 1.99;
+        price += Sandwich.PER_EXTRA;
         return true;
     }
 
+    /**
+     *
+     * @param obj
+     * @return
+     */
     @Override public boolean remove(Object obj) {
-        /*
-        if (extraArray.remove(obj)) {
-            price -= 1.99;
-            return true;
-        }
-
-         */
         int index;
         for (int i = 0; i < extras.size(); i++) {
             Extra extra = extras.get(i);
@@ -51,11 +71,15 @@ public class Chicken extends Sandwich{
                 break;
             }
         }
-        //extras.remove(obj);
-        price -= 1.99;
+
+        price -= Sandwich.PER_EXTRA;
         return true;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Chicken/Fried Chicken,Spicy Sauce,Pickles");
@@ -63,5 +87,4 @@ public class Chicken extends Sandwich{
 
         return sb.toString();
     }
-
 }
