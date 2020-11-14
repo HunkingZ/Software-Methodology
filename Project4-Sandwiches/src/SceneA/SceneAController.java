@@ -33,7 +33,6 @@ public class SceneAController implements Initializable {
     private OrderLine orderLine;
     private double price;
     private ArrayList<String> selectedExtra;
-    private final int MAX_EXTRA_INGREDIENTS = 6;
 
     private final ObservableList<String> initializedExtraList = FXCollections.observableArrayList("Bacon", "Pesto",
             "Pepper Jelly", "Pepper", "Mayonnaise", "Pickled Pepper",
@@ -151,8 +150,7 @@ public class SceneAController implements Initializable {
             return;
         }
 
-        orderLine = new OrderLine(database.lineNumber, sandwich);
-        database.lineNumber++;
+        orderLine = new OrderLine(sandwich);
         database.add(orderLine);
         select_textArea.setText(sandwich.getType() + " Sandwich Added to Your Shopping Cart.");
         SandwichSelect();
@@ -220,7 +218,7 @@ public class SceneAController implements Initializable {
      *
      * @param order
      */
-    public void setDatabase(Order order) {
+    public void resetDatabase(Order order) {
         database = order;
     }
 

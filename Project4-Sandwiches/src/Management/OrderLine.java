@@ -10,11 +10,10 @@ public class OrderLine {
 
     /**
      *
-     * @param lineNumber
      * @param sandwich
      */
-    public OrderLine(int lineNumber, Sandwich sandwich) {
-        this.lineNumber = lineNumber;
+    public OrderLine(Sandwich sandwich) {
+        this.lineNumber = Order.lineNumber++;
         this.sandwich = sandwich;
         this.price = sandwich.price();
     }
@@ -24,7 +23,7 @@ public class OrderLine {
      * @param orderLine
      */
     public OrderLine(OrderLine orderLine) {
-        this.lineNumber = orderLine.lineNumber;
+        this.lineNumber = Order.lineNumber++;
         this.sandwich = orderLine.sandwich;
         this.price = orderLine.sandwich.price();
     }
@@ -35,16 +34,6 @@ public class OrderLine {
      */
     public int getLineNumber() {
         return lineNumber;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getSandwichInfo() {
-        String sb = "Line Number :" + lineNumber + "\n" +
-                sandwich.toString();
-        return sb;
     }
 
     /**

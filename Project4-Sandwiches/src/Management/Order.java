@@ -34,8 +34,10 @@ public class Order implements Customizable{
      */
     @Override public boolean remove(Object obj) {
         int index;
+
         for (int i = 0; i < orderLines.size(); i++) {
             OrderLine orderLine = orderLines.get(i);
+
             if (orderLine.getLineNumber() == (((OrderLine) obj).getLineNumber())) {
                 index = i;
                 int j = index;
@@ -45,6 +47,8 @@ public class Order implements Customizable{
 
                 }
                 orderLines.remove(j);
+                Order.lineNumber--;
+                reorganize(index);
                 return true;
             }
         }
@@ -65,6 +69,19 @@ public class Order implements Customizable{
      * @return
      */
     public OrderLine get(int index) {
+        if (index < 0 || index >= orderLines.size()) { return null; }
         return orderLines.get(index);
+    }
+
+
+    /**
+     *
+     * @param index
+     * @return
+     */
+    private void reorganize(int index) {
+        for (int i = index; i < orderLines.size(); i++) {
+            orderLines.get(i).setLineNumber(++index);
+        }
     }
 }

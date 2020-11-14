@@ -35,8 +35,8 @@ public class SceneBController{
             int index = OD_ListView.getSelectionModel().getSelectedIndex();
             Order database = controllerA.getDatabase();
             OrderLine orderLine = new OrderLine(database.get(index));
+            if (orderLine == null) { throw new Exception(); }
             database.add(orderLine);
-            controllerA.setDatabase(reformatOrder(database));
             OD_textArea.setText("Successfully Added The Same OrderLine!");
             start();
         } catch (Exception e) {
@@ -51,9 +51,9 @@ public class SceneBController{
         try {
             int index = OD_ListView.getSelectionModel().getSelectedIndex();
             Order database = controllerA.getDatabase();
-            OrderLine orderLine = new OrderLine(database.get(index));
+            OrderLine orderLine = database.get(index);
+            if (orderLine == null) { throw new Exception(); }
             database.remove(orderLine);
-            controllerA.setDatabase(reformatOrder(database));
             start();
         } catch (Exception e) {
             OD_textArea.setText("Please Select a OrderLine to Remove.");
@@ -77,7 +77,7 @@ public class SceneBController{
             return;
         }
 
-        controllerA.setDatabase(new Order());
+        controllerA.resetDatabase(new Order());
         OD_textArea.setText("Order details is cleared!");
         start();
     }
@@ -99,6 +99,7 @@ public class SceneBController{
             Order data = controllerA.getDatabase();
             for (int i = 0; i < data.size(); i++) {
                 OrderLine orderLine = data.get(i);
+                if (orderLine == null) { throw new IOException(); }
                 String sandwichInfo = orderLine.toString();
                 writer.append(sandwichInfo + "\n");
             }
@@ -149,17 +150,5 @@ public class SceneBController{
             result.add(database.get(i).toString());
         }
         return result;
-    }
-
-    /**
-     *
-     * @param database
-     * @return
-     */
-    private Order reformatOrder(Order database) {
-        for (int i = 0; i < database.size(); i++) {
-            database.get(i).setLineNumber(i + 1);
-        }
-        return database;
     }
 }
