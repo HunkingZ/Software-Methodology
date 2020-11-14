@@ -3,6 +3,8 @@ package Management;
 import java.util.ArrayList;
 
 /**
+ * Order database
+ * Holds all order information
  *
  * @author Hanqing Zhao, Richard Xu
  */
@@ -11,7 +13,7 @@ public class Order implements Customizable{
     private ArrayList<OrderLine> orderLines;
 
     /**
-     *
+     * Constructor for the database
      */
     public Order() {
         orderLines = new ArrayList<>();
@@ -19,9 +21,10 @@ public class Order implements Customizable{
     }
 
     /**
+     * Adds an order to the order database
      *
-     * @param obj
-     * @return
+     * @param obj OrderLine to be added
+     * @return True if successful, False if otherwise
      */
     @Override public boolean add(Object obj) {
         if (obj == null || !(obj instanceof OrderLine)) { return false; }
@@ -30,9 +33,10 @@ public class Order implements Customizable{
     }
 
     /**
+     * Removes an order from the order database
      *
-     * @param obj
-     * @return
+     * @param obj OrderLine to be removed
+     * @return True if successful, False if otherwise
      */
     @Override public boolean remove(Object obj) {
         if (obj == null || !(obj instanceof OrderLine)) { return false; }
@@ -59,17 +63,19 @@ public class Order implements Customizable{
     }
 
     /**
+     * Gets the size of the database
      *
-     * @return
+     * @return Size of the database
      */
     public int size() {
         return orderLines.size();
     }
 
     /**
+     * Gets a specific order from the order database
      *
-     * @param index
-     * @return
+     * @param index Index of the order in the database
+     * @return An order in the database
      */
     public OrderLine get(int index) {
         if (index < 0 || index >= orderLines.size()) { return null; }
@@ -77,9 +83,10 @@ public class Order implements Customizable{
     }
 
     /**
+     * Reformats the order database
+     * Used when removing an order from the order database
      *
-     * @param index
-     * @return
+     * @param index Index of the removed order
      */
     private void reorganize(int index) {
         for (int i = index; i < orderLines.size(); i++) {

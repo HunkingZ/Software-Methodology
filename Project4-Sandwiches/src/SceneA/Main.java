@@ -7,14 +7,17 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
+ * Primary window initialization class
  *
+ * @author Hanqing Zhao, Richard Xu
  */
 public class Main extends Application {
 
     /**
+     * Initial window loading method
      *
-     * @param primaryStage
-     * @throws Exception
+     * @param primaryStage Stage to load on launch
+     * @throws Exception if failed to load fxml information
      */
     @Override public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("sceneALayout.fxml"));
@@ -24,6 +27,7 @@ public class Main extends Application {
     }
 
     /**
+     * Program application executable
      *
      * @param args
      */

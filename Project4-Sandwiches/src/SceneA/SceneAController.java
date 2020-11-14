@@ -23,11 +23,11 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
+ * Controller Manager for primary order screen
  *
  * @author Hanqing Zhao, Richard Xu
  */
 public class SceneAController implements Initializable {
-
     private Stage stageB = new Stage();
     private Sandwich sandwich;
     private Order database = new Order();
@@ -48,7 +48,7 @@ public class SceneAController implements Initializable {
     @FXML private Label select_basic, select_price;
 
     /**
-     *
+     * Previews and displays the information of a sandwich type
      */
     @FXML void SandwichSelect() {
         String type = sandwichType.getSelectionModel().getSelectedItem().toString();
@@ -93,7 +93,8 @@ public class SceneAController implements Initializable {
     }
 
     /**
-     *
+     * Adds an extra ingredient to the selected sandwich
+     * Each extra ingredient is unique and can only be added once
      */
     @FXML void addExtra() {
         String selectExtra = extraProvided.getSelectionModel().getSelectedItem();
@@ -120,7 +121,7 @@ public class SceneAController implements Initializable {
     }
 
     /**
-     *
+     * Removes an extra ingredient from the selected sandwich
      */
     @FXML void removeExtra() {
         String delete = extraSelected.getSelectionModel().getSelectedItem();
@@ -143,7 +144,7 @@ public class SceneAController implements Initializable {
     }
 
     /**
-     *
+     * Adds the selected sandwich with its corresponding basic information and extra ingredients to the Order
      */
     @FXML void select_add() {
         if (sandwich == null) {
@@ -158,8 +159,9 @@ public class SceneAController implements Initializable {
     }
 
     /**
+     * Opens a new window displaying current order details
      *
-     * @throws IOException
+     * @throws IOException if failed to load fxml information
      */
     @FXML void openSceneB() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../SceneB/sceneBLayout.fxml"));
@@ -175,16 +177,17 @@ public class SceneAController implements Initializable {
     }
 
     /**
-     *
+     * Exits the window of the current order details
      */
     public void closeSceneB() {
         stageB.close();
     }
 
     /**
+     * Gets the basic ingredients of the selected sandwich
      *
-     * @param sand
-     * @return
+     * @param sand The sandwich to find information
+     * @return String appended with basic ingredients
      */
     private String getBasic(Sandwich sand) {
         ArrayList<String> basicList = sand.getBasic();
@@ -197,7 +200,7 @@ public class SceneAController implements Initializable {
     }
 
     /**
-     *
+     * Defaults & initializes the extra ingredients lists
      */
     private void selectInitialize() {
         selectedExtra = new ArrayList<>();
@@ -207,22 +210,26 @@ public class SceneAController implements Initializable {
     }
 
     /**
+     * Gets the current database's reference
      *
-     * @return
+     * @return This database's reference
      */
     public Order getDatabase() {
         return database;
     }
 
     /**
+     * Re-references the database to another database
+     * Used to sync with SceneBController actions
      *
-     * @param order
+     * @param order The database to re-reference this database to
      */
     public void resetDatabase(Order order) {
         database = order;
     }
 
     /**
+     * Initializes the window on start-up
      *
      * @param url
      * @param resourceBundle

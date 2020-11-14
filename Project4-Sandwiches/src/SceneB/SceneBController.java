@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
+ * Controller Manager for order details screen
  *
  * @author Hanqing Zhao, Richard Xu
  */
@@ -29,7 +30,7 @@ public class SceneBController{
     @FXML private Label OD_orderTotal;
 
     /**
-     *
+     * Copies a selected order and adds it to the end of the order database
      */
     @FXML void OD_Copy() {
         try {
@@ -46,7 +47,7 @@ public class SceneBController{
     }
 
     /**
-     *
+     * Removes a selected order and reformats the order database
      */
     @FXML void OD_Remove() {
         try {
@@ -62,14 +63,14 @@ public class SceneBController{
     }
 
     /**
-     *
+     * Exits this window
      */
     @FXML void back() {
         this.controllerA.closeSceneB();
     }
 
     /**
-     *
+     * Completely clear and re-initializes the order database
      */
     @FXML void clear() {
         if (controllerA.getDatabase().size() == 0) {
@@ -83,7 +84,7 @@ public class SceneBController{
     }
 
     /**
-     *
+     * Exports the order database to a text file
      */
     @FXML void export() {
         try {
@@ -115,15 +116,16 @@ public class SceneBController{
 
 
     /**
+     * Links a connection from SceneAController
      *
-     * @param controller
+     * @param controller The controller reference of the primary window
      */
     public void setController(SceneAController controller) {
         controllerA = controller;
     }
 
     /**
-     *
+     * Initializes and instantiates the display list view for the order database
      */
     public void start() {
         ObservableList<String> observableList = FXCollections.observableArrayList();
@@ -140,9 +142,10 @@ public class SceneBController{
     }
 
     /**
+     * Gets the order details of every order in the order database
      *
-     * @param database
-     * @return
+     * @param database The order database to parse
+     * @return List of individual order details
      */
     private ArrayList<String> getOrderDetails(Order database) {
         ArrayList<String> result = new ArrayList<>();
