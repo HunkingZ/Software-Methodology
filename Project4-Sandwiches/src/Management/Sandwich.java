@@ -3,6 +3,7 @@ package Management;
 import java.util.ArrayList;
 
 /**
+ * Sandwich information
  *
  * @author Hanqing Zhao, Richard Xu
  */
@@ -12,35 +13,40 @@ public abstract class Sandwich implements Customizable {
     protected ArrayList<Extra> extras;
 
     /**
-     *
+     * Generic constructor for information that all sandwiches will have
      */
     public Sandwich() {
         extras = new ArrayList<>();
     }
 
     /**
+     * Gets the total price of the sandwich
+     * (Basic Ingredients) + (Extra Ingredients)
      *
-     * @return
+     * @return The totla price
      */
     public abstract double price();
 
     /**
+     * Gets the basic ingredients of a sandwich type
      *
-     * @return
+     * @return List of the basic ingredients
      */
     public abstract ArrayList<String> getBasic();
 
     /**
+     * Gets the type of the sandwich
      *
-     * @return
+     * @return String of the sandwich type
      */
     public abstract String getType();
 
     /**
+     * Generic information that all sandwich types will share
      *
-     * @return
+     * @return String of the generic sandwich information
      */
-    public String toString() {
+    @Override public String toString() {
         StringBuilder sb = new StringBuilder();
 
         sb.append("/");
