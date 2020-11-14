@@ -151,7 +151,7 @@ public class SceneAController implements Initializable {
             return;
         }
 
-        orderLine = new OrderLine(database.lineNumber, sandwich, sandwich.price());
+        orderLine = new OrderLine(database.lineNumber, sandwich);
         database.lineNumber++;
         database.add(orderLine);
         select_textArea.setText(sandwich.getType() + " Sandwich Added to Your Shopping Cart.");

@@ -12,9 +12,8 @@ public class OrderLine {
      *
      * @param lineNumber
      * @param sandwich
-     * @param price
      */
-    public OrderLine(int lineNumber, Sandwich sandwich, double price) {
+    public OrderLine(int lineNumber, Sandwich sandwich) {
         this.lineNumber = lineNumber;
         this.sandwich = sandwich;
         this.price = sandwich.price();
