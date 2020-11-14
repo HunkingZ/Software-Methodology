@@ -3,6 +3,7 @@ package Management;
 import java.util.ArrayList;
 
 /**
+ * Information about a fish sandwich
  *
  * @author Hanqing Zhao, Richard Xu
  */

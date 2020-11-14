@@ -3,6 +3,7 @@ package Management;
 import java.util.ArrayList;
 
 /**
+ * Information about a beef sandwich
  *
  * @author Hanqing Zhao, Richard Xu
  */
