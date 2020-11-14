@@ -22,13 +22,15 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ *
+ */
 public class SceneAController implements Initializable {
 
     private Stage stageB = new Stage();
     private Sandwich sandwich;
     private Order database = new Order();
     private OrderLine orderLine;
-    //private int lineNum = 1;
     private double price;
     private ArrayList<String> selectedExtra;
     private final int MAX_EXTRA_INGREDIENTS = 6;
@@ -39,23 +41,16 @@ public class SceneAController implements Initializable {
     private ObservableList<String> availableIngredientList = FXCollections.observableArrayList(initializedExtraList);
     private ObservableList<String> selectedIngredientList = FXCollections.observableArrayList();
 
-    @FXML
-    private ComboBox sandwichType;
+    @FXML private ComboBox sandwichType;
+    @FXML private ImageView image;
+    @FXML private ListView<String> extraProvided, extraSelected;
+    @FXML private TextArea select_textArea;
+    @FXML private Label select_basic, select_price;
 
-    @FXML
-    private ImageView image;
-
-    @FXML
-    private ListView<String> extraProvided, extraSelected;
-
-    @FXML
-    private TextArea select_textArea;
-
-    @FXML
-    private Label select_basic, select_price;
-
-    @FXML
-    void SandwichSelect() {
+    /**
+     *
+     */
+    @FXML void SandwichSelect() {
         String type = sandwichType.getSelectionModel().getSelectedItem().toString();
         switch (type) {
             case "Beef" : {
@@ -97,8 +92,10 @@ public class SceneAController implements Initializable {
         }
     }
 
-    @FXML
-    void addExtra() {
+    /**
+     *
+     */
+    @FXML void addExtra() {
         String selectExtra = extraProvided.getSelectionModel().getSelectedItem();
 
         if (selectedExtra.contains(selectExtra)) {
@@ -122,8 +119,10 @@ public class SceneAController implements Initializable {
         extraSelected.setItems(selectedIngredientList);
     }
 
-    @FXML
-    void removeExtra() {
+    /**
+     *
+     */
+    @FXML void removeExtra() {
         String delete = extraSelected.getSelectionModel().getSelectedItem();
         if (selectedExtra.contains(delete)) {
             selectedExtra.remove(delete);
@@ -143,8 +142,10 @@ public class SceneAController implements Initializable {
         extraProvided.setItems(availableIngredientList);
     }
 
-    @FXML
-    void select_add() {
+    /**
+     *
+     */
+    @FXML void select_add() {
         if (sandwich == null) {
             select_textArea.setText("Please Select Your Sandwich.");
             return;
@@ -157,9 +158,11 @@ public class SceneAController implements Initializable {
         SandwichSelect();
     }
 
-
-    @FXML
-    void openSceneB() throws IOException {
+    /**
+     *
+     * @throws IOException
+     */
+    @FXML void openSceneB() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../SceneB/sceneBLayout.fxml"));
         Parent orderDetails = loader.load();
         SceneBController controllerB = loader.getController();
@@ -172,19 +175,19 @@ public class SceneAController implements Initializable {
         controllerB.start();
     }
 
+    /**
+     *
+     * @throws IOException
+     */
     public void closeSceneB() throws IOException {
         stageB.close();
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        ObservableList<String> list = FXCollections.observableArrayList("Chicken", "Beef", "Fish");
-        sandwichType.setItems(list);
-        sandwichType.setValue(list.get(0));
-        extraProvided.getItems().addAll(availableIngredientList);
-        SandwichSelect();
-    }
-
+    /**
+     *
+     * @param sand
+     * @return
+     */
     private String getBasic(Sandwich sand) {
         ArrayList<String> basicList = sand.getBasic();
         StringBuilder sb = new StringBuilder();
@@ -195,6 +198,9 @@ public class SceneAController implements Initializable {
         return sb.toString();
     }
 
+    /**
+     *
+     */
     private void selectInitialize() {
         selectedExtra = new ArrayList<>();
         extraSelected.getItems().clear();
@@ -202,12 +208,32 @@ public class SceneAController implements Initializable {
         extraProvided.setItems(availableIngredientList);
     }
 
+    /**
+     *
+     * @return
+     */
     public Order getDatabase() {
         return database;
     }
 
+    /**
+     *
+     * @param order
+     */
     public void setDatabase(Order order) {
         database = order;
     }
 
+    /**
+     *
+     * @param url
+     * @param resourceBundle
+     */
+    @Override public void initialize(URL url, ResourceBundle resourceBundle) {
+        ObservableList<String> list = FXCollections.observableArrayList("Chicken", "Beef", "Fish");
+        sandwichType.setItems(list);
+        sandwichType.setValue(list.get(0));
+        extraProvided.getItems().addAll(availableIngredientList);
+        SandwichSelect();
+    }
 }

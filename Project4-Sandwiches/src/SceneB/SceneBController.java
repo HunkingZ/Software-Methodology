@@ -17,20 +17,20 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
+/**
+ *
+ */
 public class SceneBController{
-
-    private ObservableList<String> orderList = FXCollections.observableArrayList();
     private SceneAController controllerA;
-    @FXML
-    private ListView<String> OD_ListView;
-    @FXML
-    private TextArea OD_textArea;
-    @FXML
-    private Label OD_orderTotal;
 
-    @FXML
-    void OD_Copy() {
+    @FXML private ListView<String> OD_ListView;
+    @FXML private TextArea OD_textArea;
+    @FXML private Label OD_orderTotal;
+
+    /**
+     *
+     */
+    @FXML void OD_Copy() {
         try {
             int index = OD_ListView.getSelectionModel().getSelectedIndex();
             Order database = controllerA.getDatabase();
@@ -44,8 +44,10 @@ public class SceneBController{
         }
     }
 
-    @FXML
-    void OD_Remove() {
+    /**
+     *
+     */
+    @FXML void OD_Remove() {
         try {
             int index = OD_ListView.getSelectionModel().getSelectedIndex();
             Order database = controllerA.getDatabase();
@@ -58,19 +60,32 @@ public class SceneBController{
         }
     }
 
-    @FXML
-    void back() throws IOException {
+    /**
+     *
+     * @throws IOException
+     */
+    @FXML void back() throws IOException {
         this.controllerA.closeSceneB();
     }
 
-    @FXML
-    void clear() {
+    /**
+     *
+     */
+    @FXML void clear() {
+        if (controllerA.getDatabase().size() == 0) {
+            OD_textArea.setText("Order details is already empty!");
+            return;
+        }
+
         controllerA.setDatabase(new Order());
+        OD_textArea.setText("Order details is cleared!");
         start();
     }
 
-    @FXML
-    void export() {
+    /**
+     *
+     */
+    @FXML void export() {
         try {
             FileChooser chooser = new FileChooser();
             chooser.setTitle("Open target File for the export");
@@ -98,10 +113,17 @@ public class SceneBController{
     }
 
 
+    /**
+     *
+     * @param controller
+     */
     public void setController(SceneAController controller) {
         controllerA = controller;
     }
 
+    /**
+     *
+     */
     public void start() {
         ObservableList<String> observableList = FXCollections.observableArrayList();
         ArrayList<String> list = getOrderDetails(controllerA.getDatabase());
@@ -116,6 +138,11 @@ public class SceneBController{
         OD_orderTotal.setText(String.format("%.2f", total));
     }
 
+    /**
+     *
+     * @param database
+     * @return
+     */
     private ArrayList<String> getOrderDetails(Order database) {
         ArrayList<String> result = new ArrayList<>();
         for (int i = 0; i < database.size(); i++) {
@@ -124,6 +151,11 @@ public class SceneBController{
         return result;
     }
 
+    /**
+     *
+     * @param database
+     * @return
+     */
     private Order reformatOrder(Order database) {
         for (int i = 0; i < database.size(); i++) {
             database.get(i).setLineNumber(i + 1);
