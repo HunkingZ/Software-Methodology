@@ -37,7 +37,7 @@ public class SceneAController implements Initializable {
 
     private final ObservableList<String> initializedExtraList = FXCollections.observableArrayList("Bacon", "Pesto",
             "Pepper Jelly", "Pepper", "Mayonnaise", "Pickled Pepper",
-            "Ranch", "Avocado", "Mozzarella", "Tomatoes", "walnuts");
+            "Ranch", "Avocado", "Mozzarella", "Tomatoes", "Walnuts");
     private ObservableList<String> availableIngredientList = FXCollections.observableArrayList(initializedExtraList);
     private ObservableList<String> selectedIngredientList = FXCollections.observableArrayList();
 
