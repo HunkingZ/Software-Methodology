@@ -22,40 +22,35 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * Controller Manager for primary order screen
+ *
+ * @author Hanqing Zhao, Richard Xu
+ */
 public class SceneAController implements Initializable {
-
     private Stage stageB = new Stage();
     private Sandwich sandwich;
     private Order database = new Order();
     private OrderLine orderLine;
-    //private int lineNum = 1;
     private double price;
     private ArrayList<String> selectedExtra;
-    private final int MAX_EXTRA_INGREDIENTS = 6;
 
     private final ObservableList<String> initializedExtraList = FXCollections.observableArrayList("Bacon", "Pesto",
             "Pepper Jelly", "Pepper", "Mayonnaise", "Pickled Pepper",
-            "Ranch", "Avocado", "Mozzarella", "Tomatoes", "walnuts");
+            "Ranch", "Avocado", "Mozzarella", "Tomatoes", "Walnuts");
     private ObservableList<String> availableIngredientList = FXCollections.observableArrayList(initializedExtraList);
     private ObservableList<String> selectedIngredientList = FXCollections.observableArrayList();
 
-    @FXML
-    private ComboBox sandwichType;
+    @FXML private ComboBox sandwichType;
+    @FXML private ImageView image;
+    @FXML private ListView<String> extraProvided, extraSelected;
+    @FXML private TextArea select_textArea;
+    @FXML private Label select_basic, select_price;
 
-    @FXML
-    private ImageView image;
-
-    @FXML
-    private ListView<String> extraProvided, extraSelected;
-
-    @FXML
-    private TextArea select_textArea;
-
-    @FXML
-    private Label select_basic, select_price;
-
-    @FXML
-    void SandwichSelect() {
+    /**
+     * Previews and displays the information of a sandwich type
+     */
+    @FXML void SandwichSelect() {
         String type = sandwichType.getSelectionModel().getSelectedItem().toString();
         switch (type) {
             case "Beef" : {
@@ -97,20 +92,23 @@ public class SceneAController implements Initializable {
         }
     }
 
-    @FXML
-    void addExtra() {
+    /**
+     * Adds an extra ingredient to the selected sandwich
+     * Each extra ingredient is unique and can only be added once
+     */
+    @FXML void addExtra() {
         String selectExtra = extraProvided.getSelectionModel().getSelectedItem();
 
         if (selectedExtra.contains(selectExtra)) {
             select_textArea.setText(selectExtra + " Can Not Be Added More Than Once.");
         } else {
-            if (selectedExtra.size() >= MAX_EXTRA_INGREDIENTS) {
+            Extra extra = new Extra(selectExtra);
+            if (!sandwich.add(extra)) {
                 select_textArea.setText("You Can Not Add More Than 6 Extra Ingredients.");
                 return;
             }
             selectedExtra.add(selectExtra);
-            Extra extra = new Extra(selectExtra);
-            sandwich.add(extra);
+
             price = sandwich.price();
             String textPrice = String.format("$%.2f", price);
             select_price.setText(textPrice);
@@ -122,8 +120,10 @@ public class SceneAController implements Initializable {
         extraSelected.setItems(selectedIngredientList);
     }
 
-    @FXML
-    void removeExtra() {
+    /**
+     * Removes an extra ingredient from the selected sandwich
+     */
+    @FXML void removeExtra() {
         String delete = extraSelected.getSelectionModel().getSelectedItem();
         if (selectedExtra.contains(delete)) {
             selectedExtra.remove(delete);
@@ -143,23 +143,27 @@ public class SceneAController implements Initializable {
         extraProvided.setItems(availableIngredientList);
     }
 
-    @FXML
-    void select_add() {
+    /**
+     * Adds the selected sandwich with its corresponding basic information and extra ingredients to the Order
+     */
+    @FXML void select_add() {
         if (sandwich == null) {
             select_textArea.setText("Please Select Your Sandwich.");
             return;
         }
 
-        orderLine = new OrderLine(database.lineNumber, sandwich, sandwich.price());
-        database.lineNumber++;
+        orderLine = new OrderLine(sandwich);
         database.add(orderLine);
         select_textArea.setText(sandwich.getType() + " Sandwich Added to Your Shopping Cart.");
         SandwichSelect();
     }
 
-
-    @FXML
-    void openSceneB() throws IOException {
+    /**
+     * Opens a new window displaying current order details
+     *
+     * @throws IOException if failed to load fxml information
+     */
+    @FXML void openSceneB() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../SceneB/sceneBLayout.fxml"));
         Parent orderDetails = loader.load();
         SceneBController controllerB = loader.getController();
@@ -172,19 +176,19 @@ public class SceneAController implements Initializable {
         controllerB.start();
     }
 
-    public void closeSceneB() throws IOException {
+    /**
+     * Exits the window of the current order details
+     */
+    public void closeSceneB() {
         stageB.close();
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        ObservableList<String> list = FXCollections.observableArrayList("Chicken", "Beef", "Fish");
-        sandwichType.setItems(list);
-        sandwichType.setValue(list.get(0));
-        extraProvided.getItems().addAll(availableIngredientList);
-        SandwichSelect();
-    }
-
+    /**
+     * Gets the basic ingredients of the selected sandwich
+     *
+     * @param sand The sandwich to find information
+     * @return String appended with basic ingredients
+     */
     private String getBasic(Sandwich sand) {
         ArrayList<String> basicList = sand.getBasic();
         StringBuilder sb = new StringBuilder();
@@ -195,6 +199,9 @@ public class SceneAController implements Initializable {
         return sb.toString();
     }
 
+    /**
+     * Defaults & initializes the extra ingredients lists
+     */
     private void selectInitialize() {
         selectedExtra = new ArrayList<>();
         extraSelected.getItems().clear();
@@ -202,12 +209,36 @@ public class SceneAController implements Initializable {
         extraProvided.setItems(availableIngredientList);
     }
 
+    /**
+     * Gets the current database's reference
+     *
+     * @return This database's reference
+     */
     public Order getDatabase() {
         return database;
     }
 
-    public void setDatabase(Order order) {
+    /**
+     * Re-references the database to another database
+     * Used to sync with SceneBController actions
+     *
+     * @param order The database to re-reference this database to
+     */
+    public void resetDatabase(Order order) {
         database = order;
     }
 
+    /**
+     * Initializes the window on start-up
+     *
+     * @param url
+     * @param resourceBundle
+     */
+    @Override public void initialize(URL url, ResourceBundle resourceBundle) {
+        ObservableList<String> list = FXCollections.observableArrayList("Chicken", "Beef", "Fish");
+        sandwichType.setItems(list);
+        sandwichType.setValue(list.get(0));
+        extraProvided.getItems().addAll(availableIngredientList);
+        SandwichSelect();
+    }
 }

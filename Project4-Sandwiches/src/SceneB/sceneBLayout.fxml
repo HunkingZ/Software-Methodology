@@ -5,16 +5,25 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SceneB.SceneBController">
    <children>
-      <Button layoutX="14.0" layoutY="302.0" mnemonicParsing="false" onAction="#OD_Copy" text="+ Same Order Line" />
+      <Button layoutX="14.0" layoutY="302.0" mnemonicParsing="false" onAction="#OD_Copy" prefHeight="25.0" prefWidth="132.0" text="+ Same Order Line" />
       <ListView fx:id="OD_ListView" prefHeight="287.0" prefWidth="600.0" />
-      <Button layoutX="167.0" layoutY="302.0" mnemonicParsing="false" onAction="#OD_Remove" text="- Remove Order Line" />
-      <Button layoutX="47.0" layoutY="344.0" mnemonicParsing="false" onAction="#clear" text="Clear Order" />
-      <Button layoutX="205.0" layoutY="344.0" mnemonicParsing="false" onAction="#back" text="Back" />
-      <Button layoutX="518.0" layoutY="344.0" mnemonicParsing="false" onAction="#export" text="Save to File" />
-      <Label fx:id="OD_orderTotal" layoutX="543.0" layoutY="287.0" />
-      <TextArea fx:id="OD_textArea" layoutX="312.0" layoutY="302.0" prefHeight="17.0" prefWidth="201.0" wrapText="true" />
+      <Button layoutX="159.0" layoutY="302.0" mnemonicParsing="false" onAction="#OD_Remove" prefHeight="25.0" prefWidth="132.0" text="- Remove Order Line" />
+      <Button layoutX="14.0" layoutY="357.0" mnemonicParsing="false" onAction="#clear" prefHeight="25.0" prefWidth="132.0" text="Clear Order" />
+      <Button layoutX="159.0" layoutY="357.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="132.0" text="Back" />
+      <Button layoutX="510.0" layoutY="300.0" mnemonicParsing="false" onAction="#export" prefHeight="88.0" prefWidth="82.0" text="Save to File" />
+      <Label fx:id="OD_orderTotal" layoutX="413.0" layoutY="300.0" prefHeight="30.0" prefWidth="87.0" text="0.00">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font></Label>
+      <TextArea fx:id="OD_textArea" layoutX="300.0" layoutY="338.0" prefHeight="50.0" prefWidth="201.0" wrapText="true" />
+      <Label layoutX="314.0" layoutY="301.0" text="Total Price:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

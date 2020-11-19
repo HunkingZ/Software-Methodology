@@ -2,27 +2,49 @@ package Management;
 
 import java.util.ArrayList;
 
+/**
+ * Order database
+ * Holds all order information
+ *
+ * @author Hanqing Zhao, Richard Xu
+ */
 public class Order implements Customizable{
-
     public static int lineNumber;
     private ArrayList<OrderLine> orderLines;
 
+    /**
+     * Constructor for the database
+     */
     public Order() {
         orderLines = new ArrayList<>();
         this.lineNumber = 1;
     }
 
-    @Override
-    public boolean add(Object obj) {
+    /**
+     * Adds an order to the order database
+     *
+     * @param obj OrderLine to be added
+     * @return True if successful, False if otherwise
+     */
+    @Override public boolean add(Object obj) {
+        if (obj == null || !(obj instanceof OrderLine)) { return false; }
         orderLines.add((OrderLine) obj);
         return true;
     }
 
-    @Override
-    public boolean remove(Object obj) {
+    /**
+     * Removes an order from the order database
+     *
+     * @param obj OrderLine to be removed
+     * @return True if successful, False if otherwise
+     */
+    @Override public boolean remove(Object obj) {
+        if (obj == null || !(obj instanceof OrderLine)) { return false; }
         int index;
+
         for (int i = 0; i < orderLines.size(); i++) {
             OrderLine orderLine = orderLines.get(i);
+
             if (orderLine.getLineNumber() == (((OrderLine) obj).getLineNumber())) {
                 index = i;
                 int j = index;
@@ -32,27 +54,43 @@ public class Order implements Customizable{
 
                 }
                 orderLines.remove(j);
+                Order.lineNumber--;
+                reorganize(index);
                 return true;
             }
         }
         return false;
     }
 
-    public String print() {
-        StringBuilder sb = new StringBuilder();
-        for (OrderLine orderLine : orderLines) {
-            sb.append(orderLine.getSandwichInfo()).append("\n----------\n");
-        }
-        sb.append("Amount of Order : ").append(orderLines.size());
-        return sb.toString();
-    }
-
+    /**
+     * Gets the size of the database
+     *
+     * @return Size of the database
+     */
     public int size() {
         return orderLines.size();
     }
 
+    /**
+     * Gets a specific order from the order database
+     *
+     * @param index Index of the order in the database
+     * @return An order in the database
+     */
     public OrderLine get(int index) {
+        if (index < 0 || index >= orderLines.size()) { return null; }
         return orderLines.get(index);
     }
 
+    /**
+     * Reformats the order database
+     * Used when removing an order from the order database
+     *
+     * @param index Index of the removed order
+     */
+    private void reorganize(int index) {
+        for (int i = index; i < orderLines.size(); i++) {
+            orderLines.get(i).setLineNumber(++index);
+        }
+    }
 }

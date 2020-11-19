@@ -2,48 +2,53 @@ package Management;
 
 import java.util.ArrayList;
 
-public abstract class Sandwich implements Customizable{
+/**
+ * Sandwich information
+ *
+ * @author Hanqing Zhao, Richard Xu
+ */
+public abstract class Sandwich implements Customizable {
     static final int MAX_EXTRAS = 6;
     static final double PER_EXTRA = 1.99;
     protected ArrayList<Extra> extras;
-    //protected ArrayList<String> basics;
+
+    /**
+     * Generic constructor for information that all sandwiches will have
+     */
     public Sandwich() {
         extras = new ArrayList<>();
     }
+
+    /**
+     * Gets the total price of the sandwich
+     * (Basic Ingredients) + (Extra Ingredients)
+     *
+     * @return The totla price
+     */
     public abstract double price();
 
+    /**
+     * Gets the basic ingredients of a sandwich type
+     *
+     * @return List of the basic ingredients
+     */
     public abstract ArrayList<String> getBasic();
 
+    /**
+     * Gets the type of the sandwich
+     *
+     * @return String of the sandwich type
+     */
     public abstract String getType();
 
-    /*
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Sandwich type :").append(getType()).append("\n");
-        sb.append("Basic Ingredients :");
-        for (String basic : getBasic()) {
-            sb.append(basic).append(",");
-        }
-        sb.append("\n").append("Extra ingredients :");
-        for (Extra extra : extras) {
-            sb.append(extra.toString()).append(",");
-        }
-        sb.append("\n");
-        sb.append("Price: ").append(price());
-        return sb.toString();
-    }
+    /**
+     * Generic information that all sandwich types will share
+     *
+     * @return String of the generic sandwich information
      */
-
-    public String toString() {
+    @Override public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(getType());
-        sb.append("/");
 
-        for (String basic : getBasic()) {
-            sb.append(basic).append(",");
-        }
-
-        //sb.append(getBasic());
         sb.append("/");
         if (extras.size() == 0) {
             sb.append("no extras");
