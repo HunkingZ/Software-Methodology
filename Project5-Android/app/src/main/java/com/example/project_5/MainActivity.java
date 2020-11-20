@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         l1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this, "clicked Museum: " + arrayList.get(position)
+                Toast.makeText(MainActivity.this, "Maximum of 5 tickets for each!"
                         , Toast.LENGTH_SHORT).show();
                 openSecondActivity(arrayList.get(position));
             }
