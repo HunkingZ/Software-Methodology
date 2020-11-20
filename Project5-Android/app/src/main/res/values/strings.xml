@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">Project-5</string>
+    <string name="app_name">NYC MUSEUM</string>
+    <string name="mainActivity_name">Museum Ticket</string>
+    <string name="secondActivity_name">Ticket Price Calculator</string>
+    <string name="textview">TextView</string>
+    <string name="nyc_museum_tickets">NYC Museum Tickets</string>
+    <string name="todo">TODO</string>
+    <string name="adult">Adult</string>
+    <string name="senior">Senior</string>
+    <string name="student">Student</string>
+    <string-array name="TicketNumbers">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
 </resources>
