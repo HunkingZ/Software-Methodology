@@ -10,10 +10,12 @@ import android.os.Bundle;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class SecondActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class SecondActivity extends AppCompatActivity {
 
     private String linkToWeb;
-    private final double taxRate = 0.08875;
+    private final double NYC_RATE = 0.08875;
+    private final double NJ_RATE = 0.06625;
+    private double taxRate;
     private double ticketPrice;
     private double salesTax;
     private double totalPrice;
@@ -28,7 +30,6 @@ public class SecondActivity extends AppCompatActivity implements AdapterView.OnI
 
     TextView totalPriceText, salesTaxText, ticketPriceText;
     private String number[] = {"0", "1", "2", "3", "4", "5"};
-    //ArrayAdapter<String> arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +58,6 @@ public class SecondActivity extends AppCompatActivity implements AdapterView.OnI
         Spinner adultSpinner = findViewById(R.id.adult_spinner);
         Spinner seniorSpinner = findViewById(R.id.senior_spinner);
         Spinner studentSpinner = findViewById(R.id.student_spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.TicketNumbers, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         textView.setText(museum);
 
@@ -69,6 +68,7 @@ public class SecondActivity extends AppCompatActivity implements AdapterView.OnI
                 imageView.setImageResource(R.drawable.museum_met_breuer);
                 linkToWeb = "https://www.metmuseum.org/visit/audio-guide/the-met-breuer";
 
+                taxRate = NYC_RATE;
                 adultPrice = 25;
                 seniorPrice = 17;
                 studentPrice = 12;
@@ -82,6 +82,7 @@ public class SecondActivity extends AppCompatActivity implements AdapterView.OnI
                 imageView.setImageResource(R.drawable.museum_ny_historical_society);
                 linkToWeb = "https://www.nyhistory.org/";
 
+                taxRate = NYC_RATE;
                 adultPrice = 22;
                 seniorPrice = 17;
                 studentPrice = 13;
@@ -96,6 +97,7 @@ public class SecondActivity extends AppCompatActivity implements AdapterView.OnI
                 imageView.setImageResource(R.drawable.museum_solomon_r_guggenheim);
                 linkToWeb = "https://www.guggenheim.org/";
 
+                taxRate = NYC_RATE;
                 adultPrice = 25;
                 seniorPrice = 18;
                 studentPrice = 18;
@@ -110,6 +112,7 @@ public class SecondActivity extends AppCompatActivity implements AdapterView.OnI
                 imageView.setImageResource(R.drawable.museum_moma);
                 linkToWeb = "https://www.moma.org/";
 
+                taxRate = NYC_RATE;
                 adultPrice = 25;
                 seniorPrice = 18;
                 studentPrice = 14;
@@ -176,6 +179,7 @@ public class SecondActivity extends AppCompatActivity implements AdapterView.OnI
     }
 
 
+    /*
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
@@ -188,6 +192,7 @@ public class SecondActivity extends AppCompatActivity implements AdapterView.OnI
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+     */
 
 
     private void setPrice() {

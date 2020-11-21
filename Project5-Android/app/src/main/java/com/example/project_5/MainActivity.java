@@ -30,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
         l1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this, "Maximum of 5 tickets for each!"
-                        , Toast.LENGTH_SHORT).show();
                 openSecondActivity(arrayList.get(position));
             }
         });
@@ -42,5 +40,7 @@ public class MainActivity extends AppCompatActivity {
         activity2.putExtra(museumName, name);
 
         startActivity(activity2);
+        Toast.makeText(MainActivity.this, "Maximum of 5 tickets for each!"
+                , Toast.LENGTH_SHORT).show();
     }
 }
