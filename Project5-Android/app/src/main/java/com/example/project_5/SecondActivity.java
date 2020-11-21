@@ -187,7 +187,7 @@ public class SecondActivity extends AppCompatActivity {
         salesTax = ticketPrice * taxRate;
         totalPrice =  ticketPrice + salesTax;
 
-        String ticket = String.format("Ticket Price: $%d", ticketPrice);
+        String ticket = String.format("Ticket Price: $%.0f", ticketPrice);
         String tax = String.format("Sales Tax: $%.2f", salesTax);
         String total = String.format("Ticket Total: $%.2f", totalPrice);
 
