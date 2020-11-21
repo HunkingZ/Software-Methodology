@@ -10,12 +10,19 @@ import android.os.Bundle;
 import java.net.URL;
 import java.util.ArrayList;
 
+/**
+ * Secondary activity screen that shows information about a museum
+ * Information shown is determined by selection of primary activity screen
+ *
+ * @author Hanqing Zhao, Richard Xu
+ */
 public class SecondActivity extends AppCompatActivity {
 
     private String linkToWeb;
     private final double NYC_RATE = 0.08875;
     private final double NJ_RATE = 0.06625;
     private double taxRate;
+
     private double ticketPrice;
     private double salesTax;
     private double totalPrice;
@@ -31,8 +38,13 @@ public class SecondActivity extends AppCompatActivity {
     TextView totalPriceText, salesTaxText, ticketPriceText;
     private String number[] = {"0", "1", "2", "3", "4", "5"};
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    /**
+     * Creates and displays museum information
+     * Parses data based on selection in primary activity
+     *
+     * @param savedInstanceState Information passed by calling (primary) activity
+     */
+    @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
@@ -73,9 +85,6 @@ public class SecondActivity extends AppCompatActivity {
                 seniorPrice = 17;
                 studentPrice = 12;
 
-                adult.setText("Adult $" + adultPrice);
-                senior.setText("Senior $" + seniorPrice);
-                student.setText("Student $" + studentPrice);
                 break;
             }
             case "New-York Historical Society": {
@@ -86,10 +95,6 @@ public class SecondActivity extends AppCompatActivity {
                 adultPrice = 22;
                 seniorPrice = 17;
                 studentPrice = 13;
-
-                adult.setText("Adult $" + adultPrice);
-                senior.setText("Senior $" + seniorPrice);
-                student.setText("Student $" + studentPrice);
 
                 break;
             }
@@ -102,10 +107,6 @@ public class SecondActivity extends AppCompatActivity {
                 seniorPrice = 18;
                 studentPrice = 18;
 
-                adult.setText("Adult $" + adultPrice);
-                senior.setText("Senior $" + seniorPrice);
-                student.setText("Student $" + studentPrice);
-
                 break;
             }
             case "Museum of Modern Art (MoMA)": {
@@ -117,13 +118,13 @@ public class SecondActivity extends AppCompatActivity {
                 seniorPrice = 18;
                 studentPrice = 14;
 
-                adult.setText("Adult $" + adultPrice);
-                senior.setText("Senior $" + seniorPrice);
-                student.setText("Student $" + studentPrice);
-
                 break;
             }
         }
+
+        adult.setText("Adult $" + adultPrice);
+        senior.setText("Senior $" + seniorPrice);
+        student.setText("Student $" + studentPrice);
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,12 +133,12 @@ public class SecondActivity extends AppCompatActivity {
             }
         });
 
-
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayList);
 
         adultSpinner.setAdapter(arrayAdapter);
         seniorSpinner.setAdapter(arrayAdapter);
         studentSpinner.setAdapter(arrayAdapter);
+
         adultSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -178,28 +179,15 @@ public class SecondActivity extends AppCompatActivity {
         });
     }
 
-
-    /*
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-        String num = parent.getItemAtPosition(position).toString();
-
-        //Toast.makeText(parent.getContext(), num, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
+    /**
+     * Calculates, sets, and displays ticket price, sales tax, and total price
      */
-
-
     private void setPrice() {
         ticketPrice = adultNum * adultPrice + seniorNum * seniorPrice + studentNum * studentPrice;
         salesTax = ticketPrice * taxRate;
         totalPrice =  ticketPrice + salesTax;
-        String ticket = String.format("Ticket Price: $%.2f", ticketPrice);
+
+        String ticket = String.format("Ticket Price: $%d", ticketPrice);
         String tax = String.format("Sales Tax: $%.2f", salesTax);
         String total = String.format("Ticket Total: $%.2f", totalPrice);
 
@@ -208,6 +196,12 @@ public class SecondActivity extends AppCompatActivity {
         totalPriceText.setText(total);
     }
 
+    /**
+     * Opens the museum URL
+     * Submits intent to the system and opens the website link
+     *
+     * @param url Link of the museum website
+     */
     private void openLink(String url) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(url));
